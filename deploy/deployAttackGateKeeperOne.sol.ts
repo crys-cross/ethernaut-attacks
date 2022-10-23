@@ -21,7 +21,7 @@ const deployAttackGatekeeperOne: DeployFunction = async (hre: HardhatRuntimeEnvi
     log("-----------------------------------------------------");
     // deployments here
     const args: any[] = [];
-    const AttackGateKeeperOne = await deploy("AttackGateKeeperOne", {
+    const attackGateKeeperOne = await deploy("AttackGateKeeperOne", {
         from: deployer,
         log: true,
         args: args,
@@ -31,8 +31,8 @@ const deployAttackGatekeeperOne: DeployFunction = async (hre: HardhatRuntimeEnvi
     // Verify the deployment
     if (!developmentChains.includes(network.name) && process.env.ETHERSCAN_API_KEY) {
         log("Verifying...");
-        await verify(AttackGateKeeperOne.address, args);
+        await verify(attackGateKeeperOne.address, args);
     }
 };
 export default deployAttackGatekeeperOne;
-deployAttackGatekeeperOne.tags = ["all", "gatekeeperone"];
+deployAttackGatekeeperOne.tags = ["allgatekeeperone", "attackgatekeeperone"];

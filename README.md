@@ -32,6 +32,13 @@
 
 ### 13 - Gatekeeper One
 
+-   AttackGateKeeperOne.sol - contracts
+-   GateKeeperOneSample.sol - contracts
+-   deployAttackGateKeeperOne.ts - deploy
+-   deployGateKeeperOneSample.ts - deploy
+-   attackGateKeeperOne.ts -scripts
+-   Deploy AttackGateKeeperOne.sol at goerli network with deployAttackGateKeeperOne.ts and run attackGateKeeperOne.ts to attack. GateKeeperOneSample.sol is for testing localy.
+
 ### 14 - Gatekeeper Two
 
 ### 15 - Naught Coin

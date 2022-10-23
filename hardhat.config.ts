@@ -1,29 +1,35 @@
-import "@nomicfoundation/hardhat-toolbox"
-import "hardhat-deploy"
-import "hardhat-contract-sizer"
-import "dotenv/config"
-import { HardhatUserConfig } from "hardhat/config"
+import "@nomicfoundation/hardhat-toolbox";
+import "hardhat-deploy";
+import "hardhat-contract-sizer";
+import "dotenv/config";
+import { HardhatUserConfig } from "hardhat/config";
 
 /**
  * @type import('hardhat/config').HardhatUserConfig
  */
 
-const GOERLI_RPC_URL = process.env.GOERLI_RPC_URL
-const MUMBAI_RPC_URL = process.env.MUMBAI_RPC_URL
-const PRIVATE_KEY = process.env.PRIVATE_KEY || ""
-const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY
+// RPC from Alchemy
+const GOERLI_RPC_URL = process.env.GOERLI_RPC_URL;
+const MUMBAI_RPC_URL = process.env.MUMBAI_RPC_URL;
+const PRIVATE_KEY = process.env.PRIVATE_KEY || "";
+const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY;
 
-// Your API key for Etherscan, obtain one at https://etherscan.io/
-const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || "Your etherscan API key"
-const POLYGONSCAN_API_KEY = process.env.POLYGONSCAN_API_KEY || "Your polygonscan API key"
-const SNOWTRACE_API_KEY = process.env.SNOWTRACE_API_KEY || "Your snowtrace API key"
-const FTMSCAN_API_KEY = process.env.FTMSCAN_API_KEY || "Your ftmscan API key"
-const REPORT_GAS = process.env.REPORT_GAS || false
+// API from scanners of different chains/networks
+const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || "Your etherscan API key";
+const POLYGONSCAN_API_KEY = process.env.POLYGONSCAN_API_KEY || "Your polygonscan API key";
+const SNOWTRACE_API_KEY = process.env.SNOWTRACE_API_KEY || "Your snowtrace API key";
+const FTMSCAN_API_KEY = process.env.FTMSCAN_API_KEY || "Your ftmscan API key";
+const REPORT_GAS = process.env.REPORT_GAS || false;
 
 const config: HardhatUserConfig = {
     // solidity: "0.8.8",
     solidity: {
-        compilers: [{ version: "0.8.8" }, { version: "0.8.4" }, { version: "0.6.6" }],
+        compilers: [
+            { version: "0.8.8" },
+            { version: "0.8.4" },
+            { version: "0.6.6" },
+            { version: "0.6.0" },
+        ],
     },
     networks: {
         hardhat: {
@@ -111,5 +117,5 @@ const config: HardhatUserConfig = {
     // mocha: {
     //     timeout: 40000, //4000 seconds
     // },
-}
-export default config
+};
+export default config;

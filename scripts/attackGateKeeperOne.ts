@@ -9,7 +9,11 @@ async function attackGateKeeperOne() {
     // don't touch below
     const attack = await ethers.getContractAt("AttackGateKeeperOne", contractAddress);
     const tx = await attack.enterGate(_gateAddress, _gasLowerLimit, _gasUpperLimit);
-    console.log(tx);
+    const txReceipt = await tx.wait(1);
+    const event1 = await txReceipt.events[0].args.succeeded.toString();
+    const event2 = await txReceipt.events[0].args.gasUsed.toString();
+    console.log(`You passed this(Gatekeeper One) level: ${event1}`);
+    console.log(`Gas used: ${event2}`);
 }
 
 attackGateKeeperOne()

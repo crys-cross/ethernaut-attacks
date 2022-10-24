@@ -1,11 +1,11 @@
 import { ethers } from "hardhat";
 
 async function attackGateKeeperOne() {
-    // change contract address and arguments here
-    const _gateAddress = "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512";
-    const _gasLowerLimit = 200;
+    // change contract addresses here. change gas only if needed.
+    const _gateAddress = "0x5a2C7Bb67C57AD2b89731D97d0a1bc1D6Cc7c1A0";
+    const _gasLowerLimit = 50;
     const _gasUpperLimit = 300;
-    const contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+    const contractAddress = "0x43C32dB8181f4CD99CC5163a126002A351Ec1F71";
     // don't touch below
     const attack = await ethers.getContractAt("AttackGateKeeperOne", contractAddress);
     const tx = await attack.enterGate(_gateAddress, _gasLowerLimit, _gasUpperLimit);

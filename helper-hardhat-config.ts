@@ -1,18 +1,18 @@
-import { ethers } from "hardhat"
+import { ethers } from "hardhat";
 
 export interface networkConfigItem {
-    name?: string
-    subscriptionId?: string
-    gasLane?: string
-    keepersUpdateInterval?: string
-    lotteryEntranceFee?: string
-    callbackGasLimit?: string
-    vrfCoordinatorV2?: string
-    ethUsdPriceFeed?: string
+    name?: string;
+    subscriptionId?: string;
+    gasLane?: string;
+    keepersUpdateInterval?: string;
+    lotteryEntranceFee?: string;
+    callbackGasLimit?: string;
+    vrfCoordinatorV2?: string;
+    ethUsdPriceFeed?: string;
 }
 
 export interface networkConfigInfo {
-    [key: number]: networkConfigItem
+    [key: number]: networkConfigItem;
 }
 
 export const networkConfig: networkConfigInfo = {
@@ -78,9 +78,9 @@ export const networkConfig: networkConfigInfo = {
         vrfCoordinatorV2: "0x2eD832Ba664535e5886b75D64C46EB9a228C2610",
         // ethUsdPriceFeed: "0x0715A7794a1dc8e42615F059dD6e406A6594651A",
     },
-}
+};
 
-export const developmentChains = ["hardhat", "localhost"]
-export const DECIMALS = 18
-export const INITIAL_PRICE = ethers.utils.parseUnits("2000", "ether")
-export const VERIFICATION_BLOCK_CONFIRMATIONS = 6
+export const developmentChains = ["hardhat", "localhost"];
+export const DECIMALS = 18;
+export const INITIAL_PRICE = ethers.utils.parseUnits("2000", "ether");
+export const VERIFICATION_BLOCK_CONFIRMATIONS = 6;

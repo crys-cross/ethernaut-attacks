@@ -8,7 +8,7 @@ import {
 } from "../helper-hardhat-config";
 import verify from "../utils/verify";
 
-const deployGateKeeperTwoSample: DeployFunction = async (hre: HardhatRuntimeEnvironment) => {
+const deployGatekeeperTwoSample: DeployFunction = async (hre: HardhatRuntimeEnvironment) => {
     // preparations here
     const { deployments, getNamedAccounts, network } = hre;
     const { deploy, log } = deployments;
@@ -34,5 +34,5 @@ const deployGateKeeperTwoSample: DeployFunction = async (hre: HardhatRuntimeEnvi
         await verify(gateKeeperTwoSample.address, args);
     }
 };
-export default deployGateKeeperTwoSample;
-deployGateKeeperTwoSample.tags = ["allgatekeepertwo", "samplegatekeepertwo"];
+export default deployGatekeeperTwoSample;
+deployGatekeeperTwoSample.tags = ["allgatekeepertwo", "samplegatekeepertwo"];

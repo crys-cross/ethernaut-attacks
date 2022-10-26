@@ -17,10 +17,12 @@ const deployAttackGatekeeperTwo: DeployFunction = async (hre: HardhatRuntimeEnvi
     const waitBlockConfirmations = developmentChains.includes(network.name)
         ? 1
         : VERIFICATION_BLOCK_CONFIRMATIONS;
+    // Change contract address/ instance here:
+    const gateTwoAddress = "0xC1d2C999345e3E29e36B3397BED9E0ebf0414e0E";
 
     log("-----------------------------------------------------");
     // deployments here
-    const args: any[] = [];
+    const args: any[] = [gateTwoAddress];
     const attackGateKeeperTwo = await deploy("AttackGateKeeperTwo", {
         from: deployer,
         log: true,

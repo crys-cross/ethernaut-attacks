@@ -45,8 +45,7 @@
 -   GateKeeperTwoSample.sol - contracts
 -   deployAttackGateKeeperTwo.ts - deploy
 -   deployGateKeeperTwoSample.ts - deploy
--   attackGateKeeperTwo.ts -scripts
--   Deploy AttackGateKeeperTeo.sol at goerli network with deployAttackGateKeeperTwo.ts and run attackGateKeeperTwo.ts to attack. GateKeeperOneSample.sol is for testing locally.
+-   Deploy AttackGateKeeperTwo.sol at goerli network with deployAttackGateKeeperTwo.ts and it will run the attack since it uses a constructor. Change the gateTwoAddress or instance from the deployer script. GateKeeperTwoSample.sol is for testing locally.
 
 ### 15 - Naught Coin
 

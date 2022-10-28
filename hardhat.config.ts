@@ -12,6 +12,7 @@ import { HardhatUserConfig } from "hardhat/config";
 const GOERLI_RPC_URL = process.env.GOERLI_RPC_URL;
 const MUMBAI_RPC_URL = process.env.MUMBAI_RPC_URL;
 const PRIVATE_KEY = process.env.PRIVATE_KEY || "";
+const PRIVATE_KEY_2 = process.env.PRIVATE_KEY || "";
 const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY;
 
 // API from scanners of different chains/networks
@@ -41,37 +42,37 @@ const config: HardhatUserConfig = {
         },
         goerli: {
             url: GOERLI_RPC_URL || "",
-            accounts: [PRIVATE_KEY],
+            accounts: [PRIVATE_KEY, PRIVATE_KEY_2],
             chainId: 5,
         },
         fantomtest: {
             url: "https://rpc.testnet.fantom.network" || "",
-            accounts: [PRIVATE_KEY],
+            accounts: [PRIVATE_KEY, PRIVATE_KEY_2],
             chainId: 4002,
         },
         fujitest: {
             url: "https://api.avax-test.network/ext/bc/C/rpc" || "",
-            accounts: [PRIVATE_KEY],
+            accounts: [PRIVATE_KEY, PRIVATE_KEY_2],
             chainId: 43113,
         },
         mumbaitest: {
             url: MUMBAI_RPC_URL || "",
-            accounts: [PRIVATE_KEY],
+            accounts: [PRIVATE_KEY, PRIVATE_KEY_2],
             chainId: 80001,
         },
         optimismkovan: {
             url: "https://kovan.optimism.io/" || "",
-            accounts: [PRIVATE_KEY],
+            accounts: [PRIVATE_KEY, PRIVATE_KEY_2],
             chainId: 69,
         },
         bnbtest: {
             url: "https://data-seed-prebsc-1-s1.binance.org:8545" || "",
-            accounts: [PRIVATE_KEY],
+            accounts: [PRIVATE_KEY, PRIVATE_KEY_2],
             chainId: 97,
         },
         klaytontest: {
             url: "https://api.baobab.klaytn.net:8651" || "",
-            accounts: [PRIVATE_KEY],
+            accounts: [PRIVATE_KEY, PRIVATE_KEY_2],
             chainId: 1001,
         },
         // arbitrum: {

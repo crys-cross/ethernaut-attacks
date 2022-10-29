@@ -12,7 +12,7 @@ import { HardhatUserConfig } from "hardhat/config";
 const GOERLI_RPC_URL = process.env.GOERLI_RPC_URL;
 const MUMBAI_RPC_URL = process.env.MUMBAI_RPC_URL;
 const PRIVATE_KEY = process.env.PRIVATE_KEY || "";
-const PRIVATE_KEY_2 = process.env.PRIVATE_KEY || "";
+const PRIVATE_KEY_2 = process.env.PRIVATE_KEY_2 || "";
 const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY;
 
 // API from scanners of different chains/networks
@@ -82,12 +82,12 @@ const config: HardhatUserConfig = {
         // },
         metisstardust: {
             url: "https://stardust.metis.io/?owner=588" || "",
-            accounts: [PRIVATE_KEY],
+            accounts: [PRIVATE_KEY, PRIVATE_KEY_2],
             chainId: 588,
         },
         evmostest: {
             url: "https://eth.bd.evmos.dev:8545" || "",
-            accounts: [PRIVATE_KEY],
+            accounts: [PRIVATE_KEY, PRIVATE_KEY_2],
             chainId: 9000,
         },
     },

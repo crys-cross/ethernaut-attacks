@@ -49,6 +49,11 @@
 
 ### 15 - Naught Coin
 
+-   IERC20.sol
+-   attackNaughtCoin1.ts - scripts
+-   attackNaughtCoin1.ts - scripts
+-   run script attackNaughtCoin1.ts from player account as this will approve your secondary account to spend the NaughtCoin. Then run attackNaughtCoin2.ts using the said secondary account to transfer all NaughtCoin from player account to secondary account. Edit different address from the scripts. You may use any method in changing account in hardhat but as for me I change the account in Hardhat config under networks for that specific chain(Ethernauts uses Goerli upon the time making this).
+
 ### 16 - Preservation
 
 ### 17 - Recovery

@@ -56,6 +56,10 @@
 
 ### 16 - Preservation
 
+-   LattackLibraryContract.sol - contract
+-   attackPreservation.ts - scripts
+-   run
+
 ### 17 - Recovery
 
 ### 18 - Magic Number

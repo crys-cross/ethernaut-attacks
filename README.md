@@ -57,8 +57,10 @@
 ### 16 - Preservation
 
 -   LattackLibraryContract.sol - contract
+-   PreservationSample.sol - contract
+-   deployLAttackContract.ts - deploy
 -   attackPreservation.ts - scripts
--   run
+-   deploy LattackLibraryContract.sol using deployLAttackContract.ts. After deployment put address of deployed library and other needed addresses in attackPreservation.ts and run script in goerli.
 
 ### 17 - Recovery
 

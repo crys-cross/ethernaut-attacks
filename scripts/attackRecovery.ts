@@ -7,7 +7,8 @@ async function attackRecovery() {
     // don't touch below
     let ABI = ["function destroy(address payable _to)"];
     let iface = new ethers.utils.Interface(ABI);
-    // await iface.encodeFunctionData("destroy", playerAddress);
+    // const data = await iface.encodeFunctionData("destroy", playerAddress);
+    // tx =  await ethers.sendTransaction({from: playerAddress, to: recoveryAddress, data})
     // const attack = await ethers.getContractAt("AttackGateKeeperOne", contractAddress);
     // const tx = await attack.enterGate(_gateAddress, _gasLowerLimit, _gasUpperLimit);
     // const txReceipt = await tx.wait(1);

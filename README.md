@@ -65,9 +65,12 @@
 ### 17 - Recovery
 
 -   attackRecovery.ts - scripts
--   edit addresess and run attackRecovery.ts to attack. Lost address may be search with etehrscan or be determined by rpl encoding in solidity.
+-   edit addresess and run attackRecovery.ts to attack to network goerli. Lost address may be search with etehrscan or be determined by rpl encoding in solidity.
 
 ### 18 - Magic Number
+
+-   attackMAgicNumber.ts - scripts
+-   edit addresess and run attackMAgicNumber.ts to attack to network goerli.
 
 ### 19 - Alien Codex
 

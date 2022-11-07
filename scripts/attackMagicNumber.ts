@@ -13,15 +13,15 @@ const attackMagicNumber = async () => {
     const signer = await provider.getSigner();
     const tx1 = await signer.sendTransaction({
         from: playerAddress,
-        to: magicNumberAddress,
         data: bytecode,
     });
     const txReceipt1 = await tx1.wait(1);
     console.log(txReceipt1);
-    const _solver = tx1.to;
+    const txHash = await tx1.wait(1);
+    const _solver = await txHash.contractAddress;
     const ABI = ["function setSolver(address _solver)"];
     const contract = await ethers.getContractAt(ABI, magicNumberAddress);
-    const tx2 = await contract.setSolver(playerAddress);
+    const tx2 = await contract.setSolver(_solver);
     const txReceipt = await tx2.wait(1);
     console.log(txReceipt);
 };

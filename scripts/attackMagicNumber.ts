@@ -6,6 +6,11 @@ const attackMagicNumber = async () => {
     const magicNumberAddress = "0x0Da41194c379e212EFA9067A28945cF6a8Acb62D";
     const playerAddress = "0x3C4f1C7Ab126a94016CA8F4e770522810aa61954";
     const bytecode = "0x600a600c600039600a6000f3602a60505260206050f3";
+    // knowledge in opcode required to finish this level. To understand how to get bytecodes above, please
+    // read on:
+    // https://medium.com/@blockchain101/solidity-bytecode-and-opcode-basics-672e9b1a88c2
+    // https://blog.openzeppelin.com/deconstructing-a-solidity-contract-part-i-introduction-832efd2d7737/
+    // https://ethereum.org/en/developers/docs/evm/opcodes
 
     /* don't change anything below */
     /*alternative ways to connect to provider and signer below*/

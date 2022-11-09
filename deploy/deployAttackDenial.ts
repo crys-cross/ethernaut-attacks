@@ -8,7 +8,6 @@ const deployAttackDenial: DeployFunction = async (hre: HardhatRuntimeEnvironment
     const { deployments, getNamedAccounts, network } = hre;
     const { deploy, log } = deployments;
     const { deployer } = await getNamedAccounts();
-    const chainId = network.config.chainId;
     const waitBlockConfirmations = developmentChains.includes(network.name)
         ? 1
         : VERIFICATION_BLOCK_CONFIRMATIONS;
@@ -16,7 +15,7 @@ const deployAttackDenial: DeployFunction = async (hre: HardhatRuntimeEnvironment
     log("-----------------------------------------------------");
     // deployments here
     const args: any[] = [];
-    const attacDenial = await deploy("AttackDenial", {
+    const attackDenial = await deploy("GasBurner", {
         from: deployer,
         log: true,
         args: args,
@@ -26,7 +25,7 @@ const deployAttackDenial: DeployFunction = async (hre: HardhatRuntimeEnvironment
     // Verify the deployment
     if (!developmentChains.includes(network.name) && process.env.ETHERSCAN_API_KEY) {
         log("Verifying...");
-        await verify(attacDenial.address, args);
+        await verify(attackDenial.address, args);
     }
 };
 export default deployAttackDenial;

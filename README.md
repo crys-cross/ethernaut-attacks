@@ -79,6 +79,11 @@
 
 ### 20 - Denial
 
+-   AttackDenial.sol - contract
+-   deployAttackDenial.ts - deploy
+-   AttackDenial.ts - scripts
+-   deploy AttackDenial.sol using deployAttackDenial.ts to goerli network. After deployment put address of deployed library and other needed addresses in AttackDenial.ts and run script in goerli.
+
 ### 21 - Shop
 
 ### 22 - Dex

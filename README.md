@@ -74,6 +74,9 @@
 
 ### 19 - Alien Codex
 
+-   attackAlienCodex.ts - scripts
+-   edit addresess and run attackAlienCodex.ts to attack to network goerli.
+
 ### 20 - Denial
 
 ### 21 - Shop

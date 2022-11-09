@@ -41,7 +41,7 @@ const attackAlienCodex = async () => {
     const tx3 = await contract.revise(i, _content);
     const tx3Receipt = await tx3.wait(1);
     console.log(tx3Receipt);
-    const pass = (await contract.owner()) === playerAddress;
+    const pass = (await contract.owner) === playerAddress;
     console.log(`Claimed ownership and passed this level: ${pass}`);
 };
 

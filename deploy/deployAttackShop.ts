@@ -3,7 +3,7 @@ import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { developmentChains, VERIFICATION_BLOCK_CONFIRMATIONS } from "../helper-hardhat-config";
 import verify from "../utils/verify";
 
-const deployAttackDenial: DeployFunction = async (hre: HardhatRuntimeEnvironment) => {
+const deployAttackShop: DeployFunction = async (hre: HardhatRuntimeEnvironment) => {
     // preparations here
     const { deployments, getNamedAccounts, network } = hre;
     const { deploy, log } = deployments;
@@ -15,7 +15,7 @@ const deployAttackDenial: DeployFunction = async (hre: HardhatRuntimeEnvironment
     log("-----------------------------------------------------");
     // deployments here
     const args: any[] = [];
-    const attackDenial = await deploy("GasBurner", {
+    const attackShop = await deploy("Buyer", {
         from: deployer,
         log: true,
         args: args,
@@ -25,8 +25,8 @@ const deployAttackDenial: DeployFunction = async (hre: HardhatRuntimeEnvironment
     // Verify the deployment
     if (!developmentChains.includes(network.name) && process.env.ETHERSCAN_API_KEY) {
         log("Verifying...");
-        await verify(attackDenial.address, args);
+        await verify(attackShop.address, args);
     }
 };
-export default deployAttackDenial;
-deployAttackDenial.tags = ["denial", "alldenial"];
+export default deployAttackShop;
+deployAttackShop.tags = ["denial", "alldenial"];

@@ -86,6 +86,11 @@
 
 ### 21 - Shop
 
+-   AttackShop.sol - contract
+-   deployAttackShop.ts - deploy
+-   AttackShop.ts - scripts
+-   deploy AttackShop.sol using deployAttackShop.ts to goerli network. After deployment put address of deployed library and other needed addresses in AttackShop.ts and run script in goerli.
+
 ### 22 - Dex
 
 ### 23 - Dex Two

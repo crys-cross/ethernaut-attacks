@@ -29,4 +29,4 @@ const deployAttackShop: DeployFunction = async (hre: HardhatRuntimeEnvironment) 
     }
 };
 export default deployAttackShop;
-deployAttackShop.tags = ["denial", "alldenial"];
+deployAttackShop.tags = ["shop", "allshop"];

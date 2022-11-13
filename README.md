@@ -100,6 +100,9 @@
 
 ### 23 - Dex Two
 
+-   AttackDexTwo.ts - scripts
+-   Put address of deployed library and other needed addresses in AttackDexTwo.ts and run script in goerli.
+
 ### 24 - Puzzle Wallet
 
 ### 25 - Motorbike

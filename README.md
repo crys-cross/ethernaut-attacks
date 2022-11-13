@@ -90,8 +90,13 @@
 -   deployAttackShop.ts - deploy
 -   AttackShop.ts - scripts
 -   deploy AttackShop.sol using deployAttackShop.ts to goerli network. After deployment put address of deployed library and other needed addresses in AttackShop.ts and run script in goerli.
+-   TODO- scripts
 
 ### 22 - Dex
+
+-   AttackDex.ts - scripts
+-   Put address of deployed library and other needed addresses in AttackDex.ts and run script in goerli.
+-   TODO- scripts
 
 ### 23 - Dex Two
 

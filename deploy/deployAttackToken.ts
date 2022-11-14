@@ -30,4 +30,4 @@ const deployAttackToken: DeployFunction = async (hre: HardhatRuntimeEnvironment)
     }
 };
 export default deployAttackToken;
-deployAttackToken.tags = ["shop", "allshop"];
+deployAttackToken.tags = ["atktoken", "allatktoken"];

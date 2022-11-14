@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.6.0;
 
-import "@openzeppelin/contracts/math/SafeMath.sol";
+// import "@openzeppelin/contracts/math/SafeMath.sol";
 
 contract GatekeeperOne {
-    using SafeMath for uint256;
+    // using SafeMath for uint256;
     address public entrant;
 
     modifier gateOne() {
@@ -13,7 +13,7 @@ contract GatekeeperOne {
     }
 
     modifier gateTwo() {
-        require(gasleft().mod(8191) == 0);
+        require(gasleft() % (8191) == 0);
         _;
     }
 

@@ -100,8 +100,9 @@
 
 ### 23 - Dex Two
 
--   AttackDexTwo.ts - scripts
--   Put address of deployed library and other needed addresses in AttackDexTwo.ts and run script in goerli.
+-   AttackToken.sol - contracts
+-   attackDexTwo.ts - scripts
+-   deploy AttackToken.sol using deployAttackToken.ts to goerli network. After deployment put address of deployed library and other needed addresses in attackDexTwo.ts and run script in goerli.
 
 ### 24 - Puzzle Wallet
 

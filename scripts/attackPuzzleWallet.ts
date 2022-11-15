@@ -10,6 +10,14 @@ const attackPuzzleWallet = async () => {
     // You may read more on:
     // https://eip2535diamonds.substack.com/p/understanding-delegatecall-and-how
     // https://blog.openzeppelin.com/proxy-patterns/
+    // sample table below to compare storage
+    // slot | PuzzleWallet  -  PuzzleProxy
+    // ----------------------------------
+    //  0   |   owner      <-  pendingAdmin
+    //  1   |   maxBalance <-  admin
+    //  2   |           .
+    //  3   |           .
+
     const provider = await ethers.getDefaultProvider("goerli");
     /*Private Keys in .env file or hardcode here*/
     const PRIVATE_KEY = process.env.PRIVATE_KEY || "";

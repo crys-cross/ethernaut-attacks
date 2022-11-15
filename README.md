@@ -107,6 +107,9 @@
 
 ### 24 - Puzzle Wallet
 
+-   AttackPuzzleWallet.ts - scripts
+-   Put address of deployed library and other needed addresses in AttackPuzzleWallet.ts and run script in goerli.
+
 ### 25 - Motorbike
 
 ### 26 - Double Entry

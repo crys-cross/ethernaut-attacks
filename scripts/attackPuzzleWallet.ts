@@ -5,7 +5,11 @@ const attackPuzzleWallet = async () => {
     // change contract addresses here.
     const puzzleWalletAddress = "0xAc7EcD98B60C2094BdD63eEaF73436ebE8A28e9a"; //type "await contract.address()" in ethernaut console
 
+    // Don't touch below
     // The vulnerability here arises due to storage collision between the proxy contract (PuzzleProxy) and logic contract (PuzzleWallet)
+    // You may read more on:
+    // https://eip2535diamonds.substack.com/p/understanding-delegatecall-and-how
+    // https://blog.openzeppelin.com/proxy-patterns/
     const provider = await ethers.getDefaultProvider("goerli");
     /*Private Keys in .env file or hardcode here*/
     const PRIVATE_KEY = process.env.PRIVATE_KEY || "";

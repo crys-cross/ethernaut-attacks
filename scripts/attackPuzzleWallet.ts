@@ -37,14 +37,14 @@ const attackPuzzleWallet = async () => {
     console.log(txReceipt1);
     // check below that player is now owner
     // TODO:
-    const ABI = ["function addToWhitelist(address addr) external "];
-    const contractAttack = await ethers.getContractAt(ABI, puzzleWalletAddress);
-    const tx2 = await contractAttack.addToWhitelist(playerAddress);
+
+    const contractPuzzleWallet = await ethers.getContractAt("PuzzleWallet", puzzleWalletAddress);
+    const tx2 = await contractPuzzleWallet.addToWhitelist(playerAddress);
     // get balance of puzzle contract
     const playerBalance = await provider.getBalance(puzzleWalletAddress);
     // TODO: fill in function call signature
     const multicallData = "";
-    const tx3 = await contractAttack.multicall([multicallData, multicallData], {
+    const tx3 = await contractPuzzleWallet.multicall([multicallData, multicallData], {
         value: ethers.utils.parseEther("0.001"),
     });
 };

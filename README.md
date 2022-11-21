@@ -112,6 +112,12 @@
 
 ### 25 - Motorbike
 
+-   AttackMotorbikeEngine.sol - contract
+-   deployAttackMotorbikeEngine.ts - deploy
+-   attackMotorbike.ts - scripts
+-   deploy AttackMotorbikeEngine.sol using deployAttackMotorbikeEngine.ts to goerli network. After deployment put address of deployed library and other needed addresses in attackMotorbike.ts and run script in goerli.
+-   TODO- scripts
+
 ### 26 - Double Entry
 
 ### 27 - Good Samaritan

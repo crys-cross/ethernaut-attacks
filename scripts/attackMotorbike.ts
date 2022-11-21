@@ -36,7 +36,7 @@ const attackMotorbike = async () => {
     const PRIVATE_KEY = process.env.PRIVATE_KEY || "";
     const wallet = new Wallet(PRIVATE_KEY, provider);
     const params = playerAddress;
-    const funcSign = ["function initialize() external initializer "];
+    const funcSign = ["function initialize() external initializer"];
     const iface = new ethers.utils.Interface(funcSign);
     const data = iface.encodeFunctionData("initialize()");
     const tx1 = await wallet.sendTransaction({

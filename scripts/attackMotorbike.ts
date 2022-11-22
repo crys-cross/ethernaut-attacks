@@ -46,8 +46,12 @@ const attackMotorbike = async () => {
     });
     const txReceipt1 = await tx1.wait();
     // TODO: check upgrader is now player
-    const bombDAta = "";
+    const funcSignBomb = ["function bomb() public"];
+    const ifaceBomb = new ethers.utils.Interface(funcSignBomb);
+    const bombDAta = ifaceBomb.encodeFunctionData("initialize()");
     const upgradeSignature = "";
+    const upgradeParams = [bombDAta, upgradeSignature];
+    // interface below
 };
 
 attackMotorbike()

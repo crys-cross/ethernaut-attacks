@@ -46,11 +46,11 @@ const attackMotorbike = async () => {
     const ifaceUpgrade = new ethers.utils.Interface(funcSignUpgrade);
     const upgradeSignature = ifaceUpgrade.encodeFunctionData("upgradeToAndCall", upgradeParams);
 
-    const upgradeData = "";
+    // const upgradeData = "";
     const tx1 = await wallet.sendTransaction({
         from: playerAddress,
         to: implAddress,
-        data: upgradeData,
+        data: upgradeSignature,
     });
     const txReceipt1 = await tx1.wait();
     console.log(txReceipt1);

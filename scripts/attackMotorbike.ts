@@ -35,6 +35,16 @@ const attackMotorbike = async () => {
     /*Private Keys in .env file or hardcode here*/
     const PRIVATE_KEY = process.env.PRIVATE_KEY || "";
     const wallet = new Wallet(PRIVATE_KEY, provider);
+
+    const funcSignInitialize = ["initialize()"];
+    const ifaceInitialize = new ethers.utils.Interface(funcSignInitialize);
+    const initializeData = ifaceInitialize.encodeFunctionData("bomb()");
+    const tx = await wallet.sendTransaction({
+        from: playerAddress,
+        to: implAddress1,
+        data: initializeData,
+    });
+    console.log("Upgrader is now player");
     // TODO: check upgrader is now player
     const funcSignBomb = ["function bomb() public"];
     const ifaceBomb = new ethers.utils.Interface(funcSignBomb);

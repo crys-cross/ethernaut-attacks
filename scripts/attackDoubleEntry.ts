@@ -7,7 +7,7 @@ const attackDoubleEntry = async () => {
     const playerAddress = "0x3C4f1C7Ab126a94016CA8F4e770522810aa61954";
     const attackAddress = "0x3C4f1C7Ab126a94016CA8F4e770522810aa61954";
 
-    // Don't touch below
+    // Don't touch below 🚀
 
     // console.log(txReceipt1);
 };

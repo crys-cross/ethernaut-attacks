@@ -120,6 +120,8 @@
 
 ### 26 - Double Entry
 
+-   attckDoubleEntryPoint.ts - scripts
+
 ### 27 - Good Samaritan
 
 ## Notes

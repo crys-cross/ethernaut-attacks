@@ -8,6 +8,9 @@ const attackDoubleEntry = async () => {
     const attackAddress = "0x3C4f1C7Ab126a94016CA8F4e770522810aa61954";
 
     // Don't touch below 🚀
+    // Vulnerability from
+    // Read more:
+    // https://docs.soliditylang.org/en/latest/abi-spec.html#contract-abi-specification
 
     // console.log(txReceipt1);
 };

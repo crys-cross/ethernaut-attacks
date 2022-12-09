@@ -2,13 +2,83 @@ import { ethers } from "hardhat";
 
 const attackDoubleEntry = async () => {
     // change contract addresses here.
-    const helloEthernautAddress = "0xC4BB01C7AA492bdFF60f6989542d71DB7cb73Fd1"; //type "await contract.address()" in ethernaut console
+    const helloEthernautAddress = "0x7aCb43E5F92E3A268d63294459611b2AdC75366e"; //type "await contract.address()" in ethernaut console
 
     // Don't touch below 🚀
     // Vulnerability from public view of password
     // typing all commands in console below
-    // const ABI = //type contract.abi in ethernaut to expose all ABI
-    const contract = await ethers.getContract(helloEthernautAddress);
+    //type contract.abi in ethernaut to expose all ABI
+    const ABI = `[
+        {
+            "inputs": [{internalType: 'string', name: '_password', type: 'string'}],
+            "stateMutability": "nonpayable",
+            "type": "constructor",
+            "constant": undefined,
+            "payable": undefined,
+        },
+        {
+            inputs: Array(1),
+            name: "authenticate",
+            stateMutability: "nonpayable",
+            type: "function",
+        },
+        {
+            inputs: Array(0),
+            name: "getCleared",
+            stateMutability: "view",
+            type: "function",
+        },
+        {
+            inputs: Array(0),
+            name: "info",
+            stateMutability: "pure",
+            type: "function",
+        },
+        {
+            inputs: Array(0),
+            name: "info1",
+            outputs: Array(1),
+            stateMutability: "pure",
+            type: "function",
+        },
+        {
+            inputs: Array(1),
+            name: "info2",
+            stateMutability: "pure",
+            type: "function",
+        },
+        {
+            inputs: Array(0),
+            name: "info42",
+            stateMutability: "pure",
+            type: "function",
+        },
+        {
+            inputs: Array(0),
+            name: "infoNum",
+            stateMutability: "view",
+            type: "function",
+        },
+        {
+            inputs: Array(0),
+            name: "method7123949",
+            stateMutability: "pure",
+            type: "function",
+        },
+        {
+            inputs: Array(0),
+            name: "password",
+            stateMutability: "view",
+            type: "function",
+        },
+        {
+            inputs: Array(0),
+            name: "theMethodName",
+            stateMutability: "view",
+            type: "function",
+        },
+    ]`;
+    const contract = await ethers.getContractAt(ABI, helloEthernautAddress);
     const tx1 = await contract.info();
     console.log(tx1);
     const tx2 = await contract.info1();

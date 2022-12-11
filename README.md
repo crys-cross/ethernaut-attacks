@@ -18,6 +18,9 @@
 
 ### 3 - Fallout
 
+- attackFallout.ts - scripts
+- Change the Fallout level address to your instance. Run attackFallout.ts with (yarn hardhat scripts/attackFallback.ts --network goerli) to run it in goerli network and wait for it to pass.
+
 ### 4 - Coin Flip
 
 ### 5 - Telephone

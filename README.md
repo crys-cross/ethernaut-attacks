@@ -8,10 +8,13 @@
 
 ### 1 - Hello Ethernaut
 
-- attackHelloEthernaut.ts
-- Change the Hello Ethernat address to your instance. Run attackHelloEthernaut.ts with (yarn hardhat scripts/attackHelloEthernaut.ts --network goerli) to run it in goerli network and wait for it to pass.
+- attackHelloEthernaut.ts - scripts
+- Change the Hello Ethernaut address to your instance. Run attackHelloEthernaut.ts with (yarn hardhat scripts/attackHelloEthernaut.ts --network goerli) to run it in goerli network and wait for it to pass.
 
 ### 2 - Fallback
+
+- attackFallback.ts - scripts
+- Change the Fallback level address to your instance. Run attackFallback.ts with (yarn hardhat scripts/attackFallback.ts --network goerli) to run it in goerli network and wait for it to pass.
 
 ### 3 - Fallout
 

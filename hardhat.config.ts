@@ -23,6 +23,7 @@ const FTMSCAN_API_KEY = process.env.FTMSCAN_API_KEY || "Your ftmscan API key";
 const REPORT_GAS = process.env.REPORT_GAS || false;
 
 const config: HardhatUserConfig = {
+    defaultNetwork: "goerli",
     // solidity: "0.8.8",
     solidity: {
         compilers: [

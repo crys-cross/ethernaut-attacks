@@ -23,6 +23,13 @@
 
 ### 4 - Coin Flip
 
+-   AttackCoinFlip.sol - contracts
+-   CoinFlip.sol - contracts
+-   deployAttackCoinFlip.ts - deploy
+-   attackCoinFlip.ts -scripts
+-   Deploy AttackCoinFlip.sol at goerli network with deployAttackCoinFlip.ts and run attackCoinFlip.ts to attack.
+
+
 ### 5 - Telephone
 
 ### 6 - Token

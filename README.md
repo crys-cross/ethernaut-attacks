@@ -29,8 +29,12 @@
 -   attackCoinFlip.ts -scripts
 -   Deploy AttackCoinFlip.sol at goerli network with deployAttackCoinFlip.ts and run attackCoinFlip.ts to attack.
 
-
 ### 5 - Telephone
+
+-   Wiretap.sol - contracts
+-   deployWiretap.ts - deploy
+-   attackTelephone.ts -scripts
+-   Deploy Wiretap.sol at goerli network with deployWiretap.ts and run attackTelephone.ts using (yarn hardhat run scripts/attackTelephone.ts) to attack.
 
 ### 6 - Token
 

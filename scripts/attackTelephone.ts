@@ -5,7 +5,7 @@ const attackTelephone = async () => {
     // change contract addresses here.
     const telephoneAddress = "0xF3AEFf7A6007cCB92593880594eBd587CD8379Dd"; //type "await contract.address()" in ethernaut console
     const player = "0x3C4f1C7Ab126a94016CA8F4e770522810aa61954"; //place your player address here (you may type player in ethernaut console)
-    // wiretap address = "0xBa456e44a97609837fa1f2684539A8CDFf03F7db";
+    // wiretap address = "0x1460453ED98368367e3eBCDb0D8189CD8F32e33C";
 
     // Don't touch below 🚀
     // Vulnerability from being able to change woner of contract by using

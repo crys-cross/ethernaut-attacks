@@ -3,7 +3,7 @@ import { ethers } from "hardhat";
 
 const attackDelegation = async () => {
     // change contract addresses here.
-    const delegationAddress = "0xfA73fdB5d3C0c146624709eb6B1B94482B45dD7A"; //type "await contract.address()" in ethernaut console
+    const delegationAddress = "0x063380A0ba27e70539Bb1873dCFc82C47583a040"; //type "await contract.address()" in ethernaut console
     const player = "0x3C4f1C7Ab126a94016CA8F4e770522810aa61954"; //place your player address here (you may type player in ethernaut console)
 
     // Don't touch below 🚀

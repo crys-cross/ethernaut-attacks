@@ -61,17 +61,20 @@
 
 ### 10 - King
 
+-   TODO: give reclaim check and run
 -   EternalKing.sol - contracts
 -   deployEternalKing.ts - deploy
 -   attackKing.ts -scripts
 -   Deploy EternalKing.sol at goerli network with deployEternalKing.ts and run attackKing.ts using (yarn hardhat run scripts/attackKing.ts) to attack and wait for it to pass.
 
 
-### 11 - Elevator
+### 11 - Re-entrancy
 
-### 12 - Privacy
+### 12 - Elevator
 
-### 13 - Gatekeeper One
+### 13 - Privacy
+
+### 14 - Gatekeeper One
 
 -   AttackGateKeeperOne.sol - contracts
 -   GateKeeperOneSample.sol - contracts

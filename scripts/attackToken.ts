@@ -1,4 +1,3 @@
-import { Wallet } from "ethers";
 import { ethers } from "hardhat";
 
 const attackToken = async () => {

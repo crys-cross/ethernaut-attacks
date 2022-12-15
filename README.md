@@ -44,7 +44,18 @@
 
 ### 7 - Delegation
 
+- TODO: Fix error
+-   attackDelegation.ts -scripts
+-   Run attackDelegation.ts using (yarn hardhat run scripts/attackTelephone.ts) to attack and wait for it to pass.
+
+
 ### 8 - Force
+
+-   AttackForce.sol - contracts
+-   deployAttackForce.ts - deploy
+-   attackForce.ts -scripts
+-   Deploy AttackForce.sol at goerli network with deployAttackForce.ts and run attackForce.ts using (yarn hardhat run scripts/attackTelephone.ts) to attack and wait for it to pass.
+
 
 ### 9 - Vault
 

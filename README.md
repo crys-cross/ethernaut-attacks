@@ -61,6 +61,12 @@
 
 ### 10 - King
 
+-   EternalKing.sol - contracts
+-   deployEternalKing.ts - deploy
+-   attackKing.ts -scripts
+-   Deploy EternalKing.sol at goerli network with deployEternalKing.ts and run attackKing.ts using (yarn hardhat run scripts/attackKing.ts) to attack and wait for it to pass.
+
+
 ### 11 - Elevator
 
 ### 12 - Privacy

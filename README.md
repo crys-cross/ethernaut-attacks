@@ -39,25 +39,25 @@
 ### 6 - Token
 
 - attackToken.ts - scripts
-- Change the Token level address to your instance. Run attackToken.ts with (yarn hardhat scripts/attackFallback.ts) to run it and wait for it to pass.
-
+- Change the Token level address to your instance. Run attackToken.ts with (yarn hardhat scripts/attackToken.ts) to run it and wait for it to pass.
 
 ### 7 - Delegation
 
 - TODO: Fix error
 -   attackDelegation.ts -scripts
--   Run attackDelegation.ts using (yarn hardhat run scripts/attackTelephone.ts) to attack and wait for it to pass.
-
+-   Run attackDelegation.ts using (yarn hardhat run scripts/attackDelegation.ts) to attack and wait for it to pass.
 
 ### 8 - Force
 
 -   AttackForce.sol - contracts
 -   deployAttackForce.ts - deploy
 -   attackForce.ts -scripts
--   Deploy AttackForce.sol at goerli network with deployAttackForce.ts and run attackForce.ts using (yarn hardhat run scripts/attackTelephone.ts) to attack and wait for it to pass.
-
+-   Deploy AttackForce.sol at goerli network with deployAttackForce.ts and run attackForce.ts using (yarn hardhat run scripts/attackForce.ts) to attack and wait for it to pass.
 
 ### 9 - Vault
+
+-   attackVault.ts -scripts
+-   Run attackVault.ts using (yarn hardhat run scripts/attackVault.ts) to attack and wait for it to pass.
 
 ### 10 - King
 

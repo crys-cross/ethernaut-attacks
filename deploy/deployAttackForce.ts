@@ -29,4 +29,4 @@ const deployAttackForce: DeployFunction = async (hre: HardhatRuntimeEnvironment)
     }
 };
 export default deployAttackForce;
-deployAttackForce.tags = ["coinflip", "allcoinflip"];
+deployAttackForce.tags = ["force", "allforce"];

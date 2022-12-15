@@ -8,7 +8,7 @@ const attackDelegation = async () => {
     const player = "0x3C4f1C7Ab126a94016CA8F4e770522810aa61954"; //place your player address here (you may type player in ethernaut console)
 
     // Don't touch below 🚀
-    // Vulnerability from contract not safe from overflow and underflow
+    // Vulnerability from being able to change owner of contract by using
     // additional read:
     // https://eip2535diamonds.substack.com/p/understanding-delegatecall-and-how
     // typing all commands in console below

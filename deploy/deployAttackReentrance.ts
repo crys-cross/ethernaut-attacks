@@ -14,7 +14,9 @@ const deployAttackReentrance: DeployFunction = async (hre: HardhatRuntimeEnviron
 
     log("-----------------------------------------------------");
     // deployments here
-    const args: any[] = [];
+    const args: any[] = [
+        "0xEfC594B6E8100d412aadc34D4E6ACBbD6CC0E85a", // add reentrance contract address here
+    ];
     const attackReentrance = await deploy("AttackReentrance", {
         from: deployer,
         log: true,

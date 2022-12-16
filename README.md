@@ -70,6 +70,13 @@
 
 ### 11 - Re-entrancy
 
+-   TODO: Timeout checks
+-   AttactReentrancy.sol - contracts
+-   deployAttactReentrancy.ts - deploy
+-   attactReentrancy.ts -scripts
+-   Change Reentrancy address at args in deployEternalKing then deploy EternalKing.sol at goerli network uaing deployEternalKing.ts. Also change Reentrancy address in attackKing.ts  then run using (yarn hardhat run scripts/attackKing.ts) to attack and wait for it to pass.
+
+
 ### 12 - Elevator
 
 ### 13 - Privacy

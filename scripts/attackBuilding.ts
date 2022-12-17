@@ -2,7 +2,7 @@ import { ethers } from "hardhat";
 
 const attackBuilding = async () => {
     // change contract addresses here.
-    const buildingAddress = "0xEfC594B6E8100d412aadc34D4E6ACBbD6CC0E85a"; //type "await contract.address()" in ethernaut console
+    const buildingAddress = "0x5d4D6D9b06CFb497D559355429AA7f9dd351AB62"; //type "await contract.address()" in ethernaut console
     // AttackBuilding address = "0x44d67b486C68c1273871a5De10DD3fe2E8df4714";
 
     // Don't touch below 🚀
@@ -14,23 +14,8 @@ const attackBuilding = async () => {
     const ABI = [
         {
             inputs: [],
-            name: "Fal1out",
-            outputs: [],
-            payable: true,
-            stateMutability: "payable",
-            type: "function",
-        },
-        {
-            inputs: [],
-            name: "allocate",
-            outputs: [],
-            stateMutability: "payable",
-            type: "function",
-        },
-        {
-            inputs: [{ internalType: "address", name: "allocator", type: "address" }],
-            name: "allocatorBalance",
-            outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+            name: "top",
+            outputs: [{ internalType: "bool", name: "", type: "bool" }],
             stateMutability: "view",
             type: "function",
         },
@@ -41,7 +26,7 @@ const attackBuilding = async () => {
     const tx1Receipt = await tx1.wait();
     console.log(tx1Receipt);
     const tx2 = await attack.goToTop();
-    const tx2Receipt = await tx1.wait();
+    const tx2Receipt = await tx2.wait();
     console.log(tx2Receipt);
     const success = await contract.top();
     console.log(`Top: ${success}`);

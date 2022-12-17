@@ -8,7 +8,7 @@ const attackBuilding = async () => {
     // Don't touch below 🚀
     // Can alter last floor by using another contract
     // Additional read about interface:
-    // site
+    // https://docs.soliditylang.org/en/v0.8.10/contracts.html#interfaces
     // typing all commands in console below
     // type contract.abi in ethernaut to expose all ABI (change this only if there was an update in ethernaut and this is no longer the same)
     const ABI = [

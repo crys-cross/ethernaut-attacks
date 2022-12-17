@@ -83,7 +83,12 @@
 -   deployAttactBuilding.ts - deploy
 -   attactBuilding.ts -scripts
 -   Deploy AttactBuilding.sol at goerli network using deployEternalKing.ts. Change Instance address in attactBuilding.ts  then run using (yarn hardhat run scripts/attactBuilding.ts) to attack and wait for it to pass.
+
 ### 13 - Privacy
+
+-   attackPrivacy.ts -scripts
+-   Run attackPrivacy.ts using (yarn hardhat run scripts/attackPrivacy.ts) to attack and wait for it to pass.
+
 
 ### 14 - Gatekeeper One
 

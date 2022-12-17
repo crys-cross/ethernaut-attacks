@@ -29,4 +29,4 @@ const deployAttackBuilding: DeployFunction = async (hre: HardhatRuntimeEnvironme
     }
 };
 export default deployAttackBuilding;
-deployAttackBuilding.tags = ["reentrance", "allreentrance"];
+deployAttackBuilding.tags = ["elevator", "building"];

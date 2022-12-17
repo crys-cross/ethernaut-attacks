@@ -9,7 +9,7 @@ interface IElevator {
     function goTo(uint256 _floor) external;
 }
 
-contract MyBuilding is Building {
+contract AttackBuilding is Building {
     bool public last = true;
 
     function isLastFloor(uint256) external override returns (bool) {

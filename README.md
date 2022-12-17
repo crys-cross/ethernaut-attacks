@@ -74,11 +74,15 @@
 -   AttactReentrancy.sol - contracts
 -   deployAttactReentrancy.ts - deploy
 -   attactReentrancy.ts -scripts
--   Change Reentrancy address at args in deployEternalKing then deploy EternalKing.sol at goerli network uaing deployEternalKing.ts. Also change Reentrancy address in attackKing.ts  then run using (yarn hardhat run scripts/attackKing.ts) to attack and wait for it to pass.
+-   Change Reentrancy address at args in deployEternalKing then deploy EternalKing.sol at goerli network using deployEternalKing.ts. Also change Reentrancy address in attackKing.ts  then run using (yarn hardhat run scripts/attackKing.ts) to attack and wait for it to pass.
 
 
 ### 12 - Elevator
 
+-   AttactBuilding.sol - contracts
+-   deployAttactBuilding.ts - deploy
+-   attactBuilding.ts -scripts
+-   Deploy AttactBuilding.sol at goerli network using deployEternalKing.ts. Change Instance address in attactBuilding.ts  then run using (yarn hardhat run scripts/attactBuilding.ts) to attack and wait for it to pass.
 ### 13 - Privacy
 
 ### 14 - Gatekeeper One

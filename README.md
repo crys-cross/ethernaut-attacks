@@ -4,12 +4,17 @@
 
 -   This will be my simple compilation of all my solutions of hacking Ethernaut Game from Openzeppelin. Group of codes for each chapters will be grouped below for reference.
 
-## Solutions
+## Levels
 
 ### 1 - Hello Ethernaut
+#### PROBLEM:
+- In this level, the player needs to get the password to submit with authenticate() in order to pass this level.
 
+#### SOLUTION:
+- After cycling with all the commands in the ethernaut console, the player will arrive with the commands to view the password. The script provided here already has all the commands. Just change the Hello Ethernaut address to your instance. Run attackHelloEthernaut.ts with (yarn hardhat scripts/attackHelloEthernaut.ts --network goerli) to run it in goerli network and wait for it to pass.
+
+#### FILES:
 - attackHelloEthernaut.ts - scripts
-- Change the Hello Ethernaut address to your instance. Run attackHelloEthernaut.ts with (yarn hardhat scripts/attackHelloEthernaut.ts --network goerli) to run it in goerli network and wait for it to pass.
 
 ### 2 - Fallback
 

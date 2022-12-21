@@ -169,7 +169,7 @@
 
 ### 14 - Gatekeeper One
 #### PROBLEM:
-- Description
+- Register Player's address as entrant.Challenge lies with passing all the requirements in order to be accepted as entrant by the contract.
 
 #### SOLUTION:
 - Description
@@ -184,7 +184,7 @@
 
 ### 14 - Gatekeeper Two
 #### PROBLEM:
-- Description
+- Register Player's address as entrant. Similar challenge to gatekeeper one.
 
 #### SOLUTION:
 - Description
@@ -198,7 +198,7 @@
 
 ### 15 - Naught Coin
 #### PROBLEM:
-- Description
+- Transfer the 10 years locked token that Player holds to another address. Need to have the token balance held to become zero to pass this level.
 
 #### SOLUTION:
 - Description
@@ -211,7 +211,7 @@
 
 ### 16 - Preservation
 #### PROBLEM:
-- Description
+- Claim ownership of the this contract to pass this level.
 
 #### SOLUTION:
 - Description
@@ -225,7 +225,7 @@
 
 ### 17 - Recovery
 #### PROBLEM:
-- Description
+- Retrieve the lost contract and recover the '0.001' ETH in that contract to pass this level.
 
 #### SOLUTION:
 - Description
@@ -236,7 +236,7 @@
 
 ### 18 - Magic Number
 #### PROBLEM:
-- Description
+- Provide the contract a solver. Challenge lies that the solver needs to be only 10 opcodes small.
 
 #### SOLUTION:
 - Description
@@ -247,7 +247,7 @@
 
 ### 19 - Alien Codex
 #### PROBLEM:
-- Description
+- Claim ownership of this contract to pass this level.
 
 #### SOLUTION:
 - Description
@@ -258,7 +258,7 @@
 
 ### 20 - Denial
 #### PROBLEM:
-- Description
+- Break the contract by making the owner unable to withdraw to pass this level.
 
 #### SOLUTION:
 - Description
@@ -271,7 +271,7 @@
 
 ### 21 - Shop
 #### PROBLEM:
-- Description
+- Buy item with less than the asking price to pass this level.
 
 #### SOLUTION:
 - Description
@@ -285,7 +285,7 @@
 
 ### 22 - Dex
 #### PROBLEM:
-- Description
+- Steal the funds from the contract via price manipulation to pass this level.
 
 #### SOLUTION:
 - Description
@@ -297,7 +297,7 @@
 
 ### 23 - Dex Two
 #### PROBLEM:
-- Description
+- Drain all the balance of both token A and B from the contract.
 
 #### SOLUTION:
 - Description
@@ -310,7 +310,7 @@
 
 ### 24 - Puzzle Wallet
 #### PROBLEM:
-- Description
+- Hijack contract by becoming admin to pass this level.
 
 #### SOLUTION:
 - Description
@@ -321,7 +321,7 @@
 
 ### 25 - Motorbike
 #### PROBLEM:
-- Description
+- Player has to make the proxy (Motorbike) unusable by destroying the implementation/logic contract (Engine) through selfdestruct.
 
 #### SOLUTION:
 - Description

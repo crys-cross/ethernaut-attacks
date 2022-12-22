@@ -21,7 +21,7 @@
 - Claim ownership of the contract and drain its balance to zero.
 
 #### SOLUTION:
-- Change the Fallback level address to your instance. Run attackFallback.ts with (yarn hardhat scripts/attackFallback.ts --network goerli) to run it in goerli network and wait for it to pass.
+- There are two ways visible in the contract in claiming ownership. one is through contribute() function and the receive() function. It is more realistic to attack receive() since we need to match 1000 ETH in order to meet contribute() condition to become owner.To activate receive(), Player needs to send a transaction of ETH directly to the contract which is provided in the script. Change the Fallback level address to your instance. Run attackFallback.ts with (yarn hardhat scripts/attackFallback.ts) to run it and wait for it to pass.
 
 #### FILES:
 - attackFallback.ts - scripts

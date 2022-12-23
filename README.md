@@ -16,7 +16,7 @@
 #### FILES:
 - attackHelloEthernaut.ts - scripts
 
-<div style="text-align:center"><p>-------------</p></div>
+----------------------------
 
 ### 2 - Fallback
 #### PROBLEM:
@@ -28,23 +28,26 @@
 #### FILES:
 - attackFallback.ts - scripts
 
+----------------------------
+
 ### 3 - Fallout
 #### PROBLEM:
 - Claim ownership of this contract.
 
 #### SOLUTION:
-- Change the Fallout level address to your instance. Run attackFallout.ts with (yarn hardhat scripts/attackFallback.ts --network goerli) to run it in goerli network and wait for it to pass.
+- In older versions of solisity contract, constructors were functions named the same as the contract name. In this level, Fallout contract is not the same as Fal1out function within the contract thus not making is as a constructor but rather an ordinary function which the player could call to become the new owner. Change the Fallout level address to your instance. Run attackFallout.ts with (yarn hardhat scripts/attackFallback.ts --network goerli) to run it in goerli network and wait for it to pass.
 
 #### FILES:
 - attackFallout.ts - scripts
 
+----------------------------
 
 ### 4 - Coin Flip
 #### PROBLEM:
 - Win this coinflip game by correctly guessing for 10 times in a row.
 
 #### SOLUTION:
--   Deploy AttackCoinFlip.sol at goerli network with deployAttackCoinFlip.ts and run attackCoinFlip.ts to attack.
+-   The mechanism of this contract is not random by any chance and could be predicted by deploying a similar contract with the same mechanism to predict the outcome and rig the game. Deploy AttackCoinFlip.sol at goerli network with deployAttackCoinFlip.ts and run attackCoinFlip.ts to attack.
 
 #### FILES:
 -   AttackCoinFlip.sol - contracts
@@ -52,29 +55,33 @@
 -   deployAttackCoinFlip.ts - deploy
 -   attackCoinFlip.ts -scripts
 
+----------------------------
+
 ### 5 - Telephone
 #### PROBLEM:
 - Claim ownership of the contract.
 
 #### SOLUTION:
--   Deploy Wiretap.sol at goerli network with deployWiretap.ts and run attackTelephone.ts using (yarn hardhat run scripts/attackTelephone.ts) to attack.
+-   In changeOwner() function, player could become owner if they could meet the condition of tx.origin not equals to message.sender which could be done with the help of another contract. Deploy Wiretap.sol at goerli network with deployWiretap.ts and run attackTelephone.ts using (yarn hardhat run scripts/attackTelephone.ts) to attack.
 
 #### FILES:
 -   Wiretap.sol - contracts
 -   deployWiretap.ts - deploy
 -   attackTelephone.ts -scripts
 
+----------------------------
 
 ### 6 - Token
 #### PROBLEM:
 - In this level the player will be given 20 starting token. Player needs to have more than the starting 20 token to pass this level.
 
 #### SOLUTION:
-- Change the Token level address to your instance. Run attackToken.ts with (yarn hardhat scripts/attackToken.ts) to run it and wait for it to pass.
+- The maximum value of uint256 is 2 raise to the power 256 minus 1 or 115,792,089,237,316,195,423,570,985,008,687,907,853,269,984,665,640,564,039,457,584,007,913,129,639,935. Going over that amount will bring you back to start at 0 and under 0 to that maximum amount which is called underflow and overflow. Solidity contracts below 0.8 doesn't have a built in check for overflow and underflow and needs the safemath from openzeppelin to prevent that in which no checks are available in this contract. Change the Token level address to your instance. Run attackToken.ts with (yarn hardhat scripts/attackToken.ts) to run it and wait for it to pass.
 
 #### FILES:
 - attackToken.ts - scripts
 
+----------------------------
 
 ### 7 - Delegation
 #### PROBLEM:
@@ -83,10 +90,11 @@
 #### SOLUTION:
 -   Run attackDelegation.ts using (yarn hardhat run scripts/attackDelegation.ts) to attack and wait for it to pass.
 
-
 #### FILES:
 - TODO: Fix error
 -   attackDelegation.ts -scripts
+
+----------------------------
 
 ### 8 - Force
 #### PROBLEM:
@@ -95,11 +103,12 @@
 #### SOLUTION:
 -   Deploy AttackForce.sol at goerli network with deployAttackForce.ts and run attackForce.ts using (yarn hardhat run scripts/attackForce.ts) to attack and wait for it to pass.
 
-
 #### FILES:
 -   AttackForce.sol - contracts
 -   deployAttackForce.ts - deploy
 -   attackForce.ts -scripts
+
+----------------------------
 
 ### 9 - Vault
 #### PROBLEM:
@@ -110,6 +119,8 @@
 
 #### FILES:
 -   attackVault.ts -scripts
+
+----------------------------
 
 ### 10 - King
 #### PROBLEM:
@@ -124,7 +135,7 @@
 -   deployEternalKing.ts - deploy
 -   attackKing.ts -scripts
 
-
+----------------------------
 
 ### 11 - Re-entrancy
 #### PROBLEM:
@@ -140,6 +151,7 @@
 -   deployAttactReentrancy.ts - deploy
 -   attactReentrancy.ts -scripts
 
+----------------------------
 
 ### 12 - Elevator
 #### PROBLEM:
@@ -153,6 +165,7 @@
 -   deployAttactBuilding.ts - deploy
 -   attactBuilding.ts -scripts
 
+----------------------------
 
 ### 13 - Privacy
 #### PROBLEM:
@@ -164,6 +177,7 @@
 #### FILES:
 -   attackPrivacy.ts -scripts
 
+----------------------------
 
 ### 14 - Gatekeeper One
 #### PROBLEM:
@@ -179,6 +193,7 @@
 -   deployGateKeeperOneSample.ts - deploy
 -   attackGateKeeperOne.ts -scripts
 
+----------------------------
 
 ### 14 - Gatekeeper Two
 #### PROBLEM:
@@ -193,6 +208,7 @@
 -   deployAttackGateKeeperTwo.ts - deploy
 -   deployGateKeeperTwoSample.ts - deploy
 
+----------------------------
 
 ### 15 - Naught Coin
 #### PROBLEM:
@@ -206,6 +222,7 @@
 -   attackNaughtCoin1.ts - scripts
 -   attackNaughtCoin1.ts - scripts
 
+----------------------------
 
 ### 16 - Preservation
 #### PROBLEM:
@@ -220,6 +237,7 @@
 -   deployLAttackContract.ts - deploy
 -   attackPreservation.ts - scripts
 
+----------------------------
 
 ### 17 - Recovery
 #### PROBLEM:
@@ -231,6 +249,7 @@
 #### FILES:
 -   attackRecovery.ts - scripts
 
+----------------------------
 
 ### 18 - Magic Number
 #### PROBLEM:
@@ -242,6 +261,7 @@
 #### FILES:
 -   attackMAgicNumber.ts - scripts
 
+----------------------------
 
 ### 19 - Alien Codex
 #### PROBLEM:
@@ -253,6 +273,7 @@
 #### FILES:
 -   attackAlienCodex.ts - scripts
 
+----------------------------
 
 ### 20 - Denial
 #### PROBLEM:
@@ -266,6 +287,7 @@
 -   deployAttackDenial.ts - deploy
 -   AttackDenial.ts - scripts
 
+----------------------------
 
 ### 21 - Shop
 #### PROBLEM:
@@ -280,6 +302,7 @@
 -   deployAttackShop.ts - deploy
 -   AttackShop.ts - scripts
 
+----------------------------
 
 ### 22 - Dex
 #### PROBLEM:
@@ -292,6 +315,7 @@
 #### FILES:
 -   AttackDex.ts - scripts
 
+----------------------------
 
 ### 23 - Dex Two
 #### PROBLEM:
@@ -305,6 +329,7 @@
 -   AttackToken.sol - contracts
 -   attackDexTwo.ts - scripts
 
+----------------------------
 
 ### 24 - Puzzle Wallet
 #### PROBLEM:
@@ -316,6 +341,7 @@
 #### FILES:
 -   AttackPuzzleWallet.ts - scripts
 
+----------------------------
 
 ### 25 - Motorbike
 #### PROBLEM:
@@ -330,6 +356,7 @@
 -   deployAttackMotorbikeEngine.ts - deploy
 -   attackMotorbike.ts - scripts
 
+----------------------------
 
 ### 26 - Double Entry
 #### PROBLEM:
@@ -341,6 +368,8 @@
 #### FILES:
 -   attckDoubleEntryPoint.ts - scripts
 
+----------------------------
+
 ### 27 - Good Samaritan
 #### PROBLEM:
 - Drain the wallet of the good samaritan ready to donate 
@@ -349,6 +378,8 @@
 - Description
 
 #### FILES:
+
+----------------------------
 
 ## Notes
 

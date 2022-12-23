@@ -88,7 +88,7 @@
 - Claim ownership of the contract.
 
 #### SOLUTION:
--   Run attackDelegation.ts using (yarn hardhat run scripts/attackDelegation.ts) to attack and wait for it to pass.
+-   This is a simple delegate call. Just send a transaction with the data of the function signature. Run attackDelegation.ts using (yarn hardhat run scripts/attackDelegation.ts) to attack and wait for it to pass.
 
 #### FILES:
 - TODO: Fix error
@@ -101,7 +101,7 @@
 - Make this contract balance to be greater than zero. The challenge is that this contract is supposedly unable to receive ETH or any tokens.
 
 #### SOLUTION:
--   Deploy AttackForce.sol at goerli network with deployAttackForce.ts and run attackForce.ts using (yarn hardhat run scripts/attackForce.ts) to attack and wait for it to pass.
+-  The function selfdesctruct can bypass this challenge. Just make a contract with selfdesctruct to transfer funds from that contract to this contract. Deploy AttackForce.sol at goerli network with deployAttackForce.ts and run attackForce.ts using (yarn hardhat run scripts/attackForce.ts) to attack and wait for it to pass.
 
 #### FILES:
 -   AttackForce.sol - contracts
@@ -115,7 +115,7 @@
 - Unlock vault contract to pass the level.
 
 #### SOLUTION:
--   Run attackVault.ts using (yarn hardhat run scripts/attackVault.ts) to attack and wait for it to pass.
+-   Password variable is set to private but that does not secure it from being read. Read the storage and unlock the contract using the read password. Just run attackVault.ts using (yarn hardhat run scripts/attackVault.ts) to attack and wait for it to pass.
 
 #### FILES:
 -   attackVault.ts -scripts

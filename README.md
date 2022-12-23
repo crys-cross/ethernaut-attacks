@@ -2,7 +2,7 @@
 
 ## Description
 
--   This will be my simple compilation of all my solutions of hacking Ethernaut Game from Openzeppelin. Group of codes for each chapters will be grouped below for reference.
+-   This will be my simple compilation of all my solutions of hacking Ethernaut Game from Openzeppelin. Group of codes for each chapters will be grouped below for reference. All this is done through EthersJS with Hardhat. It is using goerli network as default since at the time of making this, ethernaut uses goerli network.
 
 ## Levels
 
@@ -16,12 +16,14 @@
 #### FILES:
 - attackHelloEthernaut.ts - scripts
 
+<div style="text-align:center"><p>-------------</p></div>
+
 ### 2 - Fallback
 #### PROBLEM:
 - Claim ownership of the contract and drain its balance to zero.
 
 #### SOLUTION:
-- There are two ways visible in the contract in claiming ownership. one is through contribute() function and the receive() function. It is more realistic to attack receive() since we need to match 1000 ETH in order to meet contribute() condition to become owner.To activate receive(), Player needs to send a transaction of ETH directly to the contract which is provided in the script. Change the Fallback level address to your instance. Run attackFallback.ts with (yarn hardhat scripts/attackFallback.ts) to run it and wait for it to pass.
+- There are two ways visible in the contract in claiming ownership. One is through contribute() function and the receive() function. It is more realistic to attack receive() since we need to match 1000 ETH in order to meet contribute() condition to become owner. To activate receive(), Player needs to send a transaction of ETH directly to the contract which is provided in the script. Change the Fallback level address to your instance. Run attackFallback.ts with (yarn hardhat scripts/attackFallback.ts) to run it and wait for it to pass.
 
 #### FILES:
 - attackFallback.ts - scripts

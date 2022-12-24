@@ -127,7 +127,7 @@
 - Break this contract game by prefereably making others be unable to be King.
 
 #### SOLUTION:
--   Deploy EternalKing.sol at goerli network with deployEternalKing.ts and run attackKing.ts using (yarn hardhat run scripts/attackKing.ts) to attack and wait for it to pass.
+-   In receive() function, the contract uses transfer() which will stop execution if the target won't be able to receive any value(unlike send). By this the player can cause an error in this part of the function so that the function will stop there and won't reach the assigning of king part. Player can assign a contract with no receive() function as the new king and with the error, new new king can be assigned. So deploy EternalKing.sol at goerli network with deployEternalKing.ts and run attackKing.ts using (yarn hardhat run scripts/attackKing.ts) to attack and wait for it to pass.
 
 #### FILES:
 -   TODO: give reclaim check and run
@@ -142,7 +142,7 @@
 - Steal the funds of this contract.
 
 #### SOLUTION:
--   Change Reentrancy address at args in deployEternalKing then deploy EternalKing.sol at goerli network using deployEternalKing.ts. Also change Reentrancy address in attackKing.ts  then run using (yarn hardhat run scripts/attackKing.ts) to attack and wait for it to pass.
+-   The contract is suceptible to reentrancy if there is a withdraw function in which the balance is changed after the value is sent in which the withdrawer could continously withdraw before the balance is updated. With this the player could deploy an attack contract just change Reentrancy address at args in deployEternalKing then deploy EternalKing.sol at goerli network using deployEternalKing.ts. Also change Reentrancy address in attackKing.ts  then run using (yarn hardhat run scripts/attackKing.ts) to attack and wait for it to pass.
 
 
 #### FILES:

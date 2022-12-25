@@ -158,7 +158,7 @@
 - The goal is for the player to reach the top of the building. The challenge comes from the current contract having no function to provide that.
 
 #### SOLUTION:
--   Deploy AttactBuilding.sol at goerli network using deployEternalKing.ts. Change Instance address in attactBuilding.ts  then run using (yarn hardhat run scripts/attactBuilding.ts) to attack and wait for it to pass.
+-  Original contract does not grant the ability to reach to top floor. But with another contract and interacting it through interface, the player could have the option in that contract to set the isLastFloor to true. Just deploy AttactBuilding.sol at goerli network using deployEternalKing.ts. Change Instance address in attactBuilding.ts  then run using (yarn hardhat run scripts/attactBuilding.ts) to attack and wait for it to pass.
 
 #### FILES:
 -   AttactBuilding.sol - contracts
@@ -172,7 +172,7 @@
 - Unlock the contract by reading the private password.
 
 #### SOLUTION:
--   Run attackPrivacy.ts using (yarn hardhat run scripts/attackPrivacy.ts) to attack and wait for it to pass.
+-   Player can read the data which is needed to unlock the contract from storage. Player just needs to know the location of the storage and convert it to byte16 to meet the requirement in unlocking the contract. Run attackPrivacy.ts using (yarn hardhat run scripts/attackPrivacy.ts) to attack and wait for it to pass.
 
 #### FILES:
 -   attackPrivacy.ts -scripts
@@ -184,7 +184,7 @@
 - Register Player's address as entrant.Challenge lies with passing all the requirements in order to be accepted as entrant by the contract.
 
 #### SOLUTION:
--   Deploy AttackGateKeeperOne.sol at goerli network with deployAttackGateKeeperOne.ts and run attackGateKeeperOne.ts to attack. GateKeeperOneSample.sol is for testing locally.
+-   Player needs to know about type conversion, opcode and difference of tx.origin from msg.sender in order to meet the requirements of this contract and be able to register Player's address as an entrant. Deploy AttackGateKeeperOne.sol at goerli network with deployAttackGateKeeperOne.ts and run attackGateKeeperOne.ts to attack. GateKeeperOneSample.sol is for testing locally.
 
 #### FILES:
 -   AttackGateKeeperOne.sol - contracts
@@ -200,7 +200,7 @@
 - Register Player's address as entrant. Similar challenge to gatekeeper one.
 
 #### SOLUTION:
--   Deploy AttackGateKeeperTwo.sol at goerli network with deployAttackGateKeeperTwo.ts and it will run the attack since it uses a constructor. Change the gateTwoAddress or instance from the deployer script. GateKeeperTwoSample.sol is for testing locally.
+-   In this, player needs to have knowledge about assembbly, caller and extcodesize to meet the requirements in order to regsiter Player's address as entrant. Deploy AttackGateKeeperTwo.sol at goerli network with deployAttackGateKeeperTwo.ts and it will run the attack since it uses a constructor. Change the gateTwoAddress or instance from the deployer script. GateKeeperTwoSample.sol is for testing locally.
 
 #### FILES:
 -   AttackGateKeeperTeo.sol - contracts
@@ -215,9 +215,10 @@
 - Transfer the 10 years locked token that Player holds to another address. Need to have the token balance held to become zero to pass this level.
 
 #### SOLUTION:
--   run script attackNaughtCoin1.ts from player account as this will approve your secondary account to spend the NaughtCoin. Then run attackNaughtCoin2.ts using the said secondary account to transfer all NaughtCoin from player account to secondary account. Edit different address from the scripts. You may use any method in changing account in hardhat but as for me I change the account in Hardhat config under networks for that specific chain(Ethernauts uses Goerli upon the time making this).
+-   Transfer is not the only method available for an ERC20 token to transfer tokens from one address to another. Another way is through transferFrom(). Run script attackNaughtCoin1.ts from player account as this will approve your secondary account to spend the NaughtCoin. Then run attackNaughtCoin2.ts using the said secondary account to transfer all NaughtCoin from player account to secondary account. Edit different address from the scripts. You may use any method in changing account in hardhat but as for me I change the account in Hardhat config under networks for that specific chain(Ethernauts uses Goerli upon the time making this).
 
 #### FILES:
+-   TODO: wallet connect with using two different accounts
 -   IERC20.sol
 -   attackNaughtCoin1.ts - scripts
 -   attackNaughtCoin1.ts - scripts

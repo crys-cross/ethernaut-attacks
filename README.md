@@ -230,9 +230,10 @@
 - Claim ownership of the this contract to pass this level.
 
 #### SOLUTION:
--   deploy LattackLibraryContract.sol using deployLAttackContract.ts. After deployment put address of deployed library and other needed addresses in attackPreservation.ts and run script in goerli.
+-   The two contracts should have parallel storage layout but since it's not, setting storedTime in LibraryContract will actually overwrite storage in slot 0 of Preservation contract and not storedTime which is in slot 3 of storage. With this, Player can change LibraryContract with Player's own maliscious contract to set owner via these storage vulnerability. Deploy LattackLibraryContract.sol using deployLAttackContract.ts. After deployment put address of deployed library and other needed addresses in attackPreservation.ts and run script in goerli.
 
 #### FILES:
+-   TODO: contractFactory to deploy contracts from the attack script and not on a separate deploy script.
 -   LattackLibraryContract.sol - contract
 -   PreservationSample.sol - contract
 -   deployLAttackContract.ts - deploy
@@ -245,7 +246,7 @@
 - Retrieve the lost contract and recover the '0.001' ETH in that contract to pass this level.
 
 #### SOLUTION:
--   edit addresess and run attackRecovery.ts to attack to network goerli. Lost address may be search with etehrscan or be determined by rpl encoding in solidity.
+-   Finding the lost address could be done through etherscan checking internal txn of the instance address or through rlp encoding but here the chosen method was etherscan. Edit addresess and run attackRecovery.ts to attack to network goerli.
 
 #### FILES:
 -   attackRecovery.ts - scripts
@@ -257,7 +258,7 @@
 - Provide the contract a solver. Challenge lies that the solver needs to be only 10 opcodes small.
 
 #### SOLUTION:
--   edit addresess and run attackMAgicNumber.ts to attack to network goerli.
+-   Player needs to be knowledgeable about opcodes and put together the needed opcodes then send the opcodes as data in a transaction directly to the contract. edit addresess and run attackMAgicNumber.ts to attack to network goerli.
 
 #### FILES:
 -   attackMAgicNumber.ts - scripts
@@ -269,7 +270,7 @@
 - Claim ownership of this contract to pass this level.
 
 #### SOLUTION:
--   edit addresess and run attackAlienCodex.ts to attack to network goerli.
+-   Upon checking, retract() function will reduce the codex.lenght but will not have any safeguards for overflow and underflow whcih would give access to the whole storage of the contract if the Player knows the location of the slot of the storage he is aiming for like for example owner that seemed to be at slot 0 then use the revise() function to send the right data to change the owner. Edit addresess and run attackAlienCodex.ts to attack to network goerli.
 
 #### FILES:
 -   attackAlienCodex.ts - scripts
@@ -281,7 +282,7 @@
 - Break the contract by making the owner unable to withdraw to pass this level.
 
 #### SOLUTION:
--   deploy AttackDenial.sol using deployAttackDenial.ts to goerli network. After deployment put address of deployed library and other needed addresses in AttackDenial.ts and run script in goerli.
+-   Player can mess up the contracts withdraw function with the call since it does not have checks for gas limit thus it can activate another contracts receive() function and making it unable for the owner to withdraw. Just make the maliscious contract the partner. Deploy AttackDenial.sol using deployAttackDenial.ts to goerli network. After deployment put address of deployed library and other needed addresses in AttackDenial.ts and run script in goerli.
 
 #### FILES:
 -   AttackDenial.sol - contract
@@ -295,7 +296,7 @@
 - Buy item with less than the asking price to pass this level.
 
 #### SOLUTION:
--   deploy AttackShop.sol using deployAttackShop.ts to goerli network. After deployment put address of deployed library and other needed addresses in AttackShop.ts and run script in goerli.
+-   Player can alter the price with a maliscious contract. Deploy AttackShop.sol using deployAttackShop.ts to goerli network. After deployment put address of deployed library and other needed addresses in AttackShop.ts and run script in goerli.
 -   TODO- scripts
 
 #### FILES:

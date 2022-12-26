@@ -324,7 +324,7 @@
 - Drain all the balance of both token A and B from the contract.
 
 #### SOLUTION:
--   deploy AttackToken.sol using deployAttackToken.ts to goerli network. After deployment put address of deployed library and other needed addresses in attackDexTwo.ts and run script in goerli.
+-   This swap contract does not check if what token is being exchanged thus player can use a maliscious token contract to help in draining all the tokens in this contract. Deploy AttackToken.sol using deployAttackToken.ts to goerli network. After deployment put address of deployed library and other needed addresses in attackDexTwo.ts and run script in goerli.
 -   TODO- scripts
 
 #### FILES:

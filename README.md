@@ -311,7 +311,7 @@
 - Steal the funds from the contract via price manipulation to pass this level.
 
 #### SOLUTION:
--   Put address of deployed library and other needed addresses in AttackDex.ts and run script in goerli.
+-   Solidity does not support fractions and will have some discrepancy in its mathematical operation and player can use that vulnerability to drain all the tokens from the contract. Put address of deployed library and other needed addresses in AttackDex.ts and run script in goerli.
 -   TODO- scripts
 
 #### FILES:

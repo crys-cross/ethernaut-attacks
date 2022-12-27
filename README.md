@@ -338,7 +338,7 @@
 - Hijack contract by becoming admin to pass this level.
 
 #### SOLUTION:
--   Put address of deployed library and other needed addresses in AttackPuzzleWallet.ts and run script in goerli.
+-   There is a stage collision in the proxy contract(PuzzleProxy) and logic contract(PuzzleWallet) that Players will be able to use. Put address of deployed library and other needed addresses in AttackPuzzleWallet.ts and run script in goerli.
 
 #### FILES:
 -   AttackPuzzleWallet.ts - scripts
@@ -350,7 +350,7 @@
 - Player has to make the proxy (Motorbike) unusable by destroying the implementation/logic contract (Engine) through selfdestruct.
 
 #### SOLUTION:
--   deploy AttackMotorbikeEngine.sol using deployAttackMotorbikeEngine.ts to goerli network. After deployment put address of deployed library and other needed addresses in attackMotorbike.ts and run script in goerli.
+-   Player has the option to upgrade the logic contract with another contract that has selfdestruct function. Player needs to first become the upgrader which could be done by the initialize() function. Deploy AttackMotorbikeEngine.sol using deployAttackMotorbikeEngine.ts to goerli network. After deployment put address of deployed library and other needed addresses in attackMotorbike.ts and run script in goerli.
 -   TODO- scripts
 
 #### FILES:

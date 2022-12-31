@@ -102,7 +102,7 @@
 - Make this contract balance to be greater than zero. The challenge is that this contract is supposedly unable to receive ETH or any tokens.
 
 #### SOLUTION:
--  The function selfdesctruct can bypass this challenge. Just make a contract with selfdesctruct to transfer funds from that contract to this contract. Deploy AttackForce.sol at goerli network with deployAttackForce.ts and run attackForce.ts using (yarn hardhat run scripts/attackForce.ts) to attack and wait for it to pass.
+-  The function selfdesctruct can bypass this challenge. Just make a contract with selfdesctruct to transfer funds from that contract to this contract. Change Force address instance then run attackForce.ts using (yarn hardhat run scripts/attackForce.ts) to attack and wait for it to pass.
 
 #### FILES:
 -   AttackForce.sol - contracts

@@ -35,7 +35,7 @@
 - Claim ownership of this contract.
 
 #### SOLUTION:
-- In older versions of solisity contract, constructors were functions named the same as the contract name. In this level, Fallout contract is not the same as Fal1out function within the contract thus not making is as a constructor but rather an ordinary function which the player could call to become the new owner. Change the Fallout level address to your instance. Run attackFallout.ts with (yarn hardhat scripts/attackFallback.ts) and wait for it to pass.
+- In older versions of solisity contract, constructors were functions named the same as the contract name. In this level, Fallout contract is not the same as Fal1out function within the contract thus not making is as a constructor but rather an ordinary function which the player could call to become the new owner. Change the Fallout level address to your instance. Run attackFallout.ts with (yarn hardhat scripts/attackFallout.ts) and wait for it to pass.
 
 #### FILES:
 - attackFallout.ts - scripts
@@ -47,10 +47,10 @@
 - Win this coinflip game by correctly guessing for 10 times in a row.
 
 #### SOLUTION:
--   The mechanism of this contract is not random by any chance and could be predicted by deploying a similar contract with the same mechanism to predict the outcome and rig the game. Change coinflip instance address then run attackCoinFlip.ts with (yarn hardhat scripts/attackFallback.ts) and wait for it to pass.
+-   The mechanism of this contract is not random by any chance and could be predicted by deploying a similar contract with the same mechanism to predict the outcome and rig the game. Change coinflip instance address then run attackCoinFlip.ts with (yarn hardhat scripts/attackCoinFlip.ts) and wait for it to pass.
 
 #### FILES:
-- TODO: check while loop to stop at 10, 
+-   TODO: check while loop to stop at 10, 
 -   AttackCoinFlip.sol - contracts
 -   CoinFlip.sol - contracts
 -   deployAttackCoinFlip.ts - deploy
@@ -63,7 +63,7 @@
 - Claim ownership of the contract.
 
 #### SOLUTION:
--   In changeOwner() function, player could become owner if they could meet the condition of tx.origin not equals to message.sender which could be done with the help of another contract. Deploy Wiretap.sol at goerli network with deployWiretap.ts and run attackTelephone.ts using (yarn hardhat run scripts/attackTelephone.ts) to attack.
+-   In changeOwner() function, player could become owner if they could meet the condition of tx.origin not equals to message.sender which could be done with the help of another contract. Change Telephone instance address then run attackTelephone.ts with (yarn hardhat scripts/attackTelephone.ts) and wait for it to pass.
 
 #### FILES:
 -   Wiretap.sol - contracts

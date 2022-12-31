@@ -35,7 +35,7 @@
 - Claim ownership of this contract.
 
 #### SOLUTION:
-- In older versions of solisity contract, constructors were functions named the same as the contract name. In this level, Fallout contract is not the same as Fal1out function within the contract thus not making is as a constructor but rather an ordinary function which the player could call to become the new owner. Change the Fallout level address to your instance. Run attackFallout.ts with (yarn hardhat scripts/attackFallback.ts --network goerli) to run it in goerli network and wait for it to pass.
+- In older versions of solisity contract, constructors were functions named the same as the contract name. In this level, Fallout contract is not the same as Fal1out function within the contract thus not making is as a constructor but rather an ordinary function which the player could call to become the new owner. Change the Fallout level address to your instance. Run attackFallout.ts with (yarn hardhat scripts/attackFallback.ts) and wait for it to pass.
 
 #### FILES:
 - attackFallout.ts - scripts
@@ -47,9 +47,10 @@
 - Win this coinflip game by correctly guessing for 10 times in a row.
 
 #### SOLUTION:
--   The mechanism of this contract is not random by any chance and could be predicted by deploying a similar contract with the same mechanism to predict the outcome and rig the game. Deploy AttackCoinFlip.sol at goerli network with deployAttackCoinFlip.ts and run attackCoinFlip.ts to attack.
+-   The mechanism of this contract is not random by any chance and could be predicted by deploying a similar contract with the same mechanism to predict the outcome and rig the game. Change coinflip instance address then run attackCoinFlip.ts with (yarn hardhat scripts/attackFallback.ts) and wait for it to pass.
 
 #### FILES:
+- TODO: check while loop to stop at 10, 
 -   AttackCoinFlip.sol - contracts
 -   CoinFlip.sol - contracts
 -   deployAttackCoinFlip.ts - deploy
@@ -127,13 +128,14 @@
 - Break this contract game by prefereably making others be unable to be King.
 
 #### SOLUTION:
--   In receive() function, the contract uses transfer() which will stop execution if the target won't be able to receive any value(unlike send). By this the player can cause an error in this part of the function so that the function will stop there and won't reach the assigning of king part. Player can assign a contract with no receive() function as the new king and with the error, new new king can be assigned. So deploy EternalKing.sol at goerli network with deployEternalKing.ts and run attackKing.ts using (yarn hardhat run scripts/attackKing.ts) to attack and wait for it to pass.
+-   In receive() function, the contract uses transfer() which will stop execution if the target won't be able to receive any value(unlike send). By this the player can cause an error in this part of the function so that the function will stop there and won't reach the assigning of king part. Player can assign a contract with no receive() function as the new king and with the error, new new king can be assigned. So change King instance address and run attackKing.ts using (yarn hardhat run scripts/attackKing.ts) to attack and wait for it to pass.
 
 #### FILES:
--   TODO: give reclaim check and run
--   EternalKing.sol - contracts
--   deployEternalKing.ts - deploy
+-   TODO: reclaim check
 -   attackKing.ts -scripts
+-   EternalKing.sol - contracts
+-   deployEternalKing.ts - deploy(not needed)
+
 
 ----------------------------
 

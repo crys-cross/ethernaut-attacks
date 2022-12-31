@@ -1,9 +1,9 @@
 import { ethers } from "hardhat";
-import { waitForDebugger } from "inspector";
 // import { expect } from "chai";
 // import { Wallet } from "ethers";
 // import { HardhatRuntimeEnvironment } from "hardhat/types";
 // import deployContract from "../deploy/deployGeneric";
+import { run } from "hardhat";
 
 const attackVault = async () => {
     // change contract addresses here.
@@ -22,11 +22,27 @@ const attackVault = async () => {
     // const deployed = await deployContract(hre, "EternalKing", args);
     // alternative below
     console.log("Deploying attack contract eternalKing...");
-    const EternalKingFactory = await ethers.getContractFactory("EternalKing", deployer);
-    const eternalKing = await EternalKingFactory.deploy();
+    const Factory = await ethers.getContractFactory("EternalKing", deployer);
+    const eternalKing = await Factory.deploy();
     console.log(eternalKing);
-    console.log(`Contract deployed to ${eternalKing}`);
+    console.log(`Contract deployed to ${eternalKing.address}`);
     console.log("Attack contract deployed...");
+    // experimantal verify below
+    // if (eternalKing.address){
+    //     console.log("Verifying contract...");
+    //     try {
+    //         await run("verify:verify", {
+    //             address: eternalKing.address,
+    //             constructorArguments: args,
+    //         });
+    //     } catch (e: any) {
+    //         if (e.message.toLowerCase().includes("already verified")) {
+    //             console.log("Already verified!");
+    //         } else {
+    //             console.log(e);
+    //         }
+    //     }
+    // }
 
     // typing all commands in console below
     // type contract.abi in ethernaut to expose all ABI (change this only if there was an update in ethernaut and this is no longer the same)

@@ -144,7 +144,7 @@
 - Steal the funds of this contract.
 
 #### SOLUTION:
--   The contract is suceptible to reentrancy if there is a withdraw function in which the balance is changed after the value is sent in which the withdrawer could continously withdraw before the balance is updated. With this the player could deploy an attack contract just change Reentrancy address at args in deployEternalKing then deploy EternalKing.sol at goerli network using deployEternalKing.ts. Also change Reentrancy address in attackKing.ts  then run using (yarn hardhat run scripts/attackKing.ts) to attack and wait for it to pass.
+-   The contract is suceptible to reentrancy if there is a withdraw function in which the balance is changed after the value is sent in which the withdrawer could continously withdraw before the balance is updated. Change Reentrancy instance address in attackKing.ts  then run using (yarn hardhat run scripts/attackKing.ts) to attack and wait for it to pass.
 
 
 #### FILES:
@@ -160,7 +160,7 @@
 - The goal is for the player to reach the top of the building. The challenge comes from the current contract having no function to provide that.
 
 #### SOLUTION:
--  Original contract does not grant the ability to reach to top floor. But with another contract and interacting it through interface, the player could have the option in that contract to set the isLastFloor to true. Just deploy AttactBuilding.sol at goerli network using deployEternalKing.ts. Change Instance address in attactBuilding.ts  then run using (yarn hardhat run scripts/attactBuilding.ts) to attack and wait for it to pass.
+-  Original contract does not grant the ability to reach to top floor. But with another contract and interacting it through interface, the player could have the option in that contract to set the isLastFloor to true. Change Instance address in attactBuilding.ts  then run using (yarn hardhat run scripts/attactBuilding.ts) to attack and wait for it to pass.
 
 #### FILES:
 -   AttactBuilding.sol - contracts
@@ -189,6 +189,7 @@
 -   Player needs to know about type conversion, opcode and difference of tx.origin from msg.sender in order to meet the requirements of this contract and be able to register Player's address as an entrant. Deploy AttackGateKeeperOne.sol at goerli network with deployAttackGateKeeperOne.ts and run attackGateKeeperOne.ts to attack. GateKeeperOneSample.sol is for testing locally.
 
 #### FILES:
+-   TODO: more descriptions
 -   AttackGateKeeperOne.sol - contracts
 -   GateKeeperOneSample.sol - contracts
 -   deployAttackGateKeeperOne.ts - deploy

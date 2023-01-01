@@ -8,7 +8,7 @@ import { run } from "hardhat";
 const attackVault = async () => {
     // change contract addresses here.
     const kingAddress = "0x3acAB497d1474153706206d5094805e9c047123F"; //type "await contract.address()" in ethernaut console
-    const args: [] = [];
+    const args: any[] = [];
     const deployer = process.env.PRIVATE_KEY || "";
     // [deployer] = await ethers.getSigners();
 

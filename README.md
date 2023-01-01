@@ -186,7 +186,7 @@
 - Register Player's address as entrant.Challenge lies with passing all the requirements in order to be accepted as entrant by the contract.
 
 #### SOLUTION:
--   Player needs to know about type conversion, opcode and difference of tx.origin from msg.sender in order to meet the requirements of this contract and be able to register Player's address as an entrant. Deploy AttackGateKeeperOne.sol at goerli network with deployAttackGateKeeperOne.ts and run attackGateKeeperOne.ts to attack. GateKeeperOneSample.sol is for testing locally.
+-   Player needs to know about type conversion, opcode and difference of tx.origin from msg.sender in order to meet the requirements of this contract and be able to register Player's address as an entrant. Change gate keeper one instance address then run attackGateKeeperOne.ts to attack.
 
 #### FILES:
 -   TODO: more descriptions
@@ -203,9 +203,10 @@
 - Register Player's address as entrant. Similar challenge to gatekeeper one.
 
 #### SOLUTION:
--   In this, player needs to have knowledge about assembbly, caller and extcodesize to meet the requirements in order to regsiter Player's address as entrant. Deploy AttackGateKeeperTwo.sol at goerli network with deployAttackGateKeeperTwo.ts and it will run the attack since it uses a constructor. Change the gateTwoAddress or instance from the deployer script. GateKeeperTwoSample.sol is for testing locally.
+-   In this, player needs to have knowledge about assembbly, caller and extcodesize to meet the requirements in order to register Player's address as entrant. Deploy AttackGateKeeperTwo.sol at goerli network with deployAttackGateKeeperTwo.ts and it will run the attack since it uses a constructor. Change the gateTwoAddress or instance from the deployer script. GateKeeperTwoSample.sol is for testing locally.
 
 #### FILES:
+-   TODO: check entrants, etc
 -   AttackGateKeeperTeo.sol - contracts
 -   GateKeeperTwoSample.sol - contracts
 -   deployAttackGateKeeperTwo.ts - deploy

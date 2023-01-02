@@ -2,7 +2,7 @@
 
 ## Description
 
--   This will be my simple compilation of all my solutions of hacking Ethernaut Game from Openzeppelin. Group of codes for each chapters will be grouped below for reference. All this is done through EthersJS with Hardhat. It is using goerli network as default since at the time of making this, ethernaut uses goerli network.
+-   This will be my simple compilation of all my solutions of hacking Ethernaut Game from Openzeppelin. Group of codes for each chapters will be grouped below for reference. All this is done through EthersJS with Hardhat. It is using goerli network as default since at the time of making this, ethernaut uses goerli network. I have set my player address as the private key in the .env file. To run the script for any of the specific level below, type the title of the level with all lowercase and no space after editing your instance address for that level. Example: helloethernaut (for level 1).
 
 ## Levels
 
@@ -203,11 +203,11 @@
 - Register Player's address as entrant. Similar challenge to gatekeeper one.
 
 #### SOLUTION:
--   In this, player needs to have knowledge about assembbly, caller and extcodesize to meet the requirements in order to register Player's address as entrant. Deploy AttackGateKeeperTwo.sol at goerli network with deployAttackGateKeeperTwo.ts and it will run the attack since it uses a constructor. Change the gateTwoAddress or instance from the deployer script. GateKeeperTwoSample.sol is for testing locally.
+-   In this, player needs to have knowledge about assembbly, caller and extcodesize to meet the requirements in order to register Player's address as entrant. Change the gateTwoAddress instance address from the attackGateKeeperTwo.ts script and run "gatekeepertwo".
 
 #### FILES:
 -   TODO: check entrants, etc
--   AttackGateKeeperTeo.sol - contracts
+-   AttackGateKeeperTwo.sol - contracts
 -   GateKeeperTwoSample.sol - contracts
 -   deployAttackGateKeeperTwo.ts - deploy
 -   deployGateKeeperTwoSample.ts - deploy
@@ -286,12 +286,11 @@
 - Break the contract by making the owner unable to withdraw to pass this level.
 
 #### SOLUTION:
--   Player can mess up the contracts withdraw function with the call since it does not have checks for gas limit thus it can activate another contracts receive() function and making it unable for the owner to withdraw. Just make the maliscious contract the partner. Deploy AttackDenial.sol using deployAttackDenial.ts to goerli network. After deployment put address of deployed library and other needed addresses in AttackDenial.ts and run script in goerli.
-
+-   Player can mess up the contracts withdraw function with the call since it does not have checks for gas limit thus it can activate another contracts receive() function and making it unable for the owner to withdraw. Just make the maliscious contract the partner. Change Denial instance address from attackDenial.ts then run "denial".
 #### FILES:
 -   AttackDenial.sol - contract
 -   deployAttackDenial.ts - deploy
--   AttackDenial.ts - scripts
+-   attackDenial.ts - scripts
 
 ----------------------------
 

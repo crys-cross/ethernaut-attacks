@@ -35,7 +35,7 @@
     "coinflip": "yarn hardhat run scripts/attackCoinFlip.ts",
     "telephone": "yarn hardhat run scripts/attackTelephone.ts",
     "token": "yarn hardhat run scripts/attackToken.ts",
-    "delegation": "yarn hardhat run scripts/attackDelegation.ts",
+    "delegation": "hardhat run scripts/attackDelegation.ts",
     "force": "yarn hardhat test run scripts/attackForce.ts",
     "vault": "yarn hardhat test run scripts/attackVault.ts",
     "king": "yarn hardhat test run scripts/attackKing.ts",

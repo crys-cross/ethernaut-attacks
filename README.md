@@ -92,7 +92,7 @@
 -   This is a simple delegate call. Just send a transaction with the data of the function signature. Run attackDelegation.ts using (yarn hardhat run scripts/attackDelegation.ts) to attack and wait for it to pass.
 
 #### FILES:
-- TODO: Fix error
+- TODO: another way to convert signature to bytes
 -   attackDelegation.ts -scripts
 
 ----------------------------

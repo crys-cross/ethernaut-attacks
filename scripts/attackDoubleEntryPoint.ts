@@ -41,8 +41,40 @@ const attackDoubleEntry = async () => {
     //     }
     // }
 
+    // type contract.abi in ethernaut to expose all ABI (change this only if there was an update in ethernaut and this is no longer the same)
+    const ABI = [
+        {
+            inputs: [],
+            name: "cryptoVault",
+            outputs: [{ internalType: "address", name: "", type: "address" }],
+            stateMutability: "view",
+            type: "function",
+        },
+        {
+            inputs: [],
+            name: "balanceOf",
+            outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+            stateMutability: "view",
+            type: "function",
+        },
+        {
+            inputs: [],
+            name: "delegatedFrom",
+            outputs: [{ internalType: "address", name: "", type: "address" }],
+            stateMutability: "view",
+            type: "function",
+        },
+        {
+            inputs: [],
+            name: "forta",
+            outputs: [{ internalType: "contract Forta", name: "", type: "address" }],
+            stateMutability: "nonpayable",
+            type: "function",
+        },
+    ];
+
     // wallet and contract here
-    // const contract = await ethers.getContractAt("DoubleEntryPoint", doubleEntryAddress);
+    // const contract = await ethers.getContractAt(ABI, doubleEntryAddress);
     // // using my custom rpc stored in .env (for privacy)
     // const GOERLI_RPC_URL = process.env.GOERLI_RPC_URL;
     // const provider = new ethers.providers.JsonRpcProvider(GOERLI_RPC_URL);

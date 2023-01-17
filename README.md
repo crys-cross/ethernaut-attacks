@@ -386,6 +386,18 @@
 
 ----------------------------
 
+### 28 - Gate Keeper Three
+#### PROBLEM:
+- Player become an entrant. 
+
+#### SOLUTION:
+- Description
+
+#### FILES:
+
+----------------------------
+
 ## Notes
 
 -   This is a work in progeress and will populate more as I progress furtehr into the game.
+

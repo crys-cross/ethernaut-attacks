@@ -92,14 +92,6 @@ const attackDoubleEntry = async () => {
     // const legacyToken = await contract.delegatedFrom()
     // console.log("delegatedFrom address:", legacyToken)
 
-    // web3js
-    // // sweepTokens(..) function call data
-    // sweepSig = web3.eth.abi.encodeFunctionCall({
-    //     name: 'sweepToken',
-    //     type: 'function',
-    //     inputs: [{name: 'token', type: 'address'}]
-    // }, [legacyToken])
-
     // etherjs
     // console.log("Encoding function signature for sweepToken...");
     // const iface = new ethers.utils.Interface(["function sweepToken(address token)"]);
@@ -120,15 +112,6 @@ const attackDoubleEntry = async () => {
     // // Forta contract address
     // const forta = await contract.forta()
     // console.log("Forta address is: ", forta)
-
-    // // setDetectionBot() function call data
-    // setBotSig = web3.eth.abi.encodeFunctionCall({
-    //     name: 'setDetectionBot',
-    //     type: 'function',
-    //     inputs: [
-    //         { type: 'address', name: 'detectionBotAddress' }
-    //     ]
-    // }, [botAddr])
 
     // etherjs
     // console.log("Encoding function signature for setDetectionBot...");

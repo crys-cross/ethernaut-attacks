@@ -24,7 +24,7 @@ const attackDoubleEntry = async () => {
             type: "function",
         },
         {
-            inputs: [],
+            inputs: [{ internalType: "address", name: "account", type: "address" }],
             name: "balanceOf",
             outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
             stateMutability: "view",
@@ -59,8 +59,8 @@ const attackDoubleEntry = async () => {
     console.log("cryptoVault address: ", _cryptoVault);
 
     // Check initial balance (100 DET)
-    let vaultBalance = await contract.balanceOf().toString(); // '100000000000000000000'
-    console.log("Balance of vault is ", vaultBalance);
+    let vaultBalance = await contract.balanceOf(_cryptoVault); // '100000000000000000000'
+    console.log("Balance of vault is: ", vaultBalance);
 
     const legacyToken = await contract.delegatedFrom();
     console.log("delegatedFrom address:", legacyToken);
@@ -77,7 +77,7 @@ const attackDoubleEntry = async () => {
 
     // Check balance (0 DET)
     vaultBalance = await contract.balanceOf(_cryptoVault).toString(); // '0'
-    console.log("Balance of vault is ", vaultBalance);
+    console.log("Balance of vault is now: ", vaultBalance);
 
     // deploying fortabot here
     // const deployed = await deployContract(hre, "FortaBot", args);

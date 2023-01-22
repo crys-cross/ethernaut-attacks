@@ -59,7 +59,7 @@ const attackDoubleEntry = async () => {
     console.log("cryptoVault address: ", _cryptoVault);
 
     // Check initial balance (100 DET)
-    let vaultBalance = await contract.balanceOf(_cryptoVault); // '100000000000000000000'
+    let vaultBalance = await contract.balanceOf(_cryptoVault).toString(); // '100000000000000000000'
     console.log("Balance of vault is: ", vaultBalance);
 
     const legacyToken = await contract.delegatedFrom();
@@ -107,6 +107,7 @@ const attackDoubleEntry = async () => {
 
     // FortaDetectionBot
     const botAddr = fortaBot.address;
+    console.log("FortaBot address is: ", botAddr);
 
     // Forta contract address
     const forta = await contract.forta();
@@ -117,7 +118,7 @@ const attackDoubleEntry = async () => {
     const ifaceBot = new ethers.utils.Interface([
         "function setDetectionBot(address detectionBotAddress)",
     ]);
-    const setBotSig = iface.encodeFunctionData("setDetectionBot", [botAddr]);
+    const setBotSig = ifaceBot.encodeFunctionData("setDetectionBot", [botAddr]);
 
     // Send the transaction setting the bot
     console.log("Sending transaction...");

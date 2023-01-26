@@ -14,6 +14,7 @@ const attackGoodSamaritan = async () => {
     // Vulnerability from
     // additional read:
     // https://blog.soliditylang.org/2021/04/21/custom-errors/
+    // https://docs.openzeppelin.com/contracts/3.x/extending-contracts#rules_of_hooks
     // typing all commands in console below
     // type contract.abi in ethernaut to expose all ABI (change this only if there was an update in ethernaut and this is no longer the same)
 

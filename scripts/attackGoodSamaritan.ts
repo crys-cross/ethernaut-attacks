@@ -43,6 +43,10 @@ const attackGoodSamaritan = async () => {
     //         }
     //     }
     // }
+
+    const attack = await ethers.getContractAt("AttackGoodSamaritan", attackGoodSamaritan.address);
+    console.log("Sending attack using player's contract...");
+    const tx = await attack.attack(goodSamaritanAddress);
 };
 
 attackGoodSamaritan()

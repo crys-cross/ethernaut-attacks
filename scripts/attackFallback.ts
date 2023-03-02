@@ -102,7 +102,7 @@ const attackFallback = async () => {
         const withdraw = await contract.withdraw();
         const Receipt = await withdraw.wait(1);
         console.log(Receipt);
-        console.log("Done...submit in ethernaut");
+        console.log("Level Passed! submit in ethernaut.");
     } else {
         console.log("Player is not owner, please review code above");
     }

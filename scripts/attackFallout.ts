@@ -70,7 +70,7 @@ const attackFallout = async () => {
     const owner = newOwner === player;
     console.log(`Player is now owner: ${owner}`);
     if (owner) {
-        console.log("Done...submit in ethernaut");
+        console.log("Level Passed! submit in ethernaut");
     } else {
         console.log("Player is not owner, please review code above");
     }

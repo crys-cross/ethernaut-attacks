@@ -113,7 +113,11 @@ const attackDoubleEntry = async () => {
     console.log(tx9);
     const tx10 = await contract.getCleared();
     console.log(`Passed this level: ${tx10}`);
-    console.log("You may submit at ethernaut if above state 'true'");
+    if (tx10) {
+        console.log("Level Passed! You may submit to ethernaut.");
+    } else {
+        console.log("Please review code above and try again...");
+    }
 };
 
 attackDoubleEntry()

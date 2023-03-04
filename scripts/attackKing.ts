@@ -22,11 +22,9 @@ const attackVault = async () => {
     // const deployed = await deployContract(hre, "EternalKing", args);
     // alternative below
     console.log("Deploying attack contract eternalKing...");
-    const Factory = await ethers.getContractFactory("EternalKing", deployer);
-    const eternalKing = await Factory.deploy();
-    console.log(eternalKing);
-    console.log(`Contract deployed to ${eternalKing.address}`);
-    console.log("Attack contract deployed...");
+    const attack = await (await ethers.getContractFactory("EternalKing", deployer)).deploy();
+    console.log(attack);
+    console.log(`Attack contract deployed to ${attack.address}`);
     // experimantal verify below
     // if (eternalKing.address){
     //     console.log("Verifying contract...");
@@ -76,7 +74,6 @@ const attackVault = async () => {
         },
     ];
     const contract = await ethers.getContractAt(ABI, kingAddress);
-    const attack = await ethers.getContractAt("EternalKing", eternalKing.address);
     console.log("Checking current King and Prize...");
     let king = await contract._king();
     let prize = await contract.prize();

@@ -89,7 +89,7 @@ const attackTelephone = async () => {
     const newOwner = await contract.owner();
     console.log(`Owner is: ${newOwner}`);
     if (players.address === newOwner) {
-        console.log("Congrats! player is now the new owner...");
+        console.log("Congrats, Level passed! player is now the new owner...");
         console.log("You may now submit in ethernaut...");
     } else {
         console.log("player is still not the owner, review code above...");

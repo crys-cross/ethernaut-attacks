@@ -54,7 +54,7 @@ const attackVault = async () => {
     locked = await contract.locked();
     console.log(`Vault contract is locked: ${locked}`);
     if (!locked) {
-        console.log("Congrats!Vault contract unlocked. Submit to ethernaut.");
+        console.log("Congrats, Level Passed!Vault contract unlocked. Submit to ethernaut.");
     } else {
         console.log("Vault still locked. Review code above and try again...");
     }

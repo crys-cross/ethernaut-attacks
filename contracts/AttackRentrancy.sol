@@ -7,7 +7,7 @@ interface IReentrance {
     function withdraw(uint _amount) external;
 }
 
-contract AttackReentrance {
+contract AttackReentrancy {
     address public owner;
     IReentrance targetContract;
     uint targetValue = 1000000000000000;

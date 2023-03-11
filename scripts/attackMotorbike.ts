@@ -25,11 +25,11 @@ const attackMotorbike = async () => {
     // const deployed = await deployContract(hre, "AttackMotorbikeEngine", args);
     // alternative below
     console.log("Deploying attack contract AttackMotorbikeEngine...");
-    const Factory = await ethers.getContractFactory("AttackMotorbikeEngine", deployer);
-    const attackMotorbikeEngine = await Factory.deploy();
+    const attackMotorbikeEngine = await (
+        await ethers.getContractFactory("AttackMotorbikeEngine", deployer)
+    ).deploy();
     console.log(attackMotorbikeEngine);
-    console.log(`Contract deployed to ${attackMotorbikeEngine.address}`);
-    console.log("Attack contract deployed...");
+    console.log(`Attack contract deployed to ${attackMotorbikeEngine.address}`);
     // experimantal verify below
     // if (attackMotorbikeEngine.address){
     //     console.log("Verifying contract...");
@@ -63,6 +63,7 @@ const attackMotorbike = async () => {
     // await ethers.provider.sendTransaction({ from: player, to: implAddr, data: initializeData });
 
     const provider = await ethers.getDefaultProvider("goerli");
+    // or use ALCHEMY HERE
     /*Private Keys in .env file or hardcode here*/
     const PRIVATE_KEY = process.env.PRIVATE_KEY || "";
     const wallet = new Wallet(PRIVATE_KEY, provider);

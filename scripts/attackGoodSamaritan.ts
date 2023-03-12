@@ -23,11 +23,11 @@ const attackGoodSamaritan = async () => {
     // const deployed = await deployContract(hre, "AttackGoodSamaritan", args);
     // alternative below
     console.log("Deploying attack contract AttackGoodSamaritan...");
-    const Factory = await ethers.getContractFactory("AttackGoodSamaritan", deployer);
-    const attackGoodSamaritan = await Factory.deploy();
-    console.log(attackGoodSamaritan);
-    console.log(`Contract deployed to ${attackGoodSamaritan.address}`);
-    console.log("Attack contract deployed...");
+    const attack = await (
+        await ethers.getContractFactory("AttackGoodSamaritan", deployer)
+    ).deploy();
+    console.log(attack);
+    console.log(`Attack contract deployed to ${attack.address}`);
     // experimantal verify below
     // if (attackGoodSamaritan.address){
     //     console.log("Verifying contract...");
@@ -45,37 +45,11 @@ const attackGoodSamaritan = async () => {
     //     }
     // }
 
-    const ABI = [
-        {
-            constant: true,
-            inputs: [],
-            name: "_king",
-            outputs: [{ internalType: "address", name: "", type: "address" }],
-            payable: undefined,
-            stateMutability: "view",
-            type: "function",
-        },
-        {
-            constant: true,
-            inputs: [],
-            name: "prize",
-            outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-            payable: undefined,
-            stateMutability: "view",
-            type: "function",
-        },
-        {
-            constant: undefined,
-            inputs: [],
-            name: "owner",
-            outputs: [{ internalType: "address", name: "", type: "address" }],
-            payable: undefined,
-            stateMutability: "nonpayable",
-            type: "function",
-        },
-    ];
-    const contract = await ethers.getContractAt(ABI, goodSamaritanAddress);
-    const attack = await ethers.getContractAt("AttackGoodSamaritan", attackGoodSamaritan.address);
+    const contract = await ethers.getContractAt("GoodSamaritan", goodSamaritanAddress);
+    const coinAddress = await contract.coin();
+    console.log("Coin address is: ", coinAddress);
+    const walletAddress = await contract.wallet();
+    console.log("Wallet Address is: ", walletAddress);
     console.log("Sending attack using player's contract...");
     const tx = await attack.attack(goodSamaritanAddress);
     const txReceipt = await tx.wait();

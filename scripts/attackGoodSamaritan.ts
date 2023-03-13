@@ -50,6 +50,7 @@ const attackGoodSamaritan = async () => {
     console.log("Coin address is: ", coinAddress);
     const walletAddress = await contract.wallet();
     console.log("Wallet Address is: ", walletAddress);
+    // const walletBalance = await coinAddress. //TODO balance checks
     console.log("Sending attack using player's contract...");
     const tx = await attack.attack(goodSamaritanAddress);
     const txReceipt = await tx.wait();

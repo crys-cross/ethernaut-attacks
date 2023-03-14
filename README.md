@@ -2,7 +2,18 @@
 
 ## Description
 
--   This will be my simple compilation of all my solutions of hacking Ethernaut Game from Openzeppelin. Group of codes for each chapters will be grouped below for reference. All this is done through EthersJS with Hardhat. It is using goerli network as default, but you may choose to change the default network at line 26 of (hardhat.config.ts) since ethernaut currently supports GOERLI, SEPOLIA, MUMBAI, OPTIMISM_GOERLI, ARBITRUM_GOERLI networks. I have set my player address as the private key in the .env file. To run the script for any of the specific level below, type the title of the level with all lowercase and no space after editing your instance address for that level. Example: helloethernaut (for level 1).
+-   This will be my simple compilation of all my solutions of hacking Ethernaut Game from Openzeppelin. Group of codes for each chapters will be grouped below for reference. All this is done through EthersJS with Hardhat. It is using goerli network as default, but you may choose to change the default network at line 26 of (hardhat.config.ts) since ethernaut currently supports GOERLI, SEPOLIA, MUMBAI, OPTIMISM_GOERLI, ARBITRUM_GOERLI networks. 
+
+- Rename example.env to just .env and place all level instance(address), player's address, and player's private keys(needs two, you may refer below for more details)in the .env file. 
+
+*Example in filling up .env below:
+
+
+* players address may be obtained by TODO.
+* Adding metamask account can be done by TODO.
+* Getting private keys from metamask can be done by TODO.
+
+- To run the script for any of the specific level below, type the title of the level with all lowercase and no space after editing your instance address for that level. Example: helloethernaut (for level 1).
 
 ## Levels
 

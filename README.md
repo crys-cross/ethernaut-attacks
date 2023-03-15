@@ -7,11 +7,17 @@
 - Rename example.env to just .env and place all level instance(address), player's address, and player's private keys(needs two, you may refer below for more details)in the .env file. 
 
 *Example in filling up .env below:
+PLAYER_ADDRESS=0xe1111F5f3E7C000c3F0a9d680C9C0670D9688a00
+PRIVATE_KEY_1=8c5ae9e00a504c13a161040b303a3a65b4256490bb00ab6b26ef000a80ba04d0
+PRIVATE_KEY_2=9c5ae9e00a504c13a161040b303a3a65b4256490bb00ab6b26ef000a80ba04d0
+RPC_URL=https://eth-goerli.g.alchemy.com/v2/f00a0KFYQyXaJ0qTd0NLXd00htEd0CF0
+helloethernaut=0xe0000F5f3E7C110c3B0a9d680C9C0670D9688a00
+fallback=0xe2222F5f3E7C220c3A0a9d680C9C0670D9688a66
 
-
-* players address may be obtained by TODO.
-* Adding metamask account can be done by TODO.
-* Getting private keys from metamask can be done by TODO.
+* RPC_URL may be claimed by registering an account and creating a project through alchemy or infura(Google for more detailed instructions). You may also just use the default hardhat RPC just uncomment out that part and comment the one using RPC_URL(ctrl + / for vscode shortcut).
+* players address may be obtained by typimg player in ethernaut console after connecting yoour metamask.
+* Adding metamask account can be done by clicking the upper right circle to bring the menu and choose create account.
+* Getting private keys from metamask can be done by clicking the three dots at the upper right area to open the accounts option then click account details then export private keys then inout password to show private keys.
 
 - To run the script for any of the specific level below, type the title of the level with all lowercase and no space after editing your instance address for that level. Example: helloethernaut (for level 1).
 

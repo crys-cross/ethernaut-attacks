@@ -44,6 +44,7 @@ const attackVault = async () => {
 
     // wallet
     // using my custom rpc stored in .env (for privacy)
+    // const provider = ethers.getDefaultProvider("goerli"); // use this for default RPC provider
     const GOERLI_RPC_URL = process.env.GOERLI_RPC_URL;
     const provider = new ethers.providers.JsonRpcProvider(GOERLI_RPC_URL);
     const wallet = new ethers.Wallet(player, provider);

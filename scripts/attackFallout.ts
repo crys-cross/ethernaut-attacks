@@ -3,8 +3,8 @@ import { ethers } from "hardhat";
 
 const attackFallout = async () => {
     // change contract addresses here.
-    const falloutAddress = "0xe3958F5f3E7C470c3F0a9d680C9C0670D9688a66"; //type "await contract.address()" in ethernaut console
-    const player = "0x3C4f1C7Ab126a94016CA8F4e770522810aa61954"; //place your player address here
+    const falloutAddress = process.env.FALLOUT!; //type "await contract.address()" in ethernaut console
+    const player = process.env.PLAYER; //place your player address here
 
     // Don't touch below 🚀
     // Vulnerability from mistake of making a function not a constructor. Can call function to become the owner.

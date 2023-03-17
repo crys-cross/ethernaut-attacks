@@ -3,8 +3,8 @@ import { ethers } from "hardhat";
 
 const attackFallback = async () => {
     // change contract addresses here.
-    const fallbackAddress = "0x25d44eB1C5F7Ea6d32B11c7a28A5dBB9251f3417"; //type "await contract.address()" in ethernaut console
-    const player = "0x3C4f1C7Ab126a94016CA8F4e770522810aa61954"; //place your player address here
+    const fallbackAddress = process.env.FALLBACK!; //type "await contract.address()" in ethernaut console
+    const player = process.env.PLAYER; //place your player address here
 
     // Don't touch below 🚀
     // Vulnerability from public view of password

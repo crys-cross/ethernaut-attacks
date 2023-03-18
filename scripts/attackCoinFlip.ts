@@ -4,7 +4,7 @@ import { ethers } from "hardhat";
 const attackCoinFlip = async () => {
     // IF THIS FAIL BEFORE REACHING 10 WINS, JUST RERUN UNTIL IT DOES !!!
     // change contract addresses here.
-    const coinFlipAddress = "0xB94F42b6D0Bd54E51A6853F2125c5a11C6F7DC60"; //type "await contract.address()" in ethernaut console
+    const coinFlipAddress = process.env.COINFLIP!; //type "await contract.address()" in ethernaut console
     const args: [] = [];
     const player = process.env.PRIVATE_KEY || "";
     // [deployer] = await ethers.getSigners();

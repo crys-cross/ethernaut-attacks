@@ -2,7 +2,7 @@ import { ethers } from "hardhat";
 
 const attackTelephone = async () => {
     // change contract addresses here.
-    const telephoneAddress = "0xF3AEFf7A6007cCB92593880594eBd587CD8379Dd"; //type "await contract.address()" in ethernaut console
+    const telephoneAddress = process.env.TELEPHONE!; //type "await contract.address()" in ethernaut console
     // const player = ""; //place your player address here (you may type player in ethernaut console)
     const args: [] = [];
     const player = process.env.PRIVATE_KEY || "";

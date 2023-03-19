@@ -2,7 +2,7 @@ import { ethers } from "hardhat";
 
 const attackVault = async () => {
     // change contract addresses here.
-    const vaultAddress = "0xe094498d7F6F2d4E3b829E3A52e2dd2745498e46"; //type "await contract.address()" in ethernaut console
+    const vaultAddress = process.env.VAULT!; //type "await contract.address()" in ethernaut console
 
     // Don't touch below 🚀
     // Vulnerability comes from storage could be read and making it private does not stop this.

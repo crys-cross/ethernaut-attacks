@@ -2,7 +2,7 @@ import { ethers } from "hardhat";
 
 const approveNaughtCoin = async () => {
     // change naughtcoin instance address here
-    const naughtCoinAddress = "0xa7984ebEC87054409aA8Ca05E3fE00e826f1148B";
+    const naughtCoinAddress = process.env.NAUGHTCOIN!;
     // change your player and spender address in the .env file
     const player = process.env.PRIVATE_KEY || "";
     const spender = process.env.PRIVATE_KEY_2 || "";

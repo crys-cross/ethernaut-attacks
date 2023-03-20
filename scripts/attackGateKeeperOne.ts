@@ -2,7 +2,7 @@ import { ethers } from "hardhat";
 
 async function attackGateKeeperOne() {
     // change contract addresses here. change gas only if needed.
-    const _gateAddress = "0x5a2C7Bb67C57AD2b89731D97d0a1bc1D6Cc7c1A0";
+    const _gateAddress = process.env.GATEKEEPERONE;
     const _gasLowerLimit = 50;
     const _gasUpperLimit = 300;
     const args: any[] = [];

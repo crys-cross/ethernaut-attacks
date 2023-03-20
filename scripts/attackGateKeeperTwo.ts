@@ -7,7 +7,7 @@ import { run } from "hardhat";
 
 const attackVault = async () => {
     // change contract addresses here.
-    const gateTwoAddress = "0xB9295FF890D6493F3E1a0080887cE29c41d398D1"; //type "await contract.address()" in ethernaut console
+    const gateTwoAddress = process.env.GATEKEEPERTWO!; //type "await contract.address()" in ethernaut console
     // const player = ""; //place your player address here (you may type player in ethernaut console)
     const args: any[] = [gateTwoAddress];
     const player = process.env.PRIVATE_KEY || "";

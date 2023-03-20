@@ -2,7 +2,7 @@ import { ethers } from "hardhat";
 
 const attackPrivacy = async () => {
     // change contract addresses here.
-    const privacyAddress = "0xa6A8590F537D767A4582bcF1A594c3c87CCDD326"; //type "await contract.address()" in ethernaut console
+    const privacyAddress = process.env.PRIVACY!; //type "await contract.address()" in ethernaut console
 
     // Don't touch below 🚀
     // Vulnerability comes from password and everything else can be read once in the blockchain

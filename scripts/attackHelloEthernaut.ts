@@ -2,7 +2,7 @@ import { ethers } from "hardhat";
 
 const attackDoubleEntry = async () => {
     // change contract addresses here.
-    const helloEthernautAddress = process.env.HELLOETHERNAUT!.toString(); //type "await contract.address()" in ethernaut console
+    const helloEthernautAddress = process.env.HELLOETHERNAUT!; //type "await contract.address()" in ethernaut console
 
     // Don't touch below 🚀
     // Vulnerability from public view of password

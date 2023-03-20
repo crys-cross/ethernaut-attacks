@@ -2,7 +2,7 @@ import { ethers } from "hardhat";
 
 const attackBuilding = async () => {
     // change contract addresses here.
-    const buildingAddress = "0x5d4D6D9b06CFb497D559355429AA7f9dd351AB62"; //type "await contract.address()" in ethernaut console
+    const buildingAddress = process.env.ELEVATOR!; //type "await contract.address()" in ethernaut console
     const args: [] = [];
     const deployer = process.env.PRIVATE_KEY || "";
     // [deployer] = await ethers.getSigners();

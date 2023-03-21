@@ -2,7 +2,7 @@ import { ethers } from "hardhat";
 
 async function attackPreservation() {
     // change contract addresses here.
-    const preservationAddress = "0xDe83B4021fD817f3EC437579B583e15b56B427aD";
+    const preservationAddress = process.env.PRESERVATION!;
     // const player = ""; //place your player address here (you may type player in ethernaut console)
     const args: any[] = [];
     const player = process.env.PRIVATE_KEY || "";

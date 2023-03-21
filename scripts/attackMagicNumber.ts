@@ -3,8 +3,8 @@ import { ethers } from "hardhat";
 
 const attackMagicNumber = async () => {
     // change contract addresses here. change gas only if needed.
-    const magicNumberAddress = "0x0Da41194c379e212EFA9067A28945cF6a8Acb62D";
-    const playerAddress = "0x3C4f1C7Ab126a94016CA8F4e770522810aa61954";
+    const magicNumberAddress = process.env.MAGICNUMBER!;
+    const playerAddress = process.env.PLAYER;
     const bytecode = "0x600a600c600039600a6000f3602a60505260206050f3";
     // knowledge in opcode required to finish this level. To understand how to get bytecodes above, please
     // read on:

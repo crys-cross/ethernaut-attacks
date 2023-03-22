@@ -5,8 +5,8 @@ import deployAttackMotorbikeEngine from "../deploy/deployAttackMotorbikeEngine";
 
 const attackAlienCodex = async () => {
     // change contract addresses here.
-    const alienCodexAddress = "0xF675Be946818f77Ba00aD069C99C97080800656E";
-    const player = "0x3C4f1C7Ab126a94016CA8F4e770522810aa61954"; //place your player address here (you may type player in ethernaut console)
+    const alienCodexAddress = process.env.ALIENCODEX!;
+    const player = process.env.PLAYER!; //place your player address here (you may type player in ethernaut console)
 
     // Don't touch below
     // Exploit comes from no check for underflow on retract function and changing storage value for owner

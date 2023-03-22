@@ -2,7 +2,7 @@ import { ethers } from "hardhat";
 
 const attackDenial = async () => {
     // change contract addresses here.
-    const denialAddress = "0x2B7E4a3d6B6c099f5d4e50efED9a31caa5a6B19f";
+    const denialAddress = process.env.DENIAL!;
     const args: any[] = [];
     const deployer = process.env.PRIVATE_KEY || "";
     // [deployer] = await ethers.getSigners();

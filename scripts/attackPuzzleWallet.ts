@@ -3,8 +3,8 @@ import { ethers } from "hardhat";
 
 const attackPuzzleWallet = async () => {
     // change contract addresses here.
-    const puzzleWalletAddress = "0x383e5cdD8324Bb0E1DA147b2fD869e1cfA930887"; //type "await contract.address()" in ethernaut console
-    const playerAddress = "0x3C4f1C7Ab126a94016CA8F4e770522810aa61954";
+    const puzzleWalletAddress = process.env.PUZZLEWALLET!; //type "await contract.address()" in ethernaut console
+    const playerAddress = process.env.PLAYER;
 
     // Don't touch below
     // The vulnerability here arises due to storage collision between the proxy contract (PuzzleProxy) and logic contract (PuzzleWallet)

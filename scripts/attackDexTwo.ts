@@ -2,8 +2,8 @@ import { ethers } from "hardhat";
 
 const attackDexTwo = async () => {
     // change contract addresses here.
-    const dexTwoAddress = "0xAc7EcD98B60C2094BdD63eEaF73436ebE8A28e9a"; //type "await contract.address()" in ethernaut console
-    const player = "0x3C4f1C7Ab126a94016CA8F4e770522810aa61954"; //place your player address here (you may type player in ethernaut console)
+    const dexTwoAddress = process.env.DEXTWO!; //type "await contract.address()" in ethernaut console
+    const player = process.env.PLAYER; //place your player address here (you may type player in ethernaut console)
     const args: any[] = [];
     const deployer = process.env.PRIVATE_KEY || "";
     // [deployer] = await ethers.getSigners();

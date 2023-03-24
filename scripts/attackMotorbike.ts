@@ -3,8 +3,8 @@ import { ethers } from "hardhat";
 
 const attackMotorbike = async () => {
     // change contract addresses here.
-    const motorbikeAddress = "0xC4BB01C7AA492bdFF60f6989542d71DB7cb73Fd1"; //type "await contract.address()" in ethernaut console
-    const playerAddress = "0x3C4f1C7Ab126a94016CA8F4e770522810aa61954";
+    const motorbikeAddress = process.env.MOTORBIKE!; //type "await contract.address()" in ethernaut console
+    const playerAddress = process.env.PLAYER;
     const bombAddress = "0xF00f8E16b9c6588997a8bdE69e2749a52957d752";
     const args: any[] = [];
     const deployer = process.env.PRIVATE_KEY || "";

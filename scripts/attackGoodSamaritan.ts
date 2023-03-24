@@ -5,8 +5,8 @@ import { waitForDebugger } from "inspector";
 
 const attackGoodSamaritan = async () => {
     // change contract addresses here.
-    const goodSamaritanAddress = "0x063380A0ba27e70539Bb1873dCFc82C47583a040"; //type "await contract.address()" in ethernaut console
-    const player = "0x3C4f1C7Ab126a94016CA8F4e770522810aa61954"; //place your player address here (you may type player in ethernaut console)
+    const goodSamaritanAddress = process.env.GOODSAMARITAN!; //type "await contract.address()" in ethernaut console
+    const player = process.env.PLAYER; //place your player address here (you may type player in ethernaut console)
     const args: any[] = [];
     const deployer = process.env.PRIVATE_KEY || "";
     // [deployer] = await ethers.getSigners();

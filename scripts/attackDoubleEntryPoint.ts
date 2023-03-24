@@ -3,8 +3,8 @@ import { ethers } from "hardhat";
 
 const attackDoubleEntry = async () => {
     // change contract addresses here.
-    const doubleEntryAddress = "0xadAcB58E871e29B6d9e70500a75aFf9b4bF9B1f7"; //type "await contract.address()" in ethernaut console
-    const player = "0x3C4f1C7Ab126a94016CA8F4e770522810aa61954"; //place your player address here (you may type player in ethernaut console)
+    const doubleEntryAddress = process.env.DOUBLEENTRY!; //type "await contract.address()" in ethernaut console
+    const player = process.env.PLAYER; //place your player address here (you may type player in ethernaut console)
     const args: any[] = [];
     const deployer = process.env.PRIVATE_KEY || "";
     // [deployer] = await ethers.getSigners();
